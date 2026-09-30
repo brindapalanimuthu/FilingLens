@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "question": "What was Apple's total net sales in 2024?",
+    "type": "numeric",
+    "route": "table_focused",
+    "correct": true,
+    "verification_pass_rate": 1.0,
+    "answer": "Apple's total net sales in 2024 was $391,035 [Source 3]."
+  },
+  {
+    "id": 2,
+    "question": "What was Apple's total net sales in 2023?",
+    "type": "numeric",
+    "route": "table_focused",
+    "correct": true,
+    "verification_pass_rate": 1.0,
+    "answer": "Apple's total net sales in 2023 was $383,285 [Source 3, Source 4, Source 5]."
+  }
+]

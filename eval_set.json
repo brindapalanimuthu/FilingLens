@@ -1,0 +1,14 @@
+[
+  {"id": 1, "question": "What was Apple's total net sales in 2024?", "type": "numeric", "expected_number": "391,035"},
+  {"id": 2, "question": "What was Apple's total net sales in 2023?", "type": "numeric", "expected_number": "383,285"},
+  {"id": 3, "question": "What was Apple's gross margin percentage in 2024?", "type": "numeric", "expected_number": "46.2"},
+  {"id": 4, "question": "How much did Apple spend on research and development in 2024?", "type": "numeric", "expected_number": "31,370"},
+  {"id": 5, "question": "What was Apple's diluted earnings per share in 2024?", "type": "numeric", "expected_number": "6.08"},
+  {"id": 6, "question": "What was Apple's total shareholders' equity as of September 28, 2024?", "type": "numeric", "expected_number": "56,950"},
+  {"id": 7, "question": "What was Apple's effective tax rate in 2024?", "type": "numeric", "expected_number": "24.1"},
+  {"id": 8, "question": "What was Apple's net income in 2024?", "type": "numeric", "expected_number": "93,736"},
+  {"id": 9, "question": "What was Apple's total assets as of September 28, 2024?", "type": "numeric", "expected_number": "364,980"},
+  {"id": 10, "question": "What was Apple's cash and cash equivalents as of September 28, 2024?", "type": "numeric", "expected_number": "29,943"},
+  {"id": 11, "question": "Why did Apple's Greater China revenue decline in 2023?", "type": "prose", "expected_keywords": ["renminbi", "iPhone", "Mac"]},
+  {"id": 12, "question": "Why did Apple's Services net sales increase in 2024?", "type": "prose", "expected_keywords": ["advertising", "App Store", "cloud"]}
+]

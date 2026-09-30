@@ -1,0 +1,7 @@
+.env
+__pycache__/
+filings_raw/
+parsed/
+classified/
+index/
+full_index/
