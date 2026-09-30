@@ -1,5 +1,5 @@
 """
-FilingLens — Stage 6: LangGraph routing
+FilingLens — Stage 6: LangGraph routing (hybrid table retrieval)
 """
 
 from langgraph.graph import StateGraph, END
@@ -12,10 +12,12 @@ import re
 import sys
 from typing import TypedDict, List, Dict
 
+from hybrid_search import hybrid_table_search
+
 
 INDEX_DIR = "full_index"
 EMBED_MODEL_NAME = "all-MiniLM-L6-v2"
-GEMINI_MODEL_NAME = "gemini-2.5-flash"
+GEMINI_MODEL_NAME = "gemini-2.5-flash-lite"
 TOP_K = 5
 
 NUMBER_PATTERN = re.compile(r"\(?-?\$?\d[\d,]*(?:\.\d+)?\)?%?")
@@ -25,6 +27,7 @@ NUMERIC_KEYWORDS = [
     "revenue", "net sales", "net income", "eps", "earnings per share",
     "cash", "debt", "compare", "increase", "decrease", "growth",
     "rate", "ratio", "cost", "expense", "profit", "gross margin",
+    "spend", "assets", "equity", "shareholders",
 ]
 
 EXPLANATORY_KEYWORDS = [
@@ -69,7 +72,11 @@ def call_gemini_with_retry(client, prompt, max_attempts=5):
                 contents=prompt,
             )
         except ClientError as e:
-            if "RESOURCE_EXHAUSTED" in str(e) and attempt < max_attempts:
+            msg = str(e)
+            # daily quota can't be fixed by waiting a few seconds
+            if "PerDay" in msg:
+                raise
+            if "RESOURCE_EXHAUSTED" in msg and attempt < max_attempts:
                 wait = 35
                 print(f"  Rate limited, waiting {wait}s before retry "
                       f"({attempt}/{max_attempts})...")
@@ -102,7 +109,24 @@ def build_graph(embed_model, embeddings, entries, gemini_client):
         return {**state, "retrieved": [entries[i] for i in combined]}
 
     def retrieve_table_focused(state):
-        return retrieve(state, n_table=3, n_text=2)
+        query = state["query"]
+
+        # hybrid BM25 + embedding search over table rows only
+        tables = hybrid_table_search(query, k=12, model=embed_model)
+
+        # if the question names a year, put rows from that year's filing first
+        # (filings are named by filing date, e.g. AAPL_10-K_2024-11-01)
+        years = re.findall(r"\b(20\d{2})\b", query)
+        if years:
+            tables = sorted(
+                tables,
+                key=lambda e: 0 if f"_{years[0]}-" in e["filing"] else 1,
+            )
+        tables = tables[:6]
+
+        # a couple of prose chunks for context (n_table=0 -> text only)
+        text_state = retrieve(state, n_table=0, n_text=2)
+        return {**state, "retrieved": tables + text_state["retrieved"]}
 
     def retrieve_text_focused(state):
         return retrieve(state, n_table=1, n_text=4)
@@ -116,8 +140,10 @@ def build_graph(embed_model, embeddings, entries, gemini_client):
 the sources below. Some sources are tables (rows of numbers) and some are
 prose. Cite sources by their number (e.g. "[Source 2]"). When citing a
 number from a table, quote it exactly as it appears — do not round or
-recalculate. If the sources don't contain enough information to answer
-confidently, say so explicitly rather than guessing.
+recalculate. When the question names a fiscal year, prefer figures from the
+filing for that same year (e.g. the 2024 10-K for 2024 figures). If the
+sources don't contain enough information to answer confidently, say so
+explicitly rather than guessing.
 
 SOURCES:
 {context_block}

@@ -9,25 +9,12 @@ import glob
 import re
 import numpy as np
 import pickle
+from table_chunker import table_to_row_chunks
 
 
 INPUT_DIR = "classified"
 OUTPUT_DIR = "full_index"
 MODEL_NAME = "all-MiniLM-L6-v2"
-
-
-def clean_row(row):
-    cleaned = [cell for cell in row if cell.strip()]
-    merged = []
-    i = 0
-    while i < len(cleaned):
-        if cleaned[i] == "$" and i + 1 < len(cleaned):
-            merged.append(f"${cleaned[i + 1]}")
-            i += 2
-        else:
-            merged.append(cleaned[i])
-            i += 1
-    return merged
 
 
 def is_boilerplate_table(rows):
@@ -37,37 +24,6 @@ def is_boilerplate_table(rows):
         "PCAOB Firm ID", "Power of Attorney", "Rule 10b5-1",
     ]
     return any(marker in joined for marker in boilerplate_markers)
-
-
-def table_to_markdown(rows):
-    cleaned_rows = [clean_row(r) for r in rows if clean_row(r)]
-    return "\n".join(" | ".join(row) for row in cleaned_rows)
-
-
-def is_numeric_like(cell):
-    return bool(re.fullmatch(r"[\$\(\)\-–0-9,.% ]+", cell))
-
-
-def table_to_embed_text(rows):
-    cleaned_rows = [clean_row(r) for r in rows if clean_row(r)]
-    if not cleaned_rows:
-        return ""
-
-    header = cleaned_rows[0]
-    body_start = 1
-    header_has_digit = any(re.search(r"\d", cell) for cell in header)
-    if len(header) <= 2 and not header_has_digit and len(cleaned_rows) > 1:
-        header = header + cleaned_rows[1]
-        body_start = 2
-
-    header_text = " ".join(header)
-    labels = []
-    for row in cleaned_rows[body_start:]:
-        label = next((cell for cell in row if not is_numeric_like(cell)), None)
-        if label:
-            labels.append(label)
-
-    return f"Columns: {header_text}. Rows: {', '.join(labels)}"
 
 
 if __name__ == "__main__":
@@ -87,6 +43,7 @@ if __name__ == "__main__":
 
         filing_name = os.path.splitext(os.path.basename(classified_path))[0]
 
+        # text chunks
         for chunk in data["text"]:
             all_entries.append({
                 "type": "text",
@@ -96,20 +53,18 @@ if __name__ == "__main__":
                 "filing": filing_name,
             })
 
+        # table rows (one entry per row)
         for table in data["tables"]:
-            rows = table["rows"]
-            if is_boilerplate_table(rows):
+            if is_boilerplate_table(table["rows"]):
                 continue
-            markdown = table_to_markdown(rows)
-            if not markdown.strip():
-                continue
-            all_entries.append({
-                "type": "table",
-                "embed_text": table_to_embed_text(rows),
-                "display_text": markdown,
-                "section": f"Table {table['table_id']}",
-                "filing": filing_name,
-            })
+            for row_chunk in table_to_row_chunks(table, filing_name):
+                all_entries.append({
+                    "type": "table",
+                    "embed_text": row_chunk["text"],
+                    "display_text": row_chunk["text"],
+                    "section": f"Table {table['table_id']}",
+                    "filing": filing_name,
+                })
 
     print(f"\nEmbedding {len(all_entries)} total entries "
           f"(text + tables) across all filings...")
