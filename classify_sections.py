@@ -1,17 +1,28 @@
 """
 FilingLens — Stage 3: Section Classification
+
+Usage:
+    python classify_sections.py MSFT             # classify only MSFT (default distilbert model)
+    python classify_sections.py MSFT --deberta   # stronger model, writes to classified_deberta/
+    python classify_sections.py --force          # redo files that already exist
 """
 
 from transformers import pipeline
 import json
 import os
 import glob
+import sys
 
 
 INPUT_DIR = "parsed"
-OUTPUT_DIR = "classified"
 
-MODEL_NAME = "typeform/distilbert-base-uncased-mnli"
+USE_DEBERTA = "--deberta" in sys.argv
+if USE_DEBERTA:
+    MODEL_NAME = "MoritzLaurer/deberta-v3-base-zeroshot-v2.0"
+    OUTPUT_DIR = "classified_deberta"
+else:
+    MODEL_NAME = "typeform/distilbert-base-uncased-mnli"
+    OUTPUT_DIR = "classified"
 
 SECTION_LABELS = [
     "a description of the company's business, products, and services",
@@ -62,23 +73,50 @@ def classify_chunks(text_chunks, classifier):
     return results
 
 
+def print_distribution(classified_text):
+    counts = {}
+    for c in classified_text:
+        counts[c["section"]] = counts.get(c["section"], 0) + 1
+    total = len(classified_text)
+    for name, n in sorted(counts.items(), key=lambda x: -x[1]):
+        print(f"    {name:58} {n:4} ({n / total:.0%})")
+
+
 if __name__ == "__main__":
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-    print(f"Loading model ({MODEL_NAME})... this may take a while on first run.")
+    force = "--force" in sys.argv
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    ticker = args[0].upper() if args else None
+
+    pattern = f"{ticker}_*.json" if ticker else "*.json"
+    parsed_files = sorted(glob.glob(os.path.join(INPUT_DIR, pattern)))
+    print(f"Model: {MODEL_NAME}")
+    print(f"Output: {OUTPUT_DIR}/")
+    print(f"Found {len(parsed_files)} parsed filing(s)")
+
+    todo = []
+    for p in parsed_files:
+        out_path = os.path.join(OUTPUT_DIR, os.path.basename(p))
+        if os.path.exists(out_path) and not force:
+            print(f"Already classified {out_path}, skipping")
+        else:
+            todo.append(p)
+
+    if not todo:
+        print("Nothing to do.")
+        sys.exit(0)
+
+    print(f"\nLoading model... this may take a while on first run.")
     classifier = pipeline("zero-shot-classification", model=MODEL_NAME)
     print("Model loaded.\n")
 
-    parsed_files = glob.glob(os.path.join(INPUT_DIR, "*.json"))
-    print(f"Found {len(parsed_files)} parsed filing(s) to classify")
-
-    for parsed_path in parsed_files:
-        print(f"\nClassifying {parsed_path}...")
+    for parsed_path in todo:
+        print(f"Classifying {parsed_path}...")
         with open(parsed_path, "r", encoding="utf-8") as f:
             data = json.load(f)
 
-        text_chunks = data["text"]
-        classified_text = classify_chunks(text_chunks, classifier)
+        classified_text = classify_chunks(data["text"], classifier)
 
         output = {
             "tables": data["tables"],
@@ -86,8 +124,10 @@ if __name__ == "__main__":
             "text": classified_text,
         }
 
-        basename = os.path.splitext(os.path.basename(parsed_path))[0]
-        out_path = os.path.join(OUTPUT_DIR, f"{basename}.json")
+        out_path = os.path.join(OUTPUT_DIR, os.path.basename(parsed_path))
         with open(out_path, "w", encoding="utf-8") as f:
             json.dump(output, f, indent=2)
         print(f"  Saved: {out_path}")
+        print("  Section distribution:")
+        print_distribution(classified_text)
+        print()

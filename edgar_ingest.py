@@ -1,5 +1,9 @@
 """
 FilingLens — Stage 1: SEC EDGAR Ingestion
+
+Usage:
+    python edgar_ingest.py          # defaults to AAPL
+    python edgar_ingest.py MSFT     # any ticker
 """
 
 import requests
@@ -7,10 +11,11 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 import json
 import os
+import sys
 import time
 
 YOUR_NAME = "Brinda"
-YOUR_EMAIL = "your_real_email@example.com"
+YOUR_EMAIL = "palanimuthubrinda@gmail.com"  # <-- put your real email here
 HEADERS = {
     "User-Agent": f"{YOUR_NAME} {YOUR_EMAIL}",
     "Accept-Encoding": "gzip, deflate",
@@ -91,7 +96,7 @@ def download_filing(cik: str, filing: dict, save_path: str, max_attempts: int = 
 
 if __name__ == "__main__":
     os.makedirs(OUTPUT_DIR, exist_ok=True)
-    TICKER = "AAPL"
+    TICKER = (sys.argv[1] if len(sys.argv) > 1 else "AAPL").upper()
     FORM_TYPE = "10-K"
 
     print(f"Looking up CIK for {TICKER}...")
@@ -102,10 +107,11 @@ if __name__ == "__main__":
     filings = get_filings(cik, form_type=FORM_TYPE, limit=3)
     print(json.dumps(filings, indent=2))
 
-    for i, filing in enumerate(filings):
+    for filing in filings:
         filename = f"{TICKER}_{FORM_TYPE}_{filing['filingDate']}.html"
         save_path = os.path.join(OUTPUT_DIR, filename)
         if os.path.exists(save_path):
             print(f"Already have {save_path}, skipping")
             continue
         download_filing(cik, filing, save_path)
+        time.sleep(1)  # be polite to SEC

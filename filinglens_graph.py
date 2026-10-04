@@ -1,5 +1,6 @@
 """
-FilingLens — Stage 6: LangGraph routing (hybrid table retrieval)
+FilingLens — Stage 6: LangGraph routing (hybrid table retrieval, multi-company)
+Gemini calls fall back between models when one hits its daily quota.
 """
 
 from langgraph.graph import StateGraph, END
@@ -12,28 +13,39 @@ import re
 import sys
 from typing import TypedDict, List, Dict
 
-from hybrid_search import hybrid_table_search
+from hybrid_search import hybrid_table_search, detect_companies
 
 
 INDEX_DIR = "full_index"
 EMBED_MODEL_NAME = "all-MiniLM-L6-v2"
-GEMINI_MODEL_NAME = "gemini-2.5-flash-lite"
+GEMINI_MODELS = ["gemini-2.5-flash", "gemini-3.5-flash-lite"]  # tried in this order
 TOP_K = 5
+
+_current_model_idx = 0  # persists across calls, so a dead model isn't retried
 
 NUMBER_PATTERN = re.compile(r"\(?-?\$?\d[\d,]*(?:\.\d+)?\)?%?")
 
 NUMERIC_KEYWORDS = [
     "how much", "total", "percentage", "percent", "%", "margin",
-    "revenue", "net sales", "net income", "eps", "earnings per share",
-    "cash", "debt", "compare", "increase", "decrease", "growth",
+    "revenue", "net sales", "net income", "operating income", "income",
+    "eps", "earnings per share", "earnings",
+    "cash", "debt", "compare", "increase", "decrease", "growth", "change",
     "rate", "ratio", "cost", "expense", "profit", "gross margin",
     "spend", "assets", "equity", "shareholders",
 ]
 
 EXPLANATORY_KEYWORDS = [
-    "why", "what caused", "what led", "reason", "explain", "describe",
-    "how did", "what factors", "what risks",
+    "why", "what caused", "what led", "what drove", "reason", "explain",
+    "describe", "what factors", "what risks", "what risk",
 ]
+
+# question wording -> section label the classifier assigns
+SECTION_HINTS = {
+    "risk": "Risk Factors",
+    "legal proceeding": "Legal Proceedings",
+    "lawsuit": "Legal Proceedings",
+    "properties": "Properties",
+}
 
 
 class GraphState(TypedDict):
@@ -42,6 +54,7 @@ class GraphState(TypedDict):
     retrieved: List[Dict]
     answer: str
     verification: List[Dict]
+    model: str
 
 
 def load_index():
@@ -61,28 +74,50 @@ def normalize(s):
     return re.sub(r"[,$%()]", "", s)
 
 
-def call_gemini_with_retry(client, prompt, max_attempts=5):
+def call_gemini_with_retry(client, prompt, max_attempts=6):
+    """Returns (response, model_name). Swaps models when one is exhausted."""
     import time
-    from google.genai.errors import ClientError
+    from google.genai.errors import ClientError, ServerError
+    global _current_model_idx
 
-    for attempt in range(1, max_attempts + 1):
-        try:
-            return client.models.generate_content(
-                model=GEMINI_MODEL_NAME,
-                contents=prompt,
-            )
-        except ClientError as e:
-            msg = str(e)
-            # daily quota can't be fixed by waiting a few seconds
-            if "PerDay" in msg:
-                raise
-            if "RESOURCE_EXHAUSTED" in msg and attempt < max_attempts:
-                wait = 35
-                print(f"  Rate limited, waiting {wait}s before retry "
-                      f"({attempt}/{max_attempts})...")
+    exhausted = 0  # models that failed during this call
+    while exhausted < len(GEMINI_MODELS):
+        model = GEMINI_MODELS[_current_model_idx]
+        switch = False
+
+        for attempt in range(1, max_attempts + 1):
+            try:
+                response = client.models.generate_content(model=model, contents=prompt)
+                return response, model
+            except (ClientError, ServerError) as e:
+                msg = str(e)
+                if "PerDay" in msg:
+                    print(f"  Daily quota reached for {model}.")
+                    switch = True
+                    break
+                retryable = (
+                    "RESOURCE_EXHAUSTED" in msg
+                    or "UNAVAILABLE" in msg
+                    or "503" in msg
+                )
+                if not retryable:
+                    raise
+                if attempt == max_attempts:
+                    print(f"  {model} still failing after {max_attempts} attempts.")
+                    switch = True
+                    break
+                wait = min(10 * 2 ** (attempt - 1), 90)  # 10s, 20s, 40s, 80s, 90s
+                print(f"  {model} busy/rate-limited, waiting {wait}s "
+                      f"(retry {attempt}/{max_attempts - 1})...")
                 time.sleep(wait)
-            else:
-                raise
+
+        if switch:
+            exhausted += 1
+            _current_model_idx = (_current_model_idx + 1) % len(GEMINI_MODELS)
+            if exhausted < len(GEMINI_MODELS):
+                print(f"  Switching to {GEMINI_MODELS[_current_model_idx]}.")
+
+    raise RuntimeError("All Gemini models are exhausted or unavailable right now.")
 
 
 def build_graph(embed_model, embeddings, entries, gemini_client):
@@ -98,9 +133,25 @@ def build_graph(embed_model, embeddings, entries, gemini_client):
     def retrieve(state, n_table, n_text):
         query_vec = embed_model.encode(state["query"])
         scores = cosine_similarity(query_vec, embeddings)
+        query_lower = state["query"].lower()
 
-        text_indices = [i for i, e in enumerate(entries) if e["type"] == "text"]
-        table_indices = [i for i, e in enumerate(entries) if e["type"] == "table"]
+        companies = detect_companies(state["query"])  # None = no filter
+
+        def allowed(e):
+            return companies is None or e["company"] in companies
+
+        text_indices = [i for i, e in enumerate(entries)
+                        if e["type"] == "text" and allowed(e)]
+        table_indices = [i for i, e in enumerate(entries)
+                         if e["type"] == "table" and allowed(e)]
+
+        # prefer chunks from the section the question is about, if enough exist
+        for hint, section in SECTION_HINTS.items():
+            if hint in query_lower:
+                preferred = [i for i in text_indices if entries[i]["section"] == section]
+                if len(preferred) >= n_text:
+                    text_indices = preferred
+                break
 
         top_text = sorted(text_indices, key=lambda i: -scores[i])[:n_text]
         top_table = sorted(table_indices, key=lambda i: -scores[i])[:min(n_table, len(table_indices))]
@@ -111,17 +162,22 @@ def build_graph(embed_model, embeddings, entries, gemini_client):
     def retrieve_table_focused(state):
         query = state["query"]
 
-        # hybrid BM25 + embedding search over table rows only
-        tables = hybrid_table_search(query, k=12, model=embed_model)
+        # hybrid BM25 + embedding + label-match search over table rows only
+        # (filtered to the company named in the question, if any).
+        # Wide pool: the same row appears in up to 3 filings.
+        tables = hybrid_table_search(query, k=40, model=embed_model)
 
-        # if the question names a year, put rows from that year's filing first
-        # (filings are named by filing date, e.g. AAPL_10-K_2024-11-01)
-        years = re.findall(r"\b(20\d{2})\b", query)
+        # Years named in the question -> take the best rows from EACH named
+        # year's filing (filenames carry the filing date, e.g. AAPL_10-K_2024-11-01).
+        years = list(dict.fromkeys(re.findall(r"\b(20\d{2})\b", query)))
         if years:
-            tables = sorted(
-                tables,
-                key=lambda e: 0 if f"_{years[0]}-" in e["filing"] else 1,
-            )
+            per_year = max(2, 6 // len(years))
+            picked = []
+            for y in years:
+                picked += [e for e in tables if f"_{y}-" in e["filing"]][:per_year]
+            picked_ids = {id(e) for e in picked}
+            rest = [e for e in tables if id(e) not in picked_ids]
+            tables = picked + rest
         tables = tables[:6]
 
         # a couple of prose chunks for context (n_table=0 -> text only)
@@ -129,7 +185,7 @@ def build_graph(embed_model, embeddings, entries, gemini_client):
         return {**state, "retrieved": tables + text_state["retrieved"]}
 
     def retrieve_text_focused(state):
-        return retrieve(state, n_table=1, n_text=4)
+        return retrieve(state, n_table=1, n_text=6)
 
     def generate(state):
         context_block = "\n\n".join(
@@ -141,7 +197,12 @@ the sources below. Some sources are tables (rows of numbers) and some are
 prose. Cite sources by their number (e.g. "[Source 2]"). When citing a
 number from a table, quote it exactly as it appears — do not round or
 recalculate. When the question names a fiscal year, prefer figures from the
-filing for that same year (e.g. the 2024 10-K for 2024 figures). If the
+filing for that same year (e.g. the 2024 10-K for 2024 figures). Only use
+sources from the company the question asks about; if none of the sources are
+from that company, say the sources don't contain the answer. If the question
+does not name a company, say which company your answer is about. If the
+question does not name a segment or product line, answer with the
+company-wide (consolidated or "Total") figure, never a segment figure. If the
 sources don't contain enough information to answer confidently, say so
 explicitly rather than guessing.
 
@@ -151,8 +212,8 @@ SOURCES:
 QUESTION: {state['query']}
 
 ANSWER:"""
-        response = call_gemini_with_retry(gemini_client, prompt)
-        return {**state, "answer": response.text}
+        response, model_used = call_gemini_with_retry(gemini_client, prompt)
+        return {**state, "answer": response.text, "model": model_used}
 
     def verify(state):
         source_text = " ".join(e["display_text"] for e in state["retrieved"])
@@ -221,9 +282,10 @@ if __name__ == "__main__":
         query = input("Enter a question: ")
 
     result = app.invoke({"query": query, "route": "", "retrieved": [],
-                          "answer": "", "verification": []})
+                          "answer": "", "verification": [], "model": ""})
 
     print(f"\nRoute chosen: {result['route']}")
+    print(f"Model used: {result['model']}")
     print("\nRetrieved sources:")
     for i, e in enumerate(result["retrieved"], 1):
         print(f"  [{i}] {e['filing']} | {e['section']} | type={e['type']}")

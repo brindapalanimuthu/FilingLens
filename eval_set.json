@@ -1,14 +1,156 @@
 [
-  {"id": 1, "question": "What was Apple's total net sales in 2024?", "type": "numeric", "expected_number": "391,035"},
-  {"id": 2, "question": "What was Apple's total net sales in 2023?", "type": "numeric", "expected_number": "383,285"},
-  {"id": 3, "question": "What was Apple's gross margin percentage in 2024?", "type": "numeric", "expected_number": "46.2"},
-  {"id": 4, "question": "How much did Apple spend on research and development in 2024?", "type": "numeric", "expected_number": "31,370"},
-  {"id": 5, "question": "What was Apple's diluted earnings per share in 2024?", "type": "numeric", "expected_number": "6.08"},
-  {"id": 6, "question": "What was Apple's total shareholders' equity as of September 28, 2024?", "type": "numeric", "expected_number": "56,950"},
-  {"id": 7, "question": "What was Apple's effective tax rate in 2024?", "type": "numeric", "expected_number": "24.1"},
-  {"id": 8, "question": "What was Apple's net income in 2024?", "type": "numeric", "expected_number": "93,736"},
-  {"id": 9, "question": "What was Apple's total assets as of September 28, 2024?", "type": "numeric", "expected_number": "364,980"},
-  {"id": 10, "question": "What was Apple's cash and cash equivalents as of September 28, 2024?", "type": "numeric", "expected_number": "29,943"},
-  {"id": 11, "question": "Why did Apple's Greater China revenue decline in 2023?", "type": "prose", "expected_keywords": ["renminbi", "iPhone", "Mac"]},
-  {"id": 12, "question": "Why did Apple's Services net sales increase in 2024?", "type": "prose", "expected_keywords": ["advertising", "App Store", "cloud"]}
+  {
+    "id": 1,
+    "question": "What was Apple's total net sales in 2024?",
+    "type": "numeric",
+    "expected_number": "391,035"
+  },
+  {
+    "id": 2,
+    "question": "What was Apple's total net sales in 2023?",
+    "type": "numeric",
+    "expected_number": "383,285"
+  },
+  {
+    "id": 3,
+    "question": "What was Apple's gross margin percentage in 2024?",
+    "type": "numeric",
+    "expected_number": "46.2"
+  },
+  {
+    "id": 4,
+    "question": "How much did Apple spend on research and development in 2024?",
+    "type": "numeric",
+    "expected_number": "31,370"
+  },
+  {
+    "id": 5,
+    "question": "What was Apple's diluted earnings per share in 2024?",
+    "type": "numeric",
+    "expected_number": "6.08"
+  },
+  {
+    "id": 6,
+    "question": "What was Apple's total shareholders' equity as of September 28, 2024?",
+    "type": "numeric",
+    "expected_number": "56,950"
+  },
+  {
+    "id": 7,
+    "question": "What was Apple's effective tax rate in 2024?",
+    "type": "numeric",
+    "expected_number": "24.1"
+  },
+  {
+    "id": 8,
+    "question": "What was Apple's net income in 2024?",
+    "type": "numeric",
+    "expected_number": "93,736"
+  },
+  {
+    "id": 9,
+    "question": "What was Apple's total assets as of September 28, 2024?",
+    "type": "numeric",
+    "expected_number": "364,980"
+  },
+  {
+    "id": 10,
+    "question": "What was Apple's cash and cash equivalents as of September 28, 2024?",
+    "type": "numeric",
+    "expected_number": "29,943"
+  },
+  {
+    "id": 11,
+    "question": "Why did Apple's Greater China revenue decline in 2023?",
+    "type": "prose",
+    "expected_keywords": [
+      "renminbi",
+      "iPhone",
+      "Mac"
+    ]
+  },
+  {
+    "id": 12,
+    "question": "Why did Apple's Services net sales increase in 2024?",
+    "type": "prose",
+    "expected_keywords": [
+      "advertising",
+      "App Store",
+      "cloud"
+    ]
+  },
+  {
+    "id": 13,
+    "question": "What was Apple's R&D expense and net income in 2024?",
+    "type": "numeric",
+    "expected_numbers": [
+      "31,370",
+      "93,736"
+    ]
+  },
+  {
+    "id": 14,
+    "question": "What was Alphabet's net income in 2024?",
+    "type": "unanswerable"
+  },
+  {
+    "id": 15,
+    "question": "What was Apple's total net sales in 2019?",
+    "type": "unanswerable"
+  },
+  {
+    "id": 16,
+    "question": "What was Microsoft's net income in fiscal 2025?",
+    "type": "numeric",
+    "expected_number": "101,832"
+  },
+  {
+    "id": 17,
+    "question": "What was Microsoft's total revenue in fiscal 2025?",
+    "type": "numeric",
+    "expected_number": "281,724"
+  },
+  {
+    "id": 18,
+    "question": "What was Microsoft's total revenue in fiscal 2024?",
+    "type": "numeric",
+    "expected_number": "245,122"
+  },
+  {
+    "id": 19,
+    "question": "What was Microsoft's net income in fiscal 2024?",
+    "type": "numeric",
+    "expected_number": "88,136"
+  },
+  {
+    "id": 20,
+    "question": "What was Microsoft's net income in fiscal 2026?",
+    "type": "numeric",
+    "expected_number": "133,749"
+  },
+  {
+    "id": 21,
+    "question": "What was Microsoft's stock-based compensation expense in fiscal 2025?",
+    "type": "numeric",
+    "expected_number": "11,974"
+  },
+  {
+    "id": 22,
+    "question": "What was Microsoft's total revenue and net income in fiscal 2025?",
+    "type": "numeric",
+    "expected_numbers": [
+      "281,724",
+      "101,832"
+    ]
+  },
+  {
+    "id": 23,
+    "question": "What was Microsoft's iPhone revenue in fiscal 2025?",
+    "type": "unanswerable"
+  },
+  {
+    "id": 24,
+    "question": "What was Apple's Azure revenue in 2024?",
+    "type": "unanswerable"
+  }
 ]
