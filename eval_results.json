@@ -262,5 +262,93 @@
     "retrieval_hit": null,
     "verification_pass_rate": null,
     "answer": "The sources provided do not contain the answer for Apple, as all the provided sources are for Microsoft Corporation [Source 1, 2, 3, 4, 5, 6, 7, 8]."
+  },
+  {
+    "id": 25,
+    "question": "What was Apple's iPhone net sales in 2024?",
+    "type": "numeric",
+    "route": "table_focused",
+    "model": "gemini-3.5-flash-lite",
+    "outcome": "correct",
+    "retrieval_hit": true,
+    "verification_pass_rate": 1.0,
+    "answer": "This answer is about Apple Inc. \n\nApple's iPhone net sales in 2024 were 201,183 [Source 4, Source 5]."
+  },
+  {
+    "id": 26,
+    "question": "What were Apple's Services net sales in 2024?",
+    "type": "numeric",
+    "route": "table_focused",
+    "model": "gemini-3.5-flash-lite",
+    "outcome": "correct",
+    "retrieval_hit": true,
+    "verification_pass_rate": 1.0,
+    "answer": "This answer is about Apple Inc. \n\nApple's Services net sales in 2024 were 96,169 [Source 5]."
+  },
+  {
+    "id": 27,
+    "question": "What were Apple's total net sales in 2024 and 2023?",
+    "type": "numeric",
+    "route": "table_focused",
+    "model": "gemini-3.5-flash-lite",
+    "outcome": "correct",
+    "retrieval_hit": true,
+    "verification_pass_rate": 1.0,
+    "answer": "Apple's total net sales in 2024 were 391,035 and in 2023 were 383,285 [Source 2]."
+  },
+  {
+    "id": 28,
+    "question": "What was Microsoft's net income in fiscal 2025 and fiscal 2024?",
+    "type": "numeric",
+    "route": "table_focused",
+    "model": "gemini-3.5-flash-lite",
+    "outcome": "correct",
+    "retrieval_hit": true,
+    "verification_pass_rate": 1.0,
+    "answer": "For Microsoft Corporation, the company-wide net income was as follows:\n\n* **Fiscal 2025:** 101,832 [Source 1, Source 3]\n* **Fiscal 2024:** 88,136 [Source 1, Source 3] (Note: Another table in the same filing lists fiscal 2024 net income as 88,308 [Source 2])."
+  },
+  {
+    "id": 29,
+    "question": "By what percentage did Microsoft's total revenue grow from fiscal 2024 to fiscal 2025?",
+    "type": "numeric",
+    "route": "table_focused",
+    "model": "gemini-3.5-flash-lite",
+    "outcome": "correct",
+    "retrieval_hit": true,
+    "verification_pass_rate": 0.6666666666666666,
+    "answer": "To find the percentage growth of Microsoft's total revenue from fiscal 2024 to fiscal 2025, we use the company-wide total revenue figures from the fiscal 2025 10-K filing [Source 4]:\n- Fiscal 2025 Total Revenue: 281,724 [Source 4]\n- Fiscal 2024 Total Revenue: 245,122 [Source 4]\n\nCalculation:\n$$\\text{Percentage Change} = \\frac{281,724 - 245,122}{245,122} = \\frac{36,602}{245,122} \\approx 0.1493175$$\n\nThis is calculated to be an increase of approximately 14.93%."
+  },
+  {
+    "id": 30,
+    "question": "What was Microsoft's Server products and cloud services revenue in fiscal 2024?",
+    "type": "numeric",
+    "route": "table_focused",
+    "model": "gemini-3.5-flash-lite",
+    "outcome": "correct",
+    "retrieval_hit": true,
+    "verification_pass_rate": 1.0,
+    "answer": "This answer is about Microsoft Corporation.\n\nMicrosoft's Server products and cloud services revenue in fiscal 2024 was 97,726 [Source 3]."
+  },
+  {
+    "id": 31,
+    "question": "What risks does Apple cite related to its supply chain?",
+    "type": "prose",
+    "route": "text_focused",
+    "model": "gemini-3.5-flash-lite",
+    "outcome": "correct",
+    "retrieval_hit": true,
+    "verification_pass_rate": null,
+    "answer": "Based on the provided sources, this answer is about Apple Inc. \n\nApple cites the following risks related to its supply chain:\n* Changes or additions to the Company\u2019s supply chain require considerable time and resources and involve significant risks and uncertainties, including exposure to additional regulatory and operational risks [Source 4].\n* Uncertainty about, or a decline in, global or regional economic conditions can have a significant impact on the Company\u2019s suppliers, contract manufacturers, and logistics providers, with potential outcomes including financial instability, inability to obtain credit to finance business operations, and insolvency [Source 5].\n* Because the Company currently obtains certain components from single or limited sources, it is subject to significant supply and pricing risks [Source 6].\n* Many components are at times subject to industry-wide shortages and significant commodity pricing fluctuations (such as high demand and shortages of supply in the global semiconductor industry) that can adversely affect the Company's ability to obtain sufficient quantities of components and products on commercially reasonable terms, or at all, which can materially adversely affect the Company\u2019s business, results of operations, financial condition, and stock price [Source 6]."
+  },
+  {
+    "id": 32,
+    "question": "What was Apple's net income in fiscal 2030?",
+    "type": "unanswerable",
+    "route": "table_focused",
+    "model": "gemini-3.5-flash-lite",
+    "outcome": "correct",
+    "retrieval_hit": null,
+    "verification_pass_rate": null,
+    "answer": "The sources do not contain enough information to answer confidently [Sources 1\u20138]."
   }
 ]

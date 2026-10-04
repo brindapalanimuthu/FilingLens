@@ -1,4 +1,6 @@
+import math
 import pickle, re
+from collections import Counter
 import numpy as np
 from rank_bm25 import BM25Okapi
 from sentence_transformers import SentenceTransformer
@@ -89,12 +91,21 @@ def _load(model=None):
     entries = pickle.load(open("full_index/entries.pkl", "rb"))
     tidx = [i for i, e in enumerate(entries) if e["type"] == "table"]
     infos = [label_info(entries[i]["embed_text"]) for i in tidx]
+
+    # rarity weight for each label word: rare words (iphone) count for more
+    # than words that appear in many labels (net, sales, total)
+    df = Counter(w for inf in infos for w in inf[0])
+    n_labels = len(infos)
+    idf = {w: math.log((n_labels + 1) / (c + 1)) + 1 for w, c in df.items()}
+
     _state.update(
         entries=entries, tidx=tidx, t_emb=emb[tidx],
         t_company=np.array([entries[i]["company"] for i in tidx]),
         t_label=[inf[0] for inf in infos],
         t_weight=np.array([PREFIX_PENALTY if inf[1] else 1.0 for inf in infos]),
         bm25=BM25Okapi([tok(entries[i]["embed_text"]) for i in tidx]),
+        idf=idf,
+        idf_default=math.log(n_labels + 1) + 1,
     )
 
 
@@ -119,8 +130,16 @@ def _rank(query, allowed):
     qt = {w for w in tok(query) if not YEAR_TOKEN.fullmatch(w)}
     if qt & GROWTH_WORDS:                 # growth question: drop computation words
         qt = qt - LABEL_NOISE
+
+    idf, default = _state["idf"], _state["idf_default"]
+
+    def wt(t):
+        return idf.get(t, default)
+
+    qt_weight = sum(wt(t) for t in qt)
     lab = np.array([
-        len(qt & l) / len(qt | l) if qt and l else 0.0
+        sum(wt(t) for t in qt & l) / (qt_weight + sum(wt(t) for t in l - qt))
+        if qt and l else 0.0
         for l in _state["t_label"]
     ]) * _state["t_weight"]
     order = np.lexsort((-bm, -lab))

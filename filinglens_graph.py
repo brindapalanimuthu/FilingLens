@@ -95,6 +95,10 @@ def call_gemini_with_retry(client, prompt, max_attempts=6):
                     print(f"  Daily quota reached for {model}.")
                     switch = True
                     break
+                if "NOT_FOUND" in msg or "404" in msg:
+                    print(f"  {model} unavailable, skipping.")
+                    switch = True
+                    break
                 retryable = (
                     "RESOURCE_EXHAUSTED" in msg
                     or "UNAVAILABLE" in msg
@@ -145,15 +149,26 @@ def build_graph(embed_model, embeddings, entries, gemini_client):
         table_indices = [i for i, e in enumerate(entries)
                          if e["type"] == "table" and allowed(e)]
 
-        # prefer chunks from the section the question is about, if enough exist
+        # collapse identical passages repeated across years' filings
+        # (keep the newest filing's copy) so slots aren't wasted
+        best = {}
+        for i in text_indices:
+            key = " ".join(entries[i]["display_text"].split())[:300]
+            if key not in best or entries[i]["filing"] > entries[best[key]]["filing"]:
+                best[key] = i
+        text_indices = list(best.values())
+
+        # plain similarity ranking, with a soft boost for the section the
+        # question is about (up to half the slots) instead of a hard filter
+        by_score = sorted(text_indices, key=lambda i: -scores[i])
+        top_text = by_score[:n_text]
         for hint, section in SECTION_HINTS.items():
             if hint in query_lower:
-                preferred = [i for i in text_indices if entries[i]["section"] == section]
-                if len(preferred) >= n_text:
-                    text_indices = preferred
+                preferred = [i for i in by_score if entries[i]["section"] == section][: n_text // 3]
+                rest = [i for i in by_score if i not in preferred]
+                top_text = preferred + rest[: n_text - len(preferred)]
                 break
 
-        top_text = sorted(text_indices, key=lambda i: -scores[i])[:n_text]
         top_table = sorted(table_indices, key=lambda i: -scores[i])[:min(n_table, len(table_indices))]
 
         combined = sorted(top_text + top_table, key=lambda i: -scores[i])
@@ -195,16 +210,18 @@ def build_graph(embed_model, embeddings, entries, gemini_client):
         prompt = f"""You are a financial analyst assistant. Answer the question using ONLY
 the sources below. Some sources are tables (rows of numbers) and some are
 prose. Cite sources by their number (e.g. "[Source 2]"). When citing a
-number from a table, quote it exactly as it appears — do not round or
-recalculate. When the question names a fiscal year, prefer figures from the
-filing for that same year (e.g. the 2024 10-K for 2024 figures). Only use
-sources from the company the question asks about; if none of the sources are
-from that company, say the sources don't contain the answer. If the question
-does not name a company, say which company your answer is about. If the
-question does not name a segment or product line, answer with the
-company-wide (consolidated or "Total") figure, never a segment figure. If the
-sources don't contain enough information to answer confidently, say so
-explicitly rather than guessing.
+number from a table, quote it exactly as it appears — do not round it. If
+the question asks for a growth rate, percentage change or other calculation,
+take the needed figures from the sources, show them, calculate the result,
+and say it is calculated. When the question names a fiscal year, prefer
+figures from the filing for that same year (e.g. the 2024 10-K for 2024
+figures). Only use sources from the company the question asks about; if none
+of the sources are from that company, say the sources don't contain the
+answer. If the question does not name a company, say which company your
+answer is about. If the question does not name a segment or product line,
+answer with the company-wide (consolidated or "Total") figure, never a
+segment figure. If the sources don't contain enough information to answer
+confidently, say so explicitly rather than guessing.
 
 SOURCES:
 {context_block}

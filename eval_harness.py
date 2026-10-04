@@ -1,5 +1,5 @@
 """
-FilingLens — Stage 7: Eval harness (v2.2)
+FilingLens — Stage 7: Eval harness (v2.3)
 Outcomes: correct / wrong / refused. Retrieval hit tracked separately.
 Records which Gemini model answered each question.
 Resumes from eval_results.json. Flags:
@@ -56,13 +56,16 @@ def answer_matches(q, answer):
 
 
 def retrieval_hit(q, retrieved):
-    """Were the expected numbers / keywords present in the retrieved sources?"""
+    """Were the expected numbers / keywords present in the retrieved sources?
+    For derived answers (e.g. growth %), 'retrieval_numbers' lists the input
+    figures that must be retrieved instead of the computed result."""
     if q["type"] == "unanswerable":
         return None
     source = " ".join(e["display_text"] for e in retrieved)
     if q["type"] == "numeric":
         norm = normalize(source)
-        return all(normalize(n) in norm for n in expected_numbers(q))
+        needed = q.get("retrieval_numbers") or expected_numbers(q)
+        return all(normalize(n) in norm for n in needed)
     low = source.lower()
     return any(kw.lower() in low for kw in q["expected_keywords"])
 
