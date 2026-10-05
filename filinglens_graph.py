@@ -218,10 +218,13 @@ figures from the filing for that same year (e.g. the 2024 10-K for 2024
 figures). Only use sources from the company the question asks about; if none
 of the sources are from that company, say the sources don't contain the
 answer. If the question does not name a company, say which company your
-answer is about. If the question does not name a segment or product line,
-answer with the company-wide (consolidated or "Total") figure, never a
-segment figure. If the sources don't contain enough information to answer
-confidently, say so explicitly rather than guessing.
+answer is about. If the question names a segment, product line or line item
+(for example Services, iPhone, Server products and cloud services), answer
+using the row for exactly that item, even if no consolidated or "Total"
+figure appears in the sources. If the question does not name a segment or
+product line, answer with the company-wide (consolidated or "Total") figure,
+never a segment figure. If the sources don't contain enough information to
+answer confidently, say so explicitly rather than guessing.
 
 SOURCES:
 {context_block}

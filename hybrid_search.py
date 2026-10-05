@@ -29,6 +29,17 @@ LABEL_NOISE = GROWTH_WORDS | {"percentage", "percent", "rate"}
 
 PREFIX_PENALTY = 0.5   # 'Section > Label' rows rank a bit below an exact plain label
 
+# --- segment / percentage re-ranking (applied after RRF) ---
+SEGMENT_TERMS = [
+    "iphone", "mac", "ipad", "wearables", "services",                      # Apple
+    "productivity and business processes", "intelligent cloud",            # MSFT
+    "more personal computing",
+]
+SEGMENT_BOOST = 1.5        # row label names a segment the question names
+SEGMENT_PENALTY = 0.6      # row label names none of them
+PCT_PENALTY = 0.5          # percentage rows when the question isn't about a share/percent
+PCT_WORDS = ("percent", "%", "share", "proportion", "margin", "rate", "ratio")
+
 YEAR_TOKEN = re.compile(r"(19|20)\d{2}")
 
 
@@ -55,14 +66,29 @@ def tok(s):
 def split_parts(query):
     """'R&D expense and net income in 2024' -> two sub-questions.
     Only splits on ' and ' when every part has >= 2 real words (years excluded),
-    so 'cash and cash equivalents' is not split."""
+    so 'cash and cash equivalents' is not split.
+    Shared-tail case: 'iPhone and Services net sales in 2025' ->
+    'iPhone net sales in 2025' + 'Services net sales in 2025'."""
     raw_parts = re.split(r"\s+and\s+", query.strip().rstrip("?"), flags=re.I)
     if len(raw_parts) < 2:
         return [query]
     parts = [expand_terms(p) for p in raw_parts]
+
+    def words(p):
+        return [w for w in tok(p) if not YEAR_TOKEN.fullmatch(w)]
+
+    # first part is a lone label and the last part carries the shared tail
+    if len(parts) == 2 and len(words(parts[0])) == 1 and len(words(parts[1])) >= 3:
+        head = words(parts[0])[0]
+        last_words = words(parts[1])
+        if head not in last_words:      # 'cash and cash equivalents' stays whole
+            tail = re.sub(rf"^.*?\b{re.escape(last_words[0])}\b", "",
+                          parts[1], count=1, flags=re.I).strip()
+            if tail:
+                parts[0] = f"{parts[0]} {tail}"
+
     for p in parts:
-        words = [w for w in tok(p) if not YEAR_TOKEN.fullmatch(w)]
-        if len(words) < 2:
+        if len(words(p)) < 2:
             return [query]
     return parts
 
@@ -75,6 +101,26 @@ def label_info(embed_text):
     has_prefix = ">" in label
     label = label.split(">")[-1]          # 'Section > Net income' -> 'Net income'
     return set(tok(label)), has_prefix
+
+
+def label_full(embed_text):
+    """(full label incl. any 'Section >' prefix, lowercased; is_percentage_row)."""
+    parts = embed_text.split(" | ")
+    label = (parts[3] if len(parts) > 3 else "").lower()
+    values = parts[4:]
+    is_pct = ("percentage" in label or label.startswith("%")
+              or any(v.strip() == "%" for v in values))
+    return label, is_pct
+
+
+def query_segments(query):
+    q = query.lower()
+    return [s for s in SEGMENT_TERMS if re.search(rf"\b{re.escape(s)}\b", q)]
+
+
+def wants_percent(query):
+    q = query.lower()
+    return any(w in q for w in PCT_WORDS)
 
 
 _model = None
@@ -91,6 +137,7 @@ def _load(model=None):
     entries = pickle.load(open("full_index/entries.pkl", "rb"))
     tidx = [i for i, e in enumerate(entries) if e["type"] == "table"]
     infos = [label_info(entries[i]["embed_text"]) for i in tidx]
+    fulls = [label_full(entries[i]["embed_text"]) for i in tidx]
 
     # rarity weight for each label word: rare words (iphone) count for more
     # than words that appear in many labels (net, sales, total)
@@ -103,18 +150,35 @@ def _load(model=None):
         t_company=np.array([entries[i]["company"] for i in tidx]),
         t_label=[inf[0] for inf in infos],
         t_weight=np.array([PREFIX_PENALTY if inf[1] else 1.0 for inf in infos]),
+        t_full=[f[0] for f in fulls],
+        t_pct=[f[1] for f in fulls],
         bm25=BM25Okapi([tok(entries[i]["embed_text"]) for i in tidx]),
         idf=idf,
         idf_default=math.log(n_labels + 1) + 1,
     )
 
 
-def _rrf(*orders, k=60):
+def _rrf_scores(*orders, k=60):
     score = {}
     for order in orders:
         for r, j in enumerate(order, 1):
             score[j] = score.get(j, 0) + 1 / (k + r)
+    return score
+
+
+def _rrf(*orders, k=60):
+    score = _rrf_scores(*orders, k=k)
     return sorted(score, key=score.get, reverse=True)
+
+
+def _row_multiplier(j, segments, pct_ok):
+    m = 1.0
+    if segments:
+        label = _state["t_full"][j]
+        m *= SEGMENT_BOOST if any(s in label for s in segments) else SEGMENT_PENALTY
+    if not pct_ok and _state["t_pct"][j]:
+        m *= PCT_PENALTY
+    return m
 
 
 def _rank(query, allowed):
@@ -145,7 +209,13 @@ def _rank(query, allowed):
     order = np.lexsort((-bm, -lab))
     o_lab = [j for j in order if allowed[j] and lab[j] > 0][:100]
 
-    return _rrf(o_emb, o_bm, o_lab, o_lab)
+    score = _rrf_scores(o_emb, o_bm, o_lab, o_lab)
+
+    # re-rank: favour rows naming the segment asked about, demote % rows
+    segments = query_segments(query)
+    pct_ok = wants_percent(query)
+    adj = {j: s * _row_multiplier(j, segments, pct_ok) for j, s in score.items()}
+    return sorted(adj, key=adj.get, reverse=True)
 
 
 def hybrid_table_search(query, k=8, model=None, companies=None):
