@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FilingLens</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f6f8;
+  --surface: #ffffff;
+  --ink: #16202e;
+  --muted: #5d6877;
+  --line: #d9dde4;
+  --accent: #1d4ed8;
+  --ok: #0f7b4f;
+  --ok-bg: #e3f4ec;
+  --warn: #a8480a;
+  --warn-bg: #fdebd9;
+  --serif: "Newsreader", Georgia, serif;
+  --sans: "Instrument Sans", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e141c; --surface: #151d28; --ink: #e8ecf2; --muted: #93a0b2;
+    --line: #2a3544; --accent: #7aa2ff; --ok: #5fd39c; --ok-bg: #11301f;
+    --warn: #f2a45f; --warn-bg: #3a2410;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--sans); font-size: 16px; line-height: 1.55;
+}
+main { max-width: 760px; margin: 0 auto; padding: 56px 20px 80px; }
+h1 {
+  font-family: var(--serif); font-weight: 600; font-size: 2.6rem;
+  letter-spacing: -0.02em; margin: 0 0 6px;
+}
+.sub { color: var(--muted); margin: 0 0 32px; max-width: 56ch; }
+
+form { display: flex; gap: 10px; }
+input[type=text] {
+  flex: 1; font: inherit; padding: 13px 14px; color: var(--ink);
+  background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+}
+input[type=text]:focus-visible, button:focus-visible, summary:focus-visible, .cite:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 2px;
+}
+button.ask {
+  font: inherit; font-weight: 600; padding: 0 22px; border: 0; border-radius: 6px;
+  background: var(--accent); color: #fff; cursor: pointer;
+}
+@media (prefers-color-scheme: dark) { button.ask { color: #0e141c; } }
+button.ask:disabled { opacity: .55; cursor: progress; }
+
+.examples { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 0; }
+.examples button {
+  font: inherit; font-size: .88rem; color: var(--muted); background: transparent;
+  border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; cursor: pointer;
+}
+.examples button:hover { color: var(--ink); border-color: var(--muted); }
+
+#result { margin-top: 40px; }
+.status { color: var(--muted); }
+.error { color: var(--warn); background: var(--warn-bg); padding: 12px 14px; border-radius: 6px; }
+
+.answer {
+  font-family: var(--serif); font-size: 1.28rem; line-height: 1.6;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 8px;
+  padding: 24px 26px; margin: 0;
+}
+.cite {
+  font-family: var(--sans); font-size: .72em; font-weight: 600; color: var(--accent);
+  border: 0; background: none; cursor: pointer; padding: 0 1px; vertical-align: super;
+}
+.meta { color: var(--muted); font-size: .86rem; margin: 10px 2px 0; }
+
+.checks { margin-top: 28px; }
+.checks h2, .sources h2 { font-size: 1rem; margin: 0 0 10px; font-weight: 600; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  font-variant-numeric: tabular-nums; font-size: .92rem; padding: 3px 10px;
+  border-radius: 4px; display: inline-flex; gap: 6px; align-items: center;
+}
+.chip.ok { color: var(--ok); background: var(--ok-bg); }
+.chip.bad { color: var(--warn); background: var(--warn-bg); }
+.note { color: var(--muted); font-size: .88rem; margin: 10px 0 0; }
+
+.sources { margin-top: 32px; }
+details.src {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 6px; margin-bottom: 8px;
+}
+details.src[open] { border-color: var(--accent); }
+summary { cursor: pointer; padding: 10px 14px; display: flex; gap: 10px; align-items: baseline; }
+summary .n { font-weight: 600; color: var(--accent); min-width: 2.4ch; }
+summary .what { flex: 1; }
+summary .kind { color: var(--muted); font-size: .82rem; }
+.src pre {
+  margin: 0; padding: 12px 14px 14px; border-top: 1px solid var(--line);
+  white-space: pre-wrap; word-break: break-word; font: .84rem/1.5 ui-monospace, Menlo, Consolas, monospace;
+  color: var(--muted); max-height: 260px; overflow: auto;
+}
+@media (max-width: 520px) {
+  h1 { font-size: 2.1rem; }
+  form { flex-direction: column; } button.ask { padding: 12px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  details.src > pre { animation: open .15s ease-out; }
+  @keyframes open { from { opacity: 0; } to { opacity: 1; } }
+}
+</style>
+</head>
+<body>
+<main>
+  <h1>FilingLens</h1>
+  <p class="sub">Ask about Apple and Microsoft 10-K filings. Every number in the answer is checked against the source text it came from.</p>
+
+  <form id="form">
+    <input type="text" id="q" placeholder="What was Apple's total net sales in 2024?" autocomplete="off" aria-label="Question" required minlength="3">
+    <button class="ask" id="go" type="submit">Ask</button>
+  </form>
+  <div class="examples" id="examples"></div>
+
+  <div id="result" aria-live="polite"></div>
+</main>
+
+<script>
+const EXAMPLES = [
+  "What was Apple's total net sales in 2024?",
+  "What was Microsoft's net income in fiscal 2025?",
+  "Why did Apple's Services gross margin change?",
+  "What was Alphabet's revenue in 2024?"
+];
+
+const form = document.getElementById("form");
+const q = document.getElementById("q");
+const go = document.getElementById("go");
+const result = document.getElementById("result");
+
+EXAMPLES.forEach(text => {
+  const b = document.createElement("button");
+  b.type = "button"; b.textContent = text;
+  b.onclick = () => { q.value = text; form.requestSubmit(); };
+  document.getElementById("examples").appendChild(b);
+});
+
+const esc = s => s.replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+function renderAnswer(text) {
+  return esc(text)
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    .replace(/\[Source (\d+)\]/g, '<button class="cite" data-src="$1" aria-label="Open source $1">[$1]</button>')
+    .replace(/\n{2,}/g, "<br><br>").replace(/\n/g, "<br>");
+}
+
+function render(d) {
+  const bad = d.unverified_count;
+  const chips = d.verification.map(v =>
+    `<span class="chip ${v.verified ? "ok" : "bad"}">${esc(v.number)} ${v.verified ? "found in sources" : "not found"}</span>`
+  ).join("");
+
+  const checks = d.verification.length ? `
+    <section class="checks">
+      <h2>Number check</h2>
+      <div class="chips">${chips}</div>
+      <p class="note">${bad
+        ? `${bad} number${bad > 1 ? "s" : ""} not found verbatim in the sources. This can be a calculated value, so compare it with the source rows below.`
+        : "Every number in the answer appears in the retrieved sources."}</p>
+    </section>` : "";
+
+  const sources = d.sources.map(s => `
+    <details class="src" id="src-${s.id}">
+      <summary>
+        <span class="n">${s.id}</span>
+        <span class="what">${esc(s.company || "")} ${esc(String(s.fiscal_year || ""))} &middot; ${esc(s.section)}</span>
+        <span class="kind">${s.type === "table" ? "table row" : "text"}</span>
+      </summary>
+      <pre>${esc(s.text)}</pre>
+    </details>`).join("");
+
+  result.innerHTML = `
+    <p class="answer">${renderAnswer(d.answer)}</p>
+    <p class="meta">Route: ${d.route.replace("_", " ")} &middot; Model: ${esc(d.model)}</p>
+    ${checks}
+    <section class="sources"><h2>Sources</h2>${sources}</section>`;
+}
+
+result.addEventListener("click", e => {
+  const c = e.target.closest(".cite");
+  if (!c) return;
+  const el = document.getElementById("src-" + c.dataset.src);
+  if (el) { el.open = true; el.scrollIntoView({ behavior: "smooth", block: "center" }); }
+});
+
+form.addEventListener("submit", async e => {
+  e.preventDefault();
+  go.disabled = true;
+  result.innerHTML = '<p class="status">Searching filings and checking numbers&hellip;</p>';
+  try {
+    const r = await fetch("/ask", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ question: q.value })
+    });
+    const data = await r.json();
+    if (!r.ok) throw new Error(data.detail || "Request failed");
+    render(data);
+  } catch (err) {
+    result.innerHTML = `<p class="error">${esc(err.message)}. If this says the models are exhausted, the Gemini free-tier quota is used up for today.</p>`;
+  } finally {
+    go.disabled = false;
+  }
+});
+</script>
+</body>
+</html>
