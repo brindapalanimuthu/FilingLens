@@ -1,0 +1,123 @@
+[
+  {
+    "id": 1,
+    "question": "What was Apple's iPhone net sales in 2025?",
+    "type": "numeric",
+    "route": "table_focused",
+    "model": "gemini-3.5-flash-lite",
+    "outcome": "correct",
+    "retrieval_hit": true,
+    "verification_pass_rate": 1.0,
+    "answer": "Apple's iPhone net sales in 2025 were 209,586 (in millions, as reported in the consolidated statements of operations) [Source 5]."
+  },
+  {
+    "id": 2,
+    "question": "What were Apple's Services net sales in 2025?",
+    "type": "numeric",
+    "route": "table_focused",
+    "model": "gemini-3.5-flash-lite",
+    "outcome": "correct",
+    "retrieval_hit": true,
+    "verification_pass_rate": 1.0,
+    "answer": "My answer is about Apple Inc. \n\nApple's Services net sales in 2025 were 109,158 [Source 5]."
+  },
+  {
+    "id": 3,
+    "question": "What was Apple's total net sales in 2025?",
+    "type": "numeric",
+    "route": "table_focused",
+    "model": "gemini-3.5-flash-lite",
+    "outcome": "correct",
+    "retrieval_hit": true,
+    "verification_pass_rate": 1.0,
+    "answer": "Apple's total net sales in 2025 was 416,161 [Source 1, Source 2, Source 3, Source 4, Source 5]."
+  },
+  {
+    "id": 4,
+    "question": "What was Apple's Services gross margin percentage in 2025?",
+    "type": "numeric",
+    "route": "table_focused",
+    "model": "gemini-3.5-flash-lite",
+    "outcome": "correct",
+    "retrieval_hit": true,
+    "verification_pass_rate": 1.0,
+    "answer": "This answer is about Apple Inc. \n\nApple's Services gross margin percentage in 2025 was 75.4 % [Source 4]."
+  },
+  {
+    "id": 5,
+    "question": "What was Microsoft's Server products and cloud services revenue in fiscal 2026?",
+    "type": "numeric",
+    "route": "table_focused",
+    "model": "gemini-3.5-flash-lite",
+    "outcome": "correct",
+    "retrieval_hit": true,
+    "verification_pass_rate": 1.0,
+    "answer": "This answer is about Microsoft Corporation.\n\nMicrosoft's Server products and cloud services revenue in fiscal 2026 was 129,425 [Source 2]."
+  },
+  {
+    "id": 6,
+    "question": "What was Microsoft's Dynamics products and cloud services revenue in fiscal 2025?",
+    "type": "numeric",
+    "route": "table_focused",
+    "model": "gemini-3.5-flash-lite",
+    "outcome": "correct",
+    "retrieval_hit": true,
+    "verification_pass_rate": 1.0,
+    "answer": "Based on the sources provided for Microsoft Corporation, the Dynamics products and cloud services revenue in fiscal 2025 was 7,827 [Source 2]."
+  },
+  {
+    "id": 7,
+    "question": "What was Microsoft's Enterprise and partner services revenue in fiscal 2026?",
+    "type": "numeric",
+    "route": "table_focused",
+    "model": "gemini-3.5-flash-lite",
+    "outcome": "correct",
+    "retrieval_hit": true,
+    "verification_pass_rate": 1.0,
+    "answer": "My answer is about Microsoft Corporation.\n\nMicrosoft's Enterprise and partner services revenue in fiscal 2026 was 8,260 [Source 1]."
+  },
+  {
+    "id": 8,
+    "question": "What was Microsoft's Microsoft 365 Commercial products and cloud services revenue in fiscal 2025?",
+    "type": "numeric",
+    "route": "table_focused",
+    "model": "gemini-3.5-flash-lite",
+    "outcome": "correct",
+    "retrieval_hit": true,
+    "verification_pass_rate": 1.0,
+    "answer": "Based on the sources provided for Microsoft, the Microsoft 365 Commercial products and cloud services revenue in fiscal 2025 was 87,767 [Source 5]."
+  },
+  {
+    "id": 9,
+    "question": "What were Apple's iPhone and Services net sales in 2025?",
+    "type": "numeric",
+    "route": "table_focused",
+    "model": "gemini-3.5-flash-lite",
+    "outcome": "refused",
+    "retrieval_hit": false,
+    "verification_pass_rate": null,
+    "answer": "This answer is about Apple Inc. \n\nTo answer the question about Apple's net sales in 2025:\n* **Services net sales** in 2025 were 109,158 [Source 5]. \n* For **iPhone net sales**, the sources state that iPhone net sales increased during 2025 compared to 2024 due to higher net sales of Pro models [Source 7], but the sources do not provide the exact numerical figure for iPhone net sales in 2025."
+  },
+  {
+    "id": 10,
+    "question": "What was Apple's total net sales in fiscal 2026?",
+    "type": "unanswerable",
+    "route": "table_focused",
+    "model": "gemini-3.5-flash-lite",
+    "outcome": "correct",
+    "retrieval_hit": null,
+    "verification_pass_rate": 0.0,
+    "answer": "This answer is about Apple Inc. \n\nThe sources do not contain enough information to answer confidently, as there are no sources covering fiscal year 2026 for Apple Inc."
+  },
+  {
+    "id": 11,
+    "question": "What was Microsoft's Nintendo revenue in fiscal 2025?",
+    "type": "unanswerable",
+    "route": "table_focused",
+    "model": "gemini-3.5-flash-lite",
+    "outcome": "correct",
+    "retrieval_hit": null,
+    "verification_pass_rate": 1.0,
+    "answer": "Based on the provided sources, there is no mention of Microsoft's Nintendo revenue in fiscal 2025. The sources do not contain enough information to answer the question."
+  }
+]

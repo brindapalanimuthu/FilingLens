@@ -4,128 +4,128 @@
     "question": "What was Apple's total net sales in 2024?",
     "type": "numeric",
     "route": "table_focused",
-    "model": "gemini-3.5-flash-lite",
+    "model": "gemini-2.5-flash",
     "outcome": "correct",
     "retrieval_hit": true,
     "verification_pass_rate": 1.0,
-    "answer": "Apple's total net sales in 2024 was 391,035 [Source 1, Source 2, Source 3]."
+    "answer": "Apple's total net sales in 2024 were 391,035 [Source 2]."
   },
   {
     "id": 2,
     "question": "What was Apple's total net sales in 2023?",
     "type": "numeric",
     "route": "table_focused",
-    "model": "gemini-3.5-flash-lite",
+    "model": "gemini-2.5-flash",
     "outcome": "correct",
     "retrieval_hit": true,
     "verification_pass_rate": 1.0,
-    "answer": "Apple's total net sales in 2023 was 383,285 [Source 1, Source 2, Source 3]."
+    "answer": "Apple Inc.'s total net sales in 2023 was 383,285 [Source 1]."
   },
   {
     "id": 3,
     "question": "What was Apple's gross margin percentage in 2024?",
     "type": "numeric",
     "route": "table_focused",
-    "model": "gemini-3.5-flash-lite",
+    "model": "gemini-2.5-flash",
     "outcome": "correct",
     "retrieval_hit": true,
     "verification_pass_rate": 1.0,
-    "answer": "This answer is about Apple Inc. \n\nApple's total gross margin percentage in 2024 was 46.2% [Source 1]."
+    "answer": "Apple's gross margin percentage in 2024 was 46.2% [Source 1]."
   },
   {
     "id": 4,
     "question": "How much did Apple spend on research and development in 2024?",
     "type": "numeric",
     "route": "table_focused",
-    "model": "gemini-3.5-flash-lite",
+    "model": "gemini-2.5-flash",
     "outcome": "correct",
     "retrieval_hit": true,
     "verification_pass_rate": 1.0,
-    "answer": "This answer is about Apple Inc. \n\nApple spent 31,370 (in millions, based on the context of the Consolidated Statements of Operations) on research and development in 2024 [Source 2]."
+    "answer": "Apple Inc. spent 31,370 on research and development in 2024 [Source 2]."
   },
   {
     "id": 5,
     "question": "What was Apple's diluted earnings per share in 2024?",
     "type": "numeric",
     "route": "table_focused",
-    "model": "gemini-3.5-flash-lite",
+    "model": "gemini-2.5-flash",
     "outcome": "correct",
     "retrieval_hit": true,
     "verification_pass_rate": 1.0,
-    "answer": "This answer is about Apple Inc. \n\nApple's diluted earnings per share in 2024 was 6.08 [Source 1, Source 3]."
+    "answer": "Apple Inc.'s diluted earnings per share in 2024 was 6.08 [Source 1, Source 3]."
   },
   {
     "id": 6,
     "question": "What was Apple's total shareholders' equity as of September 28, 2024?",
     "type": "numeric",
     "route": "table_focused",
-    "model": "gemini-3.5-flash-lite",
+    "model": "gemini-2.5-flash",
     "outcome": "correct",
     "retrieval_hit": true,
     "verification_pass_rate": 1.0,
-    "answer": "This answer is about Apple Inc. \n\nApple's total shareholders' equity as of September 28, 2024, was 56,950 [Source 1, Source 2]."
+    "answer": "Apple's total shareholders' equity as of September 28, 2024, was 56,950 [Source 1]."
   },
   {
     "id": 7,
     "question": "What was Apple's effective tax rate in 2024?",
     "type": "numeric",
     "route": "table_focused",
-    "model": "gemini-3.5-flash-lite",
+    "model": "gemini-2.5-flash",
     "outcome": "correct",
     "retrieval_hit": true,
     "verification_pass_rate": 1.0,
-    "answer": "Apple's effective tax rate in 2024 was 24.1 % [Source 1, Source 2]."
+    "answer": "Apple's effective tax rate in 2024 was 24.1% [Source 1], [Source 2]."
   },
   {
     "id": 8,
     "question": "What was Apple's net income in 2024?",
     "type": "numeric",
     "route": "table_focused",
-    "model": "gemini-3.5-flash-lite",
+    "model": "gemini-2.5-flash",
     "outcome": "correct",
     "retrieval_hit": true,
     "verification_pass_rate": 1.0,
-    "answer": "Apple's net income in 2024 was 93,736 [Source 1, Source 2, Source 3, Source 4, Source 5]."
+    "answer": "Apple's net income in 2024 was 93,736 [Source 2]."
   },
   {
     "id": 9,
     "question": "What was Apple's total assets as of September 28, 2024?",
     "type": "numeric",
     "route": "table_focused",
-    "model": "gemini-3.5-flash-lite",
+    "model": "gemini-2.5-flash",
     "outcome": "correct",
     "retrieval_hit": true,
     "verification_pass_rate": 1.0,
-    "answer": "My answer is about Apple Inc. \n\nApple's total assets as of September 28, 2024, were 364,980 [Source 1]."
+    "answer": "Apple's total assets as of September 28, 2024, were 364,980 [Source 1]."
   },
   {
     "id": 10,
     "question": "What was Apple's cash and cash equivalents as of September 28, 2024?",
     "type": "numeric",
     "route": "table_focused",
-    "model": "gemini-3.5-flash-lite",
+    "model": "gemini-2.5-flash",
     "outcome": "correct",
     "retrieval_hit": true,
     "verification_pass_rate": 1.0,
-    "answer": "This answer is about Apple Inc. \n\nAs of September 28, 2024, Apple's cash and cash equivalents was 29,943 [Source 2]."
+    "answer": "Apple's cash and cash equivalents as of September 28, 2024, was 29,943 [Source 2]."
   },
   {
     "id": 11,
     "question": "Why did Apple's Greater China revenue decline in 2023?",
     "type": "prose",
     "route": "text_focused",
-    "model": "gemini-3.5-flash-lite",
+    "model": "gemini-2.5-flash",
     "outcome": "correct",
     "retrieval_hit": true,
-    "verification_pass_rate": 1.0,
-    "answer": "This answer is about Apple Inc. \n\nApple's Greater China net sales decreased during 2023 because of the weakness in the renminbi relative to the U.S. dollar, which accounted for more than the entire year-over-year decrease [Source 2]. This decrease consisted primarily of lower net sales of Mac and iPhone [Source 2]."
+    "verification_pass_rate": 0.6,
+    "answer": "Apple's Greater China net sales decreased by 2% or $1.6 billion during 2023 compared to 2022 [Source 2]. The weakness in the renminbi relative to the U.S. dollar accounted for more than the entire year-over-year decrease in Greater China net sales, which primarily consisted of lower net sales of Mac and iPhone [Source 2].\n\nFor reference, Greater China net sales were $72,559 million in 2023 and $74,200 million in 2022 [Source 4]. The calculated decrease is $74,200 - $72,559 = $1,641 million. The calculated percentage decrease is ($1,641 / $74,200) * 100 = 2.21%."
   },
   {
     "id": 12,
     "question": "Why did Apple's Services net sales increase in 2024?",
     "type": "prose",
     "route": "text_focused",
-    "model": "gemini-3.5-flash-lite",
+    "model": "gemini-2.5-flash",
     "outcome": "correct",
     "retrieval_hit": true,
     "verification_pass_rate": 1.0,
@@ -136,99 +136,99 @@
     "question": "What was Apple's R&D expense and net income in 2024?",
     "type": "numeric",
     "route": "table_focused",
-    "model": "gemini-3.5-flash-lite",
+    "model": "gemini-2.5-flash",
     "outcome": "correct",
     "retrieval_hit": true,
     "verification_pass_rate": 1.0,
-    "answer": "This answer is about Apple Inc. \n\nIn fiscal year 2024, Apple's Research and development expense was (31,370) [Source 1] and Net income was 93,736 [Source 2, Source 3, Source 6]."
+    "answer": "In 2024, Apple's R&D expense was \"(31,370)\" [Source 1] and net income was \"93,736\" [Source 2]."
   },
   {
     "id": 14,
     "question": "What was Alphabet's net income in 2024?",
     "type": "unanswerable",
     "route": "table_focused",
-    "model": "gemini-3.5-flash-lite",
+    "model": "gemini-2.5-flash",
     "outcome": "correct",
     "retrieval_hit": null,
     "verification_pass_rate": null,
-    "answer": "The sources do not contain the answer."
+    "answer": "The sources don't contain the answer, as none of the sources are from Alphabet."
   },
   {
     "id": 15,
     "question": "What was Apple's total net sales in 2019?",
     "type": "unanswerable",
     "route": "table_focused",
-    "model": "gemini-3.5-flash-lite",
+    "model": "gemini-2.5-flash",
     "outcome": "correct",
     "retrieval_hit": null,
-    "verification_pass_rate": null,
-    "answer": "The sources don't contain enough information to answer confidently."
+    "verification_pass_rate": 0.0,
+    "answer": "The sources do not contain enough information to answer confidently about Apple's total net sales in 2019."
   },
   {
     "id": 16,
     "question": "What was Microsoft's net income in fiscal 2025?",
     "type": "numeric",
     "route": "table_focused",
-    "model": "gemini-3.5-flash-lite",
+    "model": "gemini-2.5-flash",
     "outcome": "correct",
     "retrieval_hit": true,
     "verification_pass_rate": 1.0,
-    "answer": "Based on Microsoft Corporation's 2025 10-K, Microsoft's net income in fiscal year 2025 was 101,832 [Source 1, Source 4, Source 5]."
+    "answer": "Microsoft's net income in fiscal 2025 was 101,832 [Source 1]."
   },
   {
     "id": 17,
     "question": "What was Microsoft's total revenue in fiscal 2025?",
     "type": "numeric",
     "route": "table_focused",
-    "model": "gemini-3.5-flash-lite",
+    "model": "gemini-2.5-flash",
     "outcome": "correct",
     "retrieval_hit": true,
     "verification_pass_rate": 1.0,
-    "answer": "This answer is about Microsoft Corporation.\n\nMicrosoft's total revenue in fiscal 2025 was 281,724 [Source 1, Source 4]."
+    "answer": "Microsoft's total revenue in fiscal 2025 was $281,724 [Source 1]."
   },
   {
     "id": 18,
     "question": "What was Microsoft's total revenue in fiscal 2024?",
     "type": "numeric",
     "route": "table_focused",
-    "model": "gemini-3.5-flash-lite",
+    "model": "gemini-2.5-flash",
     "outcome": "correct",
     "retrieval_hit": true,
     "verification_pass_rate": 1.0,
-    "answer": "My answer is about Microsoft Corporation. \n\nMicrosoft's total revenue in fiscal 2024 was 245,122 [Source 2, Source 5]."
+    "answer": "Microsoft's total revenue in fiscal 2024 was 245,122 [Source 2]."
   },
   {
     "id": 19,
     "question": "What was Microsoft's net income in fiscal 2024?",
     "type": "numeric",
     "route": "table_focused",
-    "model": "gemini-3.5-flash-lite",
+    "model": "gemini-2.5-flash",
     "outcome": "correct",
     "retrieval_hit": true,
     "verification_pass_rate": 1.0,
-    "answer": "This answer is about Microsoft Corporation.\n\nMicrosoft's net income in fiscal 2024 was 88,136 [Source 1, Source 2, Source 4, Source 5, Source 6] (or 88,308 [Source 3])."
+    "answer": "Microsoft's net income in fiscal 2024 was 88,136. [Source 1] [Source 2] [Source 4]"
   },
   {
     "id": 20,
     "question": "What was Microsoft's net income in fiscal 2026?",
     "type": "numeric",
     "route": "table_focused",
-    "model": "gemini-3.5-flash-lite",
+    "model": "gemini-2.5-flash",
     "outcome": "correct",
     "retrieval_hit": true,
     "verification_pass_rate": 1.0,
-    "answer": "This answer is about Microsoft Corporation.\n\nMicrosoft's net income in fiscal 2026 was 133,749 [Source 1, Source 2, Source 5]."
+    "answer": "Microsoft Corporation's net income in fiscal 2026 was $133,749 [Source 1]."
   },
   {
     "id": 21,
     "question": "What was Microsoft's stock-based compensation expense in fiscal 2025?",
     "type": "numeric",
     "route": "table_focused",
-    "model": "gemini-3.5-flash-lite",
+    "model": "gemini-2.5-flash",
     "outcome": "correct",
     "retrieval_hit": true,
     "verification_pass_rate": 1.0,
-    "answer": "This answer is about Microsoft Corporation.\n\nMicrosoft's stock-based compensation expense in fiscal 2025 was 11,974 [Source 1, Source 3, Source 4]."
+    "answer": "Microsoft's stock-based compensation expense in fiscal 2025 was 11,974 [Source 1]."
   },
   {
     "id": 22,
@@ -239,7 +239,7 @@
     "outcome": "correct",
     "retrieval_hit": true,
     "verification_pass_rate": 1.0,
-    "answer": "This answer is about Microsoft Corporation.\n\nIn fiscal year 2025, Microsoft's total revenue was 281,724 [Source 2] and its net income was 101,832 [Source 1]."
+    "answer": "This answer is about Microsoft Corporation.\n\nBased on the sources for fiscal year 2025:\n* **Total revenue:** 281,724 [Source 2]\n* **Net income:** 101,832 [Source 1]"
   },
   {
     "id": 23,
@@ -250,7 +250,7 @@
     "outcome": "correct",
     "retrieval_hit": null,
     "verification_pass_rate": null,
-    "answer": "Based on the provided sources, the sources do not contain the answer for Microsoft's iPhone revenue."
+    "answer": "The sources don't contain enough information to answer confidently, as the sources for Microsoft do not provide iPhone revenue figures (iPhone is an Apple Inc. product)."
   },
   {
     "id": 24,
@@ -261,7 +261,7 @@
     "outcome": "correct",
     "retrieval_hit": null,
     "verification_pass_rate": null,
-    "answer": "The sources don't contain the answer."
+    "answer": "The sources provided are for Microsoft Corporation, not Apple. Therefore, the sources don't contain the answer."
   },
   {
     "id": 25,
@@ -272,7 +272,7 @@
     "outcome": "correct",
     "retrieval_hit": true,
     "verification_pass_rate": 1.0,
-    "answer": "My answer is about Apple Inc. \n\nApple's iPhone net sales in 2024 were 201,183 [Source 1, Source 2]."
+    "answer": "This answer is about Apple Inc. \n\nApple's iPhone net sales in 2024 were 201,183 [Source 1, Source 2]."
   },
   {
     "id": 26,
@@ -283,7 +283,7 @@
     "outcome": "correct",
     "retrieval_hit": true,
     "verification_pass_rate": 1.0,
-    "answer": "For fiscal year 2024, Apple's Services net sales were 96,169 [Source 2, Source 3]."
+    "answer": "Apple's Services net sales in 2024 were 96,169 [Source 2, 3]."
   },
   {
     "id": 27,
@@ -294,7 +294,7 @@
     "outcome": "correct",
     "retrieval_hit": true,
     "verification_pass_rate": 1.0,
-    "answer": "Apple's total net sales in 2024 were 391,035, and in 2023 were 383,285 [Source 1]."
+    "answer": "This answer is about Apple Inc. \n\nApple's total net sales were 391,035 in 2024 and 383,285 in 2023 [Source 2]."
   },
   {
     "id": 28,
@@ -304,8 +304,8 @@
     "model": "gemini-3.5-flash-lite",
     "outcome": "correct",
     "retrieval_hit": true,
-    "verification_pass_rate": 0.8571428571428571,
-    "answer": "This answer is about Microsoft Corporation.\n\nMicrosoft's net income was:\n* **Fiscal 2025:** 101,832 [Source 1, Source 3]\n* **Fiscal 2024:** 88,136 [Source 1, Source 3, Source 4, Source 6] (Note: Table 45 in Source 2 lists net income as 88,308 for 2024)."
+    "verification_pass_rate": 1.0,
+    "answer": "This answer is about Microsoft Corporation. \n\nAccording to the consolidated financial figures in the 2025 10-K, Microsoft's net income was:\n* **Fiscal 2025:** 101,832 [Source 1, Source 3]\n* **Fiscal 2024:** 88,136 [Source 1, Source 3]"
   },
   {
     "id": 29,
@@ -315,8 +315,8 @@
     "model": "gemini-3.5-flash-lite",
     "outcome": "correct",
     "retrieval_hit": true,
-    "verification_pass_rate": 0.625,
-    "answer": "This answer is about Microsoft Corporation.\n\nTo find the percentage growth of Microsoft's total revenue from fiscal 2024 to fiscal 2025, we use the total revenue figures from the fiscal year 2025 filing [Source 4]:\n- Fiscal 2024 Total revenue: 245,122 [Source 4]\n- Fiscal 2025 Total revenue: 281,724 [Source 4]\n\nCalculation:\n$$\\text{Percentage Change} = \\frac{281,724 - 245,122}{245,122} = \\frac{36,602}{245,122} \\approx 0.149321564\\, \\text{or}\\, 14.93\\%$$\n\n(Calculated)"
+    "verification_pass_rate": 0.6666666666666666,
+    "answer": "To answer your question about Microsoft:\n\nTo calculate the percentage growth of Microsoft's total revenue from fiscal 2024 to fiscal 2025, we use the total revenue figures from the fiscal 2025 10-K filing [Source 4]:\n* Fiscal 2025 Total Revenue: 281,724 [Source 4]\n* Fiscal 2024 Total Revenue: 245,122 [Source 4]\n\nCalculation:\n$$\\text{Percentage Change} = \\frac{281,724 - 245,122}{245,122} \\times 100$$\n$$\\text{Percentage Change} = \\frac{36,602}{245,122} \\times 100 \\approx 14.9317\\%$$\n\n(Note: This result is calculated)."
   },
   {
     "id": 30,
@@ -327,7 +327,7 @@
     "outcome": "correct",
     "retrieval_hit": true,
     "verification_pass_rate": 1.0,
-    "answer": "This answer is about Microsoft Corporation.\n\nMicrosoft's Server products and cloud services revenue in fiscal 2024 was 97,726 (in millions, as reported in the table) [Source 3]."
+    "answer": "This answer is about Microsoft Corporation.\n\nMicrosoft's Server products and cloud services revenue in fiscal 2024 was 97,726 [Source 3]."
   },
   {
     "id": 31,
@@ -338,7 +338,7 @@
     "outcome": "correct",
     "retrieval_hit": true,
     "verification_pass_rate": null,
-    "answer": "Based on the provided sources, Apple cites the following risks related to its supply chain:\n\n* Changes or additions to the company's supply chain require considerable time and resources and involve significant risks and uncertainties, including exposure to additional regulatory and operational risks [Source 4].\n* Uncertainty about, or a decline in, global or regional economic conditions can have a significant impact on the company's suppliers and contract manufacturers, with potential outcomes including financial instability, inability to obtain credit to finance business operations, and insolvency [Source 5].\n* The company currently obtains certain components from single or limited sources, subjecting it to significant supply and pricing risks [Source 6].\n* Many components (including those available from multiple sources) are at times subject to industry-wide shortages and significant commodity pricing fluctuations that can materially adversely affect the company's business, results of operations, financial condition, and stock price [Source 6].\n* Disruptions such as high demand and shortages of supply in the global semiconductor industry can adversely affect the company's ability to obtain sufficient quantities of components and products on commercially reasonable terms, or at all [Source 6]."
+    "answer": "Based on the provided sources, Apple cites the following risks related to its supply chain:\n\n* Changes or additions to the supply chain require considerable time and resources and involve significant risks and uncertainties, including exposure to additional regulatory and operational risks [Source 4].\n* Uncertainty about, or a decline in, global or regional economic conditions can have a significant impact on suppliers, contract manufacturers, and logistics providers, with potential outcomes including financial instability, inability to obtain credit to finance business operations, and insolvency [Source 5].\n* The company currently obtains certain components from single or limited sources, subjecting it to significant supply and pricing risks [Source 6].\n* Many components are at times subject to industry-wide shortages and significant commodity pricing fluctuations that can materially adversely affect the company's business, results of operations, financial condition, and stock price [Source 6].\n* Disruptions such as those experienced in the global semiconductor industry (high demand and shortages of supply) can adversely affect the company's ability to obtain sufficient quantities of components and products on commercially reasonable terms, or at all, and such disruptions could occur in the future [Source 6]."
   },
   {
     "id": 32,
@@ -348,7 +348,7 @@
     "model": "gemini-3.5-flash-lite",
     "outcome": "correct",
     "retrieval_hit": null,
-    "verification_pass_rate": 0.0,
-    "answer": "This answer is about Apple Inc. \n\nThe sources do not contain enough information to answer confidently, as there are no figures provided for fiscal 2030 [Sources 1, 2, 3, 4, 5, 6, 7, 8]."
+    "verification_pass_rate": 0.5,
+    "answer": "This answer is about Apple Inc. \n\nThe sources do not contain enough information to answer confidently [Sources 1, 2, 3, 4, 5, 6, 7, 8], as the provided filings only contain data up to fiscal year 2025 and do not include figures for fiscal 2030."
   }
 ]

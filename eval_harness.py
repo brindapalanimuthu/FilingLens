@@ -17,8 +17,8 @@ import time
 from collections import defaultdict
 
 
-EVAL_SET_PATH = "eval_set.json"
-RESULTS_PATH = "eval_results.json"
+EVAL_SET_PATH = os.environ.get("EVAL_SET", "eval_set.json")
+RESULTS_PATH = os.environ.get("EVAL_RESULTS", "eval_results.json")
 EMBED_MODEL_NAME = "all-MiniLM-L6-v2"
 SLEEP_SECONDS = 13  # keeps you under free-tier requests-per-minute
 

@@ -1,4 +1,5 @@
 import json
+import os
 from types import SimpleNamespace
 from sentence_transformers import SentenceTransformer
 from filinglens_graph import build_graph, load_index
@@ -10,13 +11,15 @@ class StubModels:
         return SimpleNamespace(text="stub")
 
 
+EVAL_SET = os.environ.get("EVAL_SET", "eval_set.json")
+
 client = SimpleNamespace(models=StubModels())
 embed = SentenceTransformer("all-MiniLM-L6-v2")
 embeddings, entries = load_index()
 app = build_graph(embed, embeddings, entries, client)
 
 total = misses = 0
-for q in json.load(open("eval_set.json")):
+for q in json.load(open(EVAL_SET)):
     if q["type"] == "unanswerable":
         continue
     r = app.invoke({"query": q["question"], "route": "", "retrieved": [],
@@ -25,4 +28,4 @@ for q in json.load(open("eval_set.json")):
     if not retrieval_hit(q, r["retrieved"]):
         misses += 1
         print("MISS", q["id"], q["question"])
-print(f"retrieval hits: {total - misses}/{total}")
+print(f"[{EVAL_SET}] retrieval hits: {total - misses}/{total}")
