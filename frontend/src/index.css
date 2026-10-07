@@ -1,0 +1,42 @@
+body { margin: 0; font-family: Inter, system-ui, sans-serif; background: #f5f6f8; color: #1a1a2e; }
+.nav { display: flex; justify-content: space-between; padding: 16px 32px; background: #fff; border-bottom: 1px solid #e5e7eb; }
+.nav a { margin-left: 20px; text-decoration: none; color: inherit; }
+.logo { font-weight: 700; font-size: 1.2rem; margin-left: 0 !important; }
+.wrap { max-width: 860px; margin: 48px auto; padding: 0 20px; }
+h1 { font-size: 2.6rem; margin-bottom: 8px; }
+.lead { color: #555; font-size: 1.1rem; }
+.cta, .askbar button { background: #2b4acb; color: #fff; padding: 12px 22px; border-radius: 8px; border: 0; text-decoration: none; display: inline-block; cursor: pointer; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; }
+.card, .answer { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 20px; }
+.askbar { display: flex; gap: 10px; }
+.askbar input { flex: 1; padding: 14px; border-radius: 8px; border: 1px solid #d1d5db; font-size: 1rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 28px; }
+.chips button { background: #fff; border: 1px solid #d1d5db; border-radius: 999px; padding: 8px 14px; cursor: pointer; }
+.answer { margin-bottom: 16px; } .q { font-weight: 600; margin-bottom: 8px; }
+@media (max-width: 700px) { .grid { grid-template-columns: 1fr; } }
+.ask-wrap { max-width: 760px; margin: 56px auto; padding: 0 20px; }
+.ask-title { font-family: Georgia, 'Times New Roman', serif; font-size: 3rem; margin: 0 0 12px; }
+.ask-sub { color: #555; font-size: 1.1rem; line-height: 1.6; max-width: 620px; margin-bottom: 28px; }
+.ask-form { display: flex; gap: 12px; }
+.ask-form input { flex: 1; padding: 16px; font-size: 1rem; border: 1px solid #d9dce3; border-radius: 10px; background: #fff; }
+.ask-btn { background: #2b4acb; color: #fff; border: 0; padding: 0 28px; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer; }
+.ask-btn:disabled { opacity: .6; cursor: wait; }
+.ask-chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0 32px; }
+.ask-chips button { background: transparent; border: 1px solid #d9dce3; border-radius: 999px; padding: 9px 16px; color: #555; cursor: pointer; }
+.ask-chips button:hover { background: #fff; }
+.ask-error { color: #b42318; margin-bottom: 16px; }
+
+.result-card { background: #fff; border: 1px solid #e3e5ea; border-radius: 14px; padding: 28px 32px;
+  font-family: Georgia, 'Times New Roman', serif; font-size: 1.5rem; line-height: 1.7; }
+.cite { background: none; border: 0; color: #2b4acb; font-weight: 700; cursor: pointer; padding: 0 1px; font-size: .75em; }
+.meta { color: #6b7280; font-size: .95rem; margin: 12px 4px; }
+.result h3 { margin: 28px 0 10px; font-size: 1.15rem; }
+.checks { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { padding: 8px 14px; border-radius: 8px; font-size: 1rem; }
+.chip.ok { background: #e6f4ea; color: #1e6b3a; }
+.chip.bad { background: #fdecea; color: #b42318; }
+.result details { background: #fff; border: 1px solid #e3e5ea; border-radius: 10px; padding: 12px 16px; margin-bottom: 8px; }
+.result summary { cursor: pointer; list-style: none; }
+.result .tag { background: #eef0f6; border-radius: 6px; padding: 2px 8px; font-size: .8rem; margin-left: 6px; color: #555; }
+.result pre { white-space: pre-wrap; word-break: break-word; font-size: .9rem; color: #333; margin: 12px 0 0; }
+@media (max-width: 520px) { .ask-form { flex-direction: column; } .ask-btn { padding: 14px; } .result-card { font-size: 1.25rem; padding: 20px; } }

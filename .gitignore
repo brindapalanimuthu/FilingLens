@@ -5,3 +5,7 @@ parsed/
 classified/
 index/
 full_index/
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
