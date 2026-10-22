@@ -1,866 +1,184 @@
 # 🔎 FilingLens
 
-### Agentic RAG for Analyst-Grade Financial Research
+**Ask analyst-style questions over SEC filings. Get cited answers where every number is checked against the source.**
 
-**FilingLens** is an AI-powered financial research assistant that lets users ask natural-language questions about SEC company filings and receive **source-grounded answers with citations and numeric verification**.
+FilingLens is an agentic RAG system over SEC 10-K filings. It understands both prose *and* financial tables, routes each question to the right retrieval strategy, and verifies the numbers in the generated answer against the retrieved evidence before showing it. If the filings don't contain the answer, it says so instead of guessing.
 
-Instead of treating a financial filing as plain text, FilingLens understands both **prose and financial tables**, routes questions to the appropriate retrieval strategy, and verifies numerical claims against the retrieved evidence.
-
-> **Ask a question → Retrieve evidence → Generate an answer → Verify the numbers**
-
----
-
-## ✨ Why FilingLens?
-
-SEC filings such as 10-Ks contain hundreds of pages of:
-
-* Financial statements
-* Tables
-* Risk disclosures
-* Management discussion
-* Business information
-* Segment-level metrics
-* Year-over-year financial data
-
-Finding a specific answer manually can be time-consuming.
-
-FilingLens turns this process into a conversational research workflow.
-
-### Example
-
-Instead of searching through hundreds of pages for:
-
-> **"What was Apple's Services revenue in 2024 and how did it change from 2023?"**
-
-FilingLens retrieves the relevant financial table rows, identifies the appropriate filing year, generates the answer, cites the evidence, and checks whether the numerical claims actually appear in the retrieved sources.
-
----
-
-## 🚀 Key Features
-
-### 🧠 Agentic Query Routing
-
-FilingLens classifies incoming questions and dynamically chooses between:
-
-* **Text-focused retrieval** for explanatory and qualitative questions
-* **Table-focused retrieval** for financial and numerical questions
-
-Examples:
-
-```text
-"What risks does Apple identify?"
-        ↓
-Text-focused retrieval
+```
+Question → Route → Retrieve evidence → Generate → Verify numbers → Cited answer
 ```
 
-```text
-"What was Apple's net income in 2024?"
-        ↓
-Table-focused retrieval
+> **Scope today:** Apple and Microsoft 10-Ks (3 fiscal years each). Text + table retrieval. 10-Q filings are downloaded and parsed; indexing is in progress. Chart/visual retrieval and 8-K are roadmap items, not built.
+
+---
+
+## Why it exists
+
+Plain RAG over filings fails in two predictable ways:
+
+1. **Table rows get crowded out.** Fluent prose chunks outscore the one financial-statement row a question needs.
+2. **LLMs misquote numbers.** A confident answer with a wrong figure is worse than no answer.
+
+FilingLens addresses both with row-level table chunking, hybrid retrieval, and a post-generation numeric verification step.
+
+## Architecture
+
+```mermaid
+flowchart LR
+    A[SEC EDGAR] --> B[Parse<br/>text / tables]
+    B --> C[Section tagging<br/>zero-shot DeBERTa]
+    C --> D[(Index<br/>text chunks + table rows<br/>company · fiscal year · section)]
+    Q[Question] --> R{Route<br/>LangGraph}
+    R -->|numeric| T[Hybrid table search<br/>BM25 + embeddings + label match]
+    R -->|explanatory| X[Text search<br/>embeddings + section boost]
+    D --> T
+    D --> X
+    T --> G[Generate<br/>Gemini, model fallback]
+    X --> G
+    G --> V[Verify numbers<br/>against retrieved source]
+    V --> O[Answer + citations<br/>+ number-check chips]
 ```
 
----
+| Stage | What it does | File |
+|---|---|---|
+| Ingest | Downloads filings from SEC EDGAR by ticker and form type | `edgar_ingest.py` |
+| Parse | Splits filings into tables and ≤1500-char text chunks | `parse_filing.py` |
+| Classify | Tags text chunks with their 10-K section (zero-shot DeBERTa-v3) | `classify_sections.py` |
+| Table chunking | One index entry per table row, with label, period and section | `table_chunker.py` |
+| Index | Embeds text + table rows (MiniLM), tagged by company and fiscal year | `build_full_index.py` |
+| Retrieve | Hybrid search, company filter, segment-aware re-ranking | `hybrid_search.py` |
+| Orchestrate | LangGraph: classify query → retrieve → generate → verify | `filinglens_graph.py` |
+| Serve | FastAPI (`/ask`, `/health`) + web UI | `api.py`, `static/`, `frontend/` |
+| Evaluate | Eval harness with main set and held-out set | `eval_harness.py` |
 
-### 📊 Table-Aware Financial Retrieval
+## Key features
 
-Financial tables are not treated as ordinary text.
+**Agentic query routing.** A LangGraph node classifies each question. Numeric questions ("What was Apple's net income in 2024?") go to table-focused retrieval; explanatory ones ("Why did margins change?") go to text-focused retrieval.
 
-FilingLens converts table rows into searchable retrieval units, allowing questions about:
+**Table-aware retrieval.** Every table row becomes its own searchable unit (label, period, section), so questions about revenue, EPS, operating income, segments or year-over-year changes retrieve the exact row.
 
-* Revenue
-* Net income
-* Operating income
-* EPS
-* Expenses
-* Assets
-* Debt
-* Margins
-* Segment revenue
-* Year-over-year changes
+**Hybrid search.** Table retrieval fuses three signals with reciprocal rank fusion: embedding similarity, BM25 keyword match, and IDF-weighted financial-label match. It expands aliases (R&D → Research and Development, EPS → Earnings Per Share), splits multi-part questions, and demotes percentage rows when the question wants dollar amounts.
 
-to retrieve the relevant financial rows.
+**Company and fiscal-year awareness.** The retriever detects the company in the question (Apple/AAPL/iPhone, Microsoft/MSFT/Azure…), filters to it, and prefers the filing for the requested year. It also applies a segment-aware re-rank so "Services revenue" answers from the Services row.
 
----
+**Source-cited answers.** Answers cite `[Source N]`; the UI shows the retrieved sources so the evidence can be inspected.
 
-### 🔍 Hybrid Search
+**Numeric verification.** Numbers in the answer are extracted, normalized ($ , % parentheses), and matched against the retrieved evidence. Each is marked verified or not.
 
-Table retrieval combines multiple signals:
-
-```text
-User Query
-    │
-    ├── Semantic Search
-    │      └── Sentence Transformers
-    │
-    ├── BM25 Keyword Search
-    │
-    └── Label Matching
-           └── Financial row labels
-                    │
-                    ▼
-             Reciprocal Rank Fusion
-                    │
-                    ▼
-             Re-ranked Results
+```
+✓ $391,035 million     ✓ 6.8%     ✗ $405,200 million   ← flagged
 ```
 
-This helps handle both semantic queries and exact financial terminology.
+**Refuses when unsupported.** Questions the filings can't answer (e.g. a company not in the index) are part of the eval. The system says it doesn't know.
 
-The implementation also supports query expansion for terms such as:
+**Model fallback.** If one Gemini model hits quota, the system switches to the next configured model.
 
-```text
-R&D      → Research and Development
-EPS      → Earnings Per Share
-SG&A     → Selling, General and Administrative
-CapEx    → Additions to Property and Equipment
-```
+## Results
 
----
+| Eval set | Questions | Correct |
+|---|---|---|
+| Main (Apple + Microsoft: numeric, derived, prose, unanswerable) | 32 | **32 / 32** |
+| Held-out (written after tuning: segment/margin, unanswerable) | 11 | **11 / 11** (baseline 10 / 11) |
 
-### 🏢 Multi-Company Retrieval
+Retrieval hit rate on answerable questions: 27 / 27. Average numeric-verification rate: 94%.
 
-Queries can automatically detect the company being discussed.
+**What moved the needle** (first 12-question eval):
 
-Currently supported company aliases include:
+| Change | Score |
+|---|---|
+| Baseline: table-level chunks + embeddings | 6 / 12 |
+| + row-level table chunking + hybrid BM25 / embedding search | 12 / 12 |
 
-* Apple / AAPL / iPhone / iPad
-* Microsoft / MSFT / Azure / Windows / Xbox / LinkedIn
+Later fixes (IDF-weighted label matching, segment-aware re-ranking, percentage-row demotion) were driven by failures on the **held-out** set, not the main set, to avoid tuning only to what I was measuring.
 
-The retrieval layer can then restrict results to the relevant company.
+## Design decisions
 
----
+- **Row-level table chunks.** Whole-table embeddings buried the one row a question needs.
+- **Hybrid, not embeddings-only.** Embeddings miss exact line-item names; BM25 and label matching catch them.
+- **Type-stratified retrieval.** Table slots are guaranteed so prose can't crowd them out.
+- **Verify, don't trust.** The LLM never gets the last word on a number.
+- **Separate retrieval from generation.** The LLM only sees retrieved evidence; it never searches the filing itself.
 
-### 📅 Fiscal-Year-Aware Retrieval
+## Limitations
 
-When a question specifies a year, FilingLens prioritizes evidence from the corresponding filing.
+- Two companies, three fiscal years of 10-Ks each. Results don't claim to generalize across sectors or filers.
+- Eval sets are small and written by the author. 100% is on *this* set, not a public benchmark.
+- Query routing is keyword-heuristic, not learned.
+- Verification checks that a number appears in the retrieved evidence. It is not a proof that the reasoning is correct.
+- No chart/image understanding; no 8-K support; 10-Q indexing in progress.
+- Generation uses the Gemini free tier and depends on its quotas.
+- The index is local and must be rebuilt when filings are added.
 
-For example:
-
-```text
-"What was Microsoft's revenue in 2024?"
-```
-
-The retrieval process gives priority to the relevant fiscal-year filing rather than mixing figures from unrelated filings.
-
----
-
-### 📑 Source-Cited Answers
-
-Generated answers reference the retrieved evidence:
-
-```text
-Apple's Services revenue increased in 2024...
-[Source 2]
-```
-
-The UI also exposes the underlying retrieved sources so users can inspect the evidence themselves.
-
----
-
-### ✅ Numeric Claim Verification
-
-Financial AI systems can be especially dangerous when they produce incorrect numbers.
-
-FilingLens therefore performs an additional verification step after generation.
-
-```text
-Generated Answer
-       ↓
-Extract numerical claims
-       ↓
-Normalize values
-       ↓
-Compare against retrieved sources
-       ↓
-Verified / Not Verified
-```
-
-Example:
-
-```text
-✓ $391,035 million
-✓ 6.8%
-✗ $405,200 million
-```
-
-This provides an additional layer of protection against unsupported numerical claims.
-
----
-
-### 🔄 Gemini Model Fallback
-
-FilingLens includes model fallback logic.
-
-If one Gemini model becomes unavailable or reaches its quota, the system can switch to another configured model instead of immediately failing the request.
-
----
-
-## 🏗️ Architecture
-
-```text
-                    SEC EDGAR
-                       │
-                       ▼
-              Filing Ingestion
-                       │
-                       ▼
-                HTML Filings
-                       │
-                       ▼
-              Document Parsing
-                ┌──────┼──────┐
-                ▼      ▼      ▼
-              Text   Tables  Images
-                │      │
-                ▼      ▼
-          Text Chunks  Table Rows
-                │      │
-                └──┬───┘
-                   ▼
-          Section Classification
-                   │
-                   ▼
-        Sentence Transformer Embeddings
-                   │
-                   ▼
-              Full Index
-          ┌────────┴────────┐
-          │                 │
-      Text Index        Table Index
-          │                 │
-          └────────┬────────┘
-                   ▼
-              User Question
-                   │
-                   ▼
-          LangGraph Query Router
-             ┌─────┴─────┐
-             ▼           ▼
-        Text Route    Table Route
-             │           │
-             │      Hybrid Search
-             │      ┌────┼────┐
-             │      ▼    ▼    ▼
-             │    BM25 Embedding
-             │         Label Match
-             │           │
-             └─────┬─────┘
-                   ▼
-             Retrieved Evidence
-                   │
-                   ▼
-              Gemini LLM
-                   │
-                   ▼
-             Grounded Answer
-                   │
-                   ▼
-           Numeric Verification
-                   │
-                   ▼
-            FastAPI Response
-                   │
-                   ▼
-             Web Interface
-```
-
----
-
-## 🧩 Tech Stack
-
-| Component            | Technology              |
-| -------------------- | ----------------------- |
-| Language             | Python                  |
-| LLM                  | Google Gemini           |
-| Agent Orchestration  | LangGraph               |
-| Embeddings           | Sentence Transformers   |
-| Semantic Model       | `all-MiniLM-L6-v2`      |
-| Keyword Retrieval    | BM25                    |
-| Numerical Processing | NumPy                   |
-| Document Parsing     | BeautifulSoup           |
-| Financial Data       | SEC EDGAR               |
-| API                  | FastAPI                 |
-| Frontend             | HTML / CSS / JavaScript |
-| Retrieval            | Hybrid Semantic + BM25  |
-| Data Storage         | NumPy + Pickle index    |
-
----
-
-## 📂 Project Structure
-
-```text
-FilingLens/
-│
-├── static/
-│   └── index.html
-│
-├── classified_deberta/
-│
-├── full_index/
-│   ├── embeddings.npy
-│   └── entries.pkl
-│
-├── filings_raw/
-│
-├── parsed/
-│
-├── api.py
-├── edgar_ingest.py
-├── parse_filing.py
-├── classify_sections.py
-├── table_chunker.py
-├── build_index.py
-├── build_full_index.py
-├── hybrid_search.py
-├── filinglens_graph.py
-│
-├── generate_answer.py
-├── generate_answer_v2.py
-│
-├── eval_harness.py
-├── eval_set.json
-├── eval_holdout.json
-│
-├── requirements.txt
-└── README.md
-```
-
----
-
-# ⚙️ How It Works
-
-## 1. Ingest SEC Filings
-
-FilingLens retrieves filings directly from the **SEC EDGAR system** using a company ticker.
-
-Example:
+## Quickstart
 
 ```bash
-python edgar_ingest.py AAPL
-```
-
-The ingestion pipeline resolves the company's CIK, retrieves recent filings, and downloads the filing documents.
-
----
-
-## 2. Parse the Filing
-
-The downloaded HTML filing is processed into separate components:
-
-```text
-SEC Filing
-    │
-    ├── Text
-    ├── Tables
-    └── Images
-```
-
-Text is split into manageable chunks while tables are preserved separately.
-
-```bash
-python parse_filing.py
-```
-
----
-
-## 3. Classify Sections
-
-Text chunks are associated with filing sections such as:
-
-```text
-Risk Factors
-Business
-Properties
-Legal Proceedings
-Financial Statements
-```
-
-This gives the retrieval system additional context when answering questions.
-
----
-
-## 4. Build the Search Index
-
-FilingLens converts text and table rows into embeddings using:
-
-```text
-all-MiniLM-L6-v2
-```
-
-The resulting index contains:
-
-```text
-Text chunks
-+
-Table rows
-+
-Company
-+
-Fiscal year
-+
-Filing
-+
-Section
-```
-
-Build the combined index with:
-
-```bash
-python build_full_index.py
-```
-
----
-
-## 5. Route the Question
-
-The LangGraph workflow first determines what type of question was asked.
-
-```text
-Question
-   │
-   ├── Numerical?
-   │      └── Table-focused
-   │
-   └── Explanatory?
-          └── Text-focused
-```
-
-This prevents purely semantic retrieval from being the only strategy for numerical financial questions.
-
----
-
-## 6. Retrieve Evidence
-
-For table-oriented questions, FilingLens uses:
-
-```text
-Embedding similarity
-        +
-BM25 keyword matching
-        +
-Financial label matching
-        ↓
-Reciprocal Rank Fusion
-        ↓
-Re-ranking
-```
-
-For text-oriented questions, semantic retrieval is combined with section-aware ranking.
-
----
-
-## 7. Generate the Answer
-
-The retrieved evidence is passed to Gemini with instructions to:
-
-* Use only retrieved sources
-* Cite sources
-* Preserve financial numbers exactly
-* Prefer the correct fiscal year
-* Respect the requested company
-* Use the requested segment or line item
-* Explicitly state when evidence is insufficient
-* Avoid guessing
-
----
-
-## 8. Verify Numerical Claims
-
-After generation, FilingLens extracts numerical claims from the response and checks whether those values appear in the retrieved evidence.
-
-```text
-Answer
-  ↓
-Find numbers
-  ↓
-Normalize numbers
-  ↓
-Search retrieved evidence
-  ↓
-Verification result
-```
-
-The API exposes:
-
-```json
-{
-  "number": "$391,035",
-  "verified": true
-}
-```
-
----
-
-# 🖥️ Running FilingLens
-
-## 1. Clone the Repository
-
-```bash
-git clone https://github.com/brindapalanimuthu/FilingLens.git
-cd FilingLens
-```
-
-## 2. Create a Virtual Environment
-
-```bash
-python -m venv .venv
-```
-
-Activate it:
-
-### macOS / Linux
-
-```bash
-source .venv/bin/activate
-```
-
-### Windows
-
-```bash
-.venv\Scripts\activate
-```
-
----
-
-## 3. Install Dependencies
-
-```bash
+git clone https://github.com/brindapalanimuthu/FilingLens.git && cd FilingLens
+python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-```
+export GEMINI_API_KEY="your_key"          # Google AI Studio free tier
 
-The application also requires the API/runtime dependencies used by the FastAPI server and hybrid table retrieval:
-
-```bash
-pip install fastapi uvicorn rank-bm25 lxml
-```
-
----
-
-## 4. Configure Gemini
-
-Set your Gemini API key.
-
-### macOS / Linux
-
-```bash
-export GEMINI_API_KEY="your_api_key"
-```
-
-### Windows PowerShell
-
-```powershell
-$env:GEMINI_API_KEY="your_api_key"
-```
-
----
-
-## 5. Prepare the Index
-
-If building the dataset from scratch:
-
-```bash
-python edgar_ingest.py AAPL
-```
-
-Then:
-
-```bash
+# Build the data (generated files are not committed)
+python edgar_ingest.py AAPL 10-K
+python edgar_ingest.py MSFT 10-K
 python parse_filing.py
-```
-
-Run the classification/indexing pipeline and finally:
-
-```bash
+python classify_sections.py
 python build_full_index.py
+
+# Run the API + UI
+uvicorn api:app --reload                  # http://127.0.0.1:8000
+
+# Optional: React frontend
+cd frontend && npm install && npm run dev # http://127.0.0.1:5173
+
+# Evaluate
+python eval_harness.py
+EVAL_SET=eval_holdout.json EVAL_RESULTS=holdout_results.json python eval_harness.py
 ```
 
-The generated index contains the embeddings and searchable filing entries.
+## API
 
----
+`POST /ask`
 
-## 6. Start the API
-
-```bash
-uvicorn api:app --reload
+```json
+{ "question": "What was Apple's Services revenue in 2024?" }
 ```
-
-Open:
-
-```text
-http://127.0.0.1:8000
-```
-
-You can also check the API health:
-
-```text
-GET /health
-```
-
----
-
-# 🔌 API
-
-## Ask a Question
-
-### Endpoint
-
-```http
-POST /ask
-```
-
-### Request
 
 ```json
 {
-  "question": "What was Apple's Services revenue in 2024?"
-}
-```
-
-### Response
-
-```json
-{
-  "question": "What was Apple's Services revenue in 2024?",
   "answer": "...",
   "route": "table_focused",
   "model": "gemini-2.5-flash",
   "sources": [],
-  "verification": [],
+  "verification": [{ "number": "$391,035", "verified": true }],
   "unverified_count": 0
 }
 ```
 
----
+`GET /health` → `{ "status": "ok", "index_entries": ... }`
 
-## Health Check
+## Example questions
 
-```http
-GET /health
-```
+- *What was Apple's total net sales in 2024?* (table route)
+- *How did Microsoft's revenue change between 2023 and 2024?* (multi-year, derived)
+- *What were Apple's R&D expenses and net income in 2024?* (multi-part)
+- *Why did Apple's gross margin change?* (text route)
+- *What was Alphabet's revenue?* (not in index → refuses)
 
-Example:
+## Roadmap
 
-```json
-{
-  "status": "ok",
-  "index_entries": 12500
-}
-```
+- [x] 10-K ingestion, parsing, section tagging, hybrid retrieval, verification, eval
+- [x] FastAPI + web UI
+- [ ] 10-Q indexing and cross-filing questions (quarter-over-quarter)
+- [ ] Learned query router
+- [ ] Chart / visual retrieval
+- [ ] 8-K support, more companies, persistent vector store
 
----
+## Stack
 
-# 🧪 Evaluation
+Python · LangGraph · sentence-transformers (all-MiniLM-L6-v2) · rank_bm25 · Hugging Face zero-shot (DeBERTa-v3) · Gemini · FastAPI · React + Vite · SEC EDGAR
 
-FilingLens includes an evaluation workflow for measuring retrieval and answer quality.
+## Author
 
-Relevant files include:
+**Brinda Palanimuthu** · [GitHub](https://github.com/brindapalanimuthu)
 
-```text
-eval_set.json
-eval_holdout.json
-eval_results.json
-eval_harness.py
-```
-
-This allows the system to be evaluated on predefined financial questions rather than relying only on manual testing.
-
----
-
-# 🎯 Example Questions
-
-FilingLens can handle questions such as:
-
-### Financial Metrics
-
-```text
-What was Apple's total revenue in 2024?
-```
-
-### Comparisons
-
-```text
-How did Microsoft's revenue change between 2023 and 2024?
-```
-
-### Segment Analysis
-
-```text
-What was Apple's Services revenue in 2024?
-```
-
-### Explanatory Questions
-
-```text
-What risks does Apple identify in its latest filing?
-```
-
-### Financial Changes
-
-```text
-Why did operating income decrease?
-```
-
-### Multiple Metrics
-
-```text
-What were Apple's R&D expenses and net income in 2024?
-```
-
----
-
-# 🛡️ Design Principles
-
-FilingLens is built around several principles for reliable financial question answering.
-
-### 1. Ground answers in evidence
-
-The model is instructed to answer only from retrieved sources.
-
-### 2. Preserve financial numbers
-
-Retrieved table values should be reproduced accurately rather than casually rounded.
-
-### 3. Separate retrieval from generation
-
-The LLM does not directly search the entire filing. Evidence is retrieved first.
-
-### 4. Verify numerical claims
-
-Generated numbers are checked against the retrieved evidence.
-
-### 5. Prefer uncertainty over hallucination
-
-If the available sources are insufficient, the system is instructed to say so rather than inventing an answer.
-
----
-
-# 🔬 What Makes FilingLens Different?
-
-Traditional RAG systems often follow:
-
-```text
-PDF
- ↓
-Text chunks
- ↓
-Vector database
- ↓
-LLM
-```
-
-FilingLens is designed specifically around the structure of **financial filings**:
-
-```text
-SEC Filing
-    │
-    ├── Prose
-    │
-    ├── Financial Tables
-    │
-    ├── Sections
-    │
-    ├── Companies
-    │
-    └── Fiscal Years
-           │
-           ▼
-     Query-Aware Routing
-           │
-     ┌─────┴─────┐
-     ▼           ▼
-Text Search   Table Search
-                  │
-          BM25 + Embeddings
-                  │
-                  ▼
-          Financial Evidence
-                  │
-                  ▼
-             LLM Answer
-                  │
-                  ▼
-          Numeric Verification
-```
-
-The goal is not simply to build a chatbot over documents, but to build a **financial research system that understands the difference between narrative evidence and structured financial data**.
-
----
-
-# 🚧 Current Limitations
-
-FilingLens is an evolving research/portfolio project.
-
-Current limitations include:
-
-* SEC ingestion is currently centered on 10-K filings.
-* Company-specific retrieval aliases are currently configured for a limited set of companies.
-* Numeric verification checks whether values occur in retrieved evidence; it is not a complete mathematical proof of every generated claim.
-* The system depends on the availability and quotas of the configured Gemini models.
-* The local index must be rebuilt when new filings are added.
-
----
-
-# 🗺️ Future Improvements
-
-Potential next steps include:
-
-* [ ] Support automated 10-Q and 8-K ingestion
-* [ ] Expand company coverage
-* [ ] Add persistent vector database storage
-* [ ] Add financial-chart understanding
-* [ ] Improve table structure preservation
-* [ ] Add cross-company financial comparison
-* [ ] Add temporal financial trend analysis
-* [ ] Add confidence scoring
-* [ ] Improve claim-level verification
-* [ ] Add automated evaluation dashboards
-* [ ] Add SEC filing update automation
-* [ ] Add richer analyst reports and summaries
-
----
-
-# 💡 Project Highlights
-
-FilingLens demonstrates practical implementation of:
-
-* **Agentic RAG**
-* **LangGraph orchestration**
-* **Hybrid retrieval**
-* **Semantic search**
-* **BM25 search**
-* **Table-aware retrieval**
-* **Financial document parsing**
-* **LLM grounding**
-* **Source attribution**
-* **Numerical claim verification**
-* **FastAPI deployment**
-* **Evaluation-driven development**
-
----
-
-# 📚 Data Source
-
-Financial filings are retrieved from the **U.S. Securities and Exchange Commission (SEC) EDGAR system**.
-
-SEC EDGAR:
-
-https://www.sec.gov/edgar
-
----
-
-# 👩‍💻 Author
-
-**Brinda Palanimuthu**
-
-Machine Learning Engineer | Applied AI | RAG | LLM Systems
-
-GitHub:
-https://github.com/brindapalanimuthu
-
----
-
-# 📄 License
-
-This project is intended for educational, research, and portfolio purposes.
-
-See the repository license for applicable terms.
+Built for educational, research and portfolio purposes. Data from SEC EDGAR.
