@@ -9,3 +9,8 @@ full_index/
 # Frontend
 frontend/node_modules/
 frontend/dist/
+
+full_index_backup/
+full_index_apple_backup/
+*.pkl
+*.npy
