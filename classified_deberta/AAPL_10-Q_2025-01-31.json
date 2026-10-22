@@ -1,0 +1,4458 @@
+{
+  "tables": [
+    {
+      "table_id": 5,
+      "rows": [
+        [
+          "California",
+          "",
+          "94-2404110"
+        ],
+        [
+          "(State or other jurisdictionof incorporation or organization)",
+          "",
+          "(I.R.S. Employer Identification No.)"
+        ],
+        [
+          "One Apple Park Way",
+          "",
+          ""
+        ],
+        [
+          "Cupertino,California",
+          "",
+          "95014"
+        ],
+        [
+          "(Address of principal executive offices)",
+          "",
+          "(Zip Code)"
+        ]
+      ]
+    },
+    {
+      "table_id": 7,
+      "rows": [
+        [
+          "Title of each class",
+          "Trading symbol(s)",
+          "Name of each exchange on which registered"
+        ],
+        [
+          "Common Stock, $0.00001 par value per share",
+          "AAPL",
+          "The Nasdaq Stock Market LLC"
+        ],
+        [
+          "0.000% Notes due 2025",
+          "\u2014",
+          "The Nasdaq Stock Market LLC"
+        ],
+        [
+          "0.875% Notes due 2025",
+          "\u2014",
+          "The Nasdaq Stock Market LLC"
+        ],
+        [
+          "1.625% Notes due 2026",
+          "\u2014",
+          "The Nasdaq Stock Market LLC"
+        ],
+        [
+          "2.000% Notes due 2027",
+          "\u2014",
+          "The Nasdaq Stock Market LLC"
+        ],
+        [
+          "1.375% Notes due 2029",
+          "\u2014",
+          "The Nasdaq Stock Market LLC"
+        ],
+        [
+          "3.050% Notes due 2029",
+          "\u2014",
+          "The Nasdaq Stock Market LLC"
+        ],
+        [
+          "0.500% Notes due 2031",
+          "\u2014",
+          "The Nasdaq Stock Market LLC"
+        ],
+        [
+          "3.600% Notes due 2042",
+          "\u2014",
+          "The Nasdaq Stock Market LLC"
+        ]
+      ]
+    },
+    {
+      "table_id": 9,
+      "rows": [
+        [
+          "Large accelerated filer",
+          "",
+          "\u2612",
+          "",
+          "Accelerated filer",
+          "",
+          "\u2610"
+        ],
+        [
+          "Non-accelerated filer",
+          "",
+          "\u2610",
+          "",
+          "Smaller reporting company",
+          "",
+          "\u2610"
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "Emerging growth company",
+          "",
+          "\u2610"
+        ]
+      ]
+    },
+    {
+      "table_id": 11,
+      "rows": [
+        [
+          "",
+          "Page"
+        ],
+        [
+          "Part I"
+        ],
+        [
+          "Item 1.",
+          "Financial Statements",
+          "1"
+        ],
+        [
+          "Item 2.",
+          "Management\u2019s Discussion and Analysis of Financial Condition and Results of Operations",
+          "12"
+        ],
+        [
+          "Item 3.",
+          "Quantitative and Qualitative Disclosures About Market Risk",
+          "17"
+        ],
+        [
+          "Item 4.",
+          "Controls and Procedures",
+          "17"
+        ],
+        [
+          "Part II"
+        ],
+        [
+          "Item 1.",
+          "Legal Proceedings",
+          "18"
+        ],
+        [
+          "Item 1A.",
+          "Risk Factors",
+          "19"
+        ],
+        [
+          "Item 2.",
+          "Unregistered Sales of Equity Securities and Use of Proceeds",
+          "20"
+        ],
+        [
+          "Item 3.",
+          "Defaults Upon Senior Securities",
+          "21"
+        ],
+        [
+          "Item 4.",
+          "Mine Safety Disclosures",
+          "21"
+        ],
+        [
+          "Item 5.",
+          "Other Information",
+          "21"
+        ],
+        [
+          "Item 6.",
+          "Exhibits",
+          "21"
+        ]
+      ]
+    },
+    {
+      "table_id": 12,
+      "rows": [
+        [
+          "",
+          "Three Months Ended",
+          "",
+          ""
+        ],
+        [
+          "",
+          "December 28,2024",
+          "",
+          "December 30,2023",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Net sales:",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Products",
+          "$",
+          "97,960",
+          "",
+          "",
+          "$",
+          "96,458",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Services",
+          "26,340",
+          "",
+          "",
+          "23,117",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Total net sales",
+          "124,300",
+          "",
+          "",
+          "119,575",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Cost of sales:",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Products",
+          "59,447",
+          "",
+          "",
+          "58,440",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Services",
+          "6,578",
+          "",
+          "",
+          "6,280",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Total cost of sales",
+          "66,025",
+          "",
+          "",
+          "64,720",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Gross margin",
+          "58,275",
+          "",
+          "",
+          "54,855",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Operating expenses:",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Research and development",
+          "8,268",
+          "",
+          "",
+          "7,696",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Selling, general and administrative",
+          "7,175",
+          "",
+          "",
+          "6,786",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Total operating expenses",
+          "15,443",
+          "",
+          "",
+          "14,482",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Operating income",
+          "42,832",
+          "",
+          "",
+          "40,373",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Other income/(expense), net",
+          "(248)",
+          "",
+          "",
+          "(50)",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Income before provision for income taxes",
+          "42,584",
+          "",
+          "",
+          "40,323",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Provision for income taxes",
+          "6,254",
+          "",
+          "",
+          "6,407",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Net income",
+          "$",
+          "36,330",
+          "",
+          "",
+          "$",
+          "33,916",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Earnings per share:",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Basic",
+          "$",
+          "2.41",
+          "",
+          "",
+          "$",
+          "2.19",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Diluted",
+          "$",
+          "2.40",
+          "",
+          "",
+          "$",
+          "2.18",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Shares used in computing earnings per share:",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Basic",
+          "15,081,724",
+          "",
+          "",
+          "15,509,763",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Diluted",
+          "15,150,865",
+          "",
+          "",
+          "15,576,641",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "table_id": 13,
+      "rows": [
+        [
+          "",
+          "Three Months Ended",
+          "",
+          ""
+        ],
+        [
+          "",
+          "December 28,2024",
+          "",
+          "December 30,2023",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Net income",
+          "$",
+          "36,330",
+          "",
+          "",
+          "$",
+          "33,916",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Other comprehensive income/(loss):",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Change in foreign currency translation, net of tax",
+          "(625)",
+          "",
+          "",
+          "308",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Change in unrealized gains/losses on derivative instruments, net of tax:",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Change in fair value of derivative instruments",
+          "1,651",
+          "",
+          "",
+          "(531)",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Adjustment for net (gains)/losses realized and included in net income",
+          "784",
+          "",
+          "",
+          "(823)",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Total change in unrealized gains/losses on derivative instruments",
+          "2,435",
+          "",
+          "",
+          "(1,354)",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Change in unrealized gains/losses on marketable debt securities, net of tax:",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Change in fair value of marketable debt securities",
+          "(1,647)",
+          "",
+          "",
+          "3,045",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Adjustment for net (gains)/losses realized and included in net income",
+          "220",
+          "",
+          "",
+          "75",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Total change in unrealized gains/losses on marketable debt securities",
+          "(1,427)",
+          "",
+          "",
+          "3,120",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Total other comprehensive income",
+          "383",
+          "",
+          "",
+          "2,074",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Total comprehensive income",
+          "$",
+          "36,713",
+          "",
+          "",
+          "$",
+          "35,990",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "table_id": 14,
+      "rows": [
+        [
+          "",
+          "December 28,2024",
+          "",
+          "September 28,2024"
+        ],
+        [
+          "ASSETS:"
+        ],
+        [
+          "Current assets:",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Cash and cash equivalents",
+          "$",
+          "30,299",
+          "",
+          "",
+          "$",
+          "29,943",
+          ""
+        ],
+        [
+          "Marketable securities",
+          "23,476",
+          "",
+          "",
+          "35,228",
+          ""
+        ],
+        [
+          "Accounts receivable, net",
+          "29,639",
+          "",
+          "",
+          "33,410",
+          ""
+        ],
+        [
+          "Vendor non-trade receivables",
+          "29,667",
+          "",
+          "",
+          "32,833",
+          ""
+        ],
+        [
+          "Inventories",
+          "6,911",
+          "",
+          "",
+          "7,286",
+          ""
+        ],
+        [
+          "Other current assets",
+          "13,248",
+          "",
+          "",
+          "14,287",
+          ""
+        ],
+        [
+          "Total current assets",
+          "133,240",
+          "",
+          "",
+          "152,987",
+          ""
+        ],
+        [
+          "Non-current assets:",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Marketable securities",
+          "87,593",
+          "",
+          "",
+          "91,479",
+          ""
+        ],
+        [
+          "Property, plant and equipment, net",
+          "46,069",
+          "",
+          "",
+          "45,680",
+          ""
+        ],
+        [
+          "Other non-current assets",
+          "77,183",
+          "",
+          "",
+          "74,834",
+          ""
+        ],
+        [
+          "Total non-current assets",
+          "210,845",
+          "",
+          "",
+          "211,993",
+          ""
+        ],
+        [
+          "Total assets",
+          "$",
+          "344,085",
+          "",
+          "",
+          "$",
+          "364,980",
+          ""
+        ],
+        [
+          "LIABILITIES AND SHAREHOLDERS\u2019 EQUITY:"
+        ],
+        [
+          "Current liabilities:",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Accounts payable",
+          "$",
+          "61,910",
+          "",
+          "",
+          "$",
+          "68,960",
+          ""
+        ],
+        [
+          "Other current liabilities",
+          "61,151",
+          "",
+          "",
+          "78,304",
+          ""
+        ],
+        [
+          "Deferred revenue",
+          "8,461",
+          "",
+          "",
+          "8,249",
+          ""
+        ],
+        [
+          "Commercial paper",
+          "1,995",
+          "",
+          "",
+          "9,967",
+          ""
+        ],
+        [
+          "Term debt",
+          "10,848",
+          "",
+          "",
+          "10,912",
+          ""
+        ],
+        [
+          "Total current liabilities",
+          "144,365",
+          "",
+          "",
+          "176,392",
+          ""
+        ],
+        [
+          "Non-current liabilities:",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Term debt",
+          "83,956",
+          "",
+          "",
+          "85,750",
+          ""
+        ],
+        [
+          "Other non-current liabilities",
+          "49,006",
+          "",
+          "",
+          "45,888",
+          ""
+        ],
+        [
+          "Total non-current liabilities",
+          "132,962",
+          "",
+          "",
+          "131,638",
+          ""
+        ],
+        [
+          "Total liabilities",
+          "277,327",
+          "",
+          "",
+          "308,030",
+          ""
+        ],
+        [
+          "Commitments and contingencies",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Shareholders\u2019 equity:",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Common stock and additional paid-in capital, $0.00001par value:50,400,000shares authorized;15,040,731and15,116,786shares issued and outstanding, respectively",
+          "84,768",
+          "",
+          "",
+          "83,276",
+          ""
+        ],
+        [
+          "Accumulated deficit",
+          "(11,221)",
+          "",
+          "",
+          "(19,154)",
+          ""
+        ],
+        [
+          "Accumulated other comprehensive loss",
+          "(6,789)",
+          "",
+          "",
+          "(7,172)",
+          ""
+        ],
+        [
+          "Total shareholders\u2019 equity",
+          "66,758",
+          "",
+          "",
+          "56,950",
+          ""
+        ],
+        [
+          "Total liabilities and shareholders\u2019 equity",
+          "$",
+          "344,085",
+          "",
+          "",
+          "$",
+          "364,980",
+          ""
+        ]
+      ]
+    },
+    {
+      "table_id": 15,
+      "rows": [
+        [
+          "",
+          "Three Months Ended",
+          "",
+          ""
+        ],
+        [
+          "",
+          "December 28,2024",
+          "",
+          "December 30,2023",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Total shareholders\u2019 equity, beginning balances",
+          "$",
+          "56,950",
+          "",
+          "",
+          "$",
+          "62,146",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Common stock and additional paid-in capital:",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Beginning balances",
+          "83,276",
+          "",
+          "",
+          "73,812",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Common stock withheld related to net share settlement of equity awards",
+          "(1,891)",
+          "",
+          "",
+          "(1,660)",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Share-based compensation",
+          "3,383",
+          "",
+          "",
+          "3,084",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Ending balances",
+          "84,768",
+          "",
+          "",
+          "75,236",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Retained earnings/(Accumulated deficit):",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Beginning balances",
+          "(19,154)",
+          "",
+          "",
+          "(214)",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Net income",
+          "36,330",
+          "",
+          "",
+          "33,916",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Dividends and dividend equivalents declared",
+          "(3,819)",
+          "",
+          "",
+          "(3,774)",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Common stock withheld related to net share settlement of equity awards",
+          "(1,102)",
+          "",
+          "",
+          "(1,018)",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Common stock repurchased",
+          "(23,476)",
+          "",
+          "",
+          "(20,668)",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Ending balances",
+          "(11,221)",
+          "",
+          "",
+          "8,242",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Accumulated other comprehensive loss:",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Beginning balances",
+          "(7,172)",
+          "",
+          "",
+          "(11,452)",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Other comprehensive income",
+          "383",
+          "",
+          "",
+          "2,074",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Ending balances",
+          "(6,789)",
+          "",
+          "",
+          "(9,378)",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Total shareholders\u2019 equity, ending balances",
+          "$",
+          "66,758",
+          "",
+          "",
+          "$",
+          "74,100",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Dividends and dividend equivalents declared per share or RSU",
+          "$",
+          "0.25",
+          "",
+          "",
+          "$",
+          "0.24",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "table_id": 16,
+      "rows": [
+        [
+          "",
+          "Three Months Ended"
+        ],
+        [
+          "",
+          "December 28,2024",
+          "",
+          "December 30,2023"
+        ],
+        [
+          "Cash, cash equivalents, and restricted cash and cash equivalents, beginning balances",
+          "$",
+          "29,943",
+          "",
+          "",
+          "$",
+          "30,737",
+          ""
+        ],
+        [
+          "Operating activities:",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Net income",
+          "36,330",
+          "",
+          "",
+          "33,916",
+          ""
+        ],
+        [
+          "Adjustments to reconcile net income to cash generated by operating activities:",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Depreciation and amortization",
+          "3,080",
+          "",
+          "",
+          "2,848",
+          ""
+        ],
+        [
+          "Share-based compensation expense",
+          "3,286",
+          "",
+          "",
+          "2,997",
+          ""
+        ],
+        [
+          "Other",
+          "(2,009)",
+          "",
+          "",
+          "(989)",
+          ""
+        ],
+        [
+          "Changes in operating assets and liabilities:",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Accounts receivable, net",
+          "3,597",
+          "",
+          "",
+          "6,555",
+          ""
+        ],
+        [
+          "Vendor non-trade receivables",
+          "3,166",
+          "",
+          "",
+          "4,569",
+          ""
+        ],
+        [
+          "Inventories",
+          "215",
+          "",
+          "",
+          "(137)",
+          ""
+        ],
+        [
+          "Other current and non-current assets",
+          "939",
+          "",
+          "",
+          "(1,457)",
+          ""
+        ],
+        [
+          "Accounts payable",
+          "(6,671)",
+          "",
+          "",
+          "(4,542)",
+          ""
+        ],
+        [
+          "Other current and non-current liabilities",
+          "(11,998)",
+          "",
+          "",
+          "(3,865)",
+          ""
+        ],
+        [
+          "Cash generated by operating activities",
+          "29,935",
+          "",
+          "",
+          "39,895",
+          ""
+        ],
+        [
+          "Investing activities:",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Purchases of marketable securities",
+          "(6,124)",
+          "",
+          "",
+          "(9,780)",
+          ""
+        ],
+        [
+          "Proceeds from maturities of marketable securities",
+          "15,967",
+          "",
+          "",
+          "13,046",
+          ""
+        ],
+        [
+          "Proceeds from sales of marketable securities",
+          "3,492",
+          "",
+          "",
+          "1,337",
+          ""
+        ],
+        [
+          "Payments for acquisition of property, plant and equipment",
+          "(2,940)",
+          "",
+          "",
+          "(2,392)",
+          ""
+        ],
+        [
+          "Other",
+          "(603)",
+          "",
+          "",
+          "(284)",
+          ""
+        ],
+        [
+          "Cash generated by investing activities",
+          "9,792",
+          "",
+          "",
+          "1,927",
+          ""
+        ],
+        [
+          "Financing activities:",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Payments for taxes related to net share settlement of equity awards",
+          "(2,921)",
+          "",
+          "",
+          "(2,591)",
+          ""
+        ],
+        [
+          "Payments for dividends and dividend equivalents",
+          "(3,856)",
+          "",
+          "",
+          "(3,825)",
+          ""
+        ],
+        [
+          "Repurchases of common stock",
+          "(23,606)",
+          "",
+          "",
+          "(20,139)",
+          ""
+        ],
+        [
+          "Repayments of term debt",
+          "(1,009)",
+          "",
+          "",
+          "\u2014",
+          ""
+        ],
+        [
+          "Repayments of commercial paper, net",
+          "(7,944)",
+          "",
+          "",
+          "(3,984)",
+          ""
+        ],
+        [
+          "Other",
+          "(35)",
+          "",
+          "",
+          "(46)",
+          ""
+        ],
+        [
+          "Cash used in financing activities",
+          "(39,371)",
+          "",
+          "",
+          "(30,585)",
+          ""
+        ],
+        [
+          "Increase in cash, cash equivalents, and restricted cash and cash equivalents",
+          "356",
+          "",
+          "",
+          "11,237",
+          ""
+        ],
+        [
+          "Cash, cash equivalents, and restricted cash and cash equivalents, ending balances",
+          "$",
+          "30,299",
+          "",
+          "",
+          "$",
+          "41,974",
+          ""
+        ],
+        [
+          "Supplemental cash flow disclosure:",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Cash paid for income taxes, net",
+          "$",
+          "18,651",
+          "",
+          "",
+          "$",
+          "7,255",
+          ""
+        ]
+      ]
+    },
+    {
+      "table_id": 17,
+      "rows": [
+        [
+          "",
+          "Three Months Ended",
+          "",
+          ""
+        ],
+        [
+          "",
+          "December 28,2024",
+          "",
+          "December 30,2023",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "iPhone\u00ae",
+          "$",
+          "69,138",
+          "",
+          "",
+          "$",
+          "69,702",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Mac\u00ae",
+          "8,987",
+          "",
+          "",
+          "7,780",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "iPad\u00ae",
+          "8,088",
+          "",
+          "",
+          "7,023",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Wearables, Home and Accessories",
+          "11,747",
+          "",
+          "",
+          "11,953",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Services",
+          "26,340",
+          "",
+          "",
+          "23,117",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Total net sales",
+          "$",
+          "124,300",
+          "",
+          "",
+          "$",
+          "119,575",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "table_id": 18,
+      "rows": [
+        [
+          "",
+          "Three Months Ended",
+          "",
+          ""
+        ],
+        [
+          "",
+          "December 28,2024",
+          "",
+          "December 30,2023",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Numerator:",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Net income",
+          "$",
+          "36,330",
+          "",
+          "",
+          "$",
+          "33,916",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Denominator:",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Weighted-average basic shares outstanding",
+          "15,081,724",
+          "",
+          "",
+          "15,509,763",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Effect of dilutive share-based awards",
+          "69,141",
+          "",
+          "",
+          "66,878",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Weighted-average diluted shares",
+          "15,150,865",
+          "",
+          "",
+          "15,576,641",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Basic earnings per share",
+          "$",
+          "2.41",
+          "",
+          "",
+          "$",
+          "2.19",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Diluted earnings per share",
+          "$",
+          "2.40",
+          "",
+          "",
+          "$",
+          "2.18",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "table_id": 19,
+      "rows": [
+        [
+          "",
+          "December 28, 2024"
+        ],
+        [
+          "",
+          "AdjustedCost",
+          "",
+          "UnrealizedGains",
+          "",
+          "UnrealizedLosses",
+          "",
+          "FairValue",
+          "",
+          "Cash andCashEquivalents",
+          "",
+          "CurrentMarketableSecurities",
+          "",
+          "Non-CurrentMarketableSecurities"
+        ],
+        [
+          "Cash",
+          "$",
+          "27,073",
+          "",
+          "",
+          "$",
+          "\u2014",
+          "",
+          "",
+          "$",
+          "\u2014",
+          "",
+          "",
+          "$",
+          "27,073",
+          "",
+          "",
+          "$",
+          "27,073",
+          "",
+          "",
+          "$",
+          "\u2014",
+          "",
+          "",
+          "$",
+          "\u2014",
+          ""
+        ],
+        [
+          "Level 1:",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Money market funds",
+          "937",
+          "",
+          "",
+          "\u2014",
+          "",
+          "",
+          "\u2014",
+          "",
+          "",
+          "937",
+          "",
+          "",
+          "937",
+          "",
+          "",
+          "\u2014",
+          "",
+          "",
+          "\u2014",
+          ""
+        ],
+        [
+          "Mutual funds",
+          "597",
+          "",
+          "",
+          "109",
+          "",
+          "",
+          "(7)",
+          "",
+          "",
+          "699",
+          "",
+          "",
+          "\u2014",
+          "",
+          "",
+          "699",
+          "",
+          "",
+          "\u2014",
+          ""
+        ],
+        [
+          "Subtotal",
+          "1,534",
+          "",
+          "",
+          "109",
+          "",
+          "",
+          "(7)",
+          "",
+          "",
+          "1,636",
+          "",
+          "",
+          "937",
+          "",
+          "",
+          "699",
+          "",
+          "",
+          "\u2014",
+          ""
+        ],
+        [
+          "Level 2(1):",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "U.S. Treasury securities",
+          "15,516",
+          "",
+          "",
+          "5",
+          "",
+          "",
+          "(616)",
+          "",
+          "",
+          "14,905",
+          "",
+          "",
+          "903",
+          "",
+          "",
+          "2,718",
+          "",
+          "",
+          "11,284",
+          ""
+        ],
+        [
+          "U.S. agency securities",
+          "5,570",
+          "",
+          "",
+          "\u2014",
+          "",
+          "",
+          "(303)",
+          "",
+          "",
+          "5,267",
+          "",
+          "",
+          "314",
+          "",
+          "",
+          "1,683",
+          "",
+          "",
+          "3,270",
+          ""
+        ],
+        [
+          "Non-U.S. government securities",
+          "8,596",
+          "",
+          "",
+          "22",
+          "",
+          "",
+          "(819)",
+          "",
+          "",
+          "7,799",
+          "",
+          "",
+          "50",
+          "",
+          "",
+          "2,524",
+          "",
+          "",
+          "5,225",
+          ""
+        ],
+        [
+          "Certificates of deposit and time deposits",
+          "1,147",
+          "",
+          "",
+          "\u2014",
+          "",
+          "",
+          "(13)",
+          "",
+          "",
+          "1,134",
+          "",
+          "",
+          "874",
+          "",
+          "",
+          "247",
+          "",
+          "",
+          "13",
+          ""
+        ],
+        [
+          "Commercial paper",
+          "418",
+          "",
+          "",
+          "\u2014",
+          "",
+          "",
+          "(19)",
+          "",
+          "",
+          "399",
+          "",
+          "",
+          "101",
+          "",
+          "",
+          "298",
+          "",
+          "",
+          "\u2014",
+          ""
+        ],
+        [
+          "Corporate debt securities",
+          "61,566",
+          "",
+          "",
+          "96",
+          "",
+          "",
+          "(2,210)",
+          "",
+          "",
+          "59,452",
+          "",
+          "",
+          "47",
+          "",
+          "",
+          "14,451",
+          "",
+          "",
+          "44,954",
+          ""
+        ],
+        [
+          "Municipal securities",
+          "355",
+          "",
+          "",
+          "\u2014",
+          "",
+          "",
+          "(7)",
+          "",
+          "",
+          "348",
+          "",
+          "",
+          "\u2014",
+          "",
+          "",
+          "189",
+          "",
+          "",
+          "159",
+          ""
+        ],
+        [
+          "Mortgage- and asset-backed securities",
+          "25,313",
+          "",
+          "",
+          "29",
+          "",
+          "",
+          "(1,987)",
+          "",
+          "",
+          "23,355",
+          "",
+          "",
+          "\u2014",
+          "",
+          "",
+          "667",
+          "",
+          "",
+          "22,688",
+          ""
+        ],
+        [
+          "Subtotal",
+          "118,481",
+          "",
+          "",
+          "152",
+          "",
+          "",
+          "(5,974)",
+          "",
+          "",
+          "112,659",
+          "",
+          "",
+          "2,289",
+          "",
+          "",
+          "22,777",
+          "",
+          "",
+          "87,593",
+          ""
+        ],
+        [
+          "Total(2)(3)",
+          "$",
+          "147,088",
+          "",
+          "",
+          "$",
+          "261",
+          "",
+          "",
+          "$",
+          "(5,981)",
+          "",
+          "",
+          "$",
+          "141,368",
+          "",
+          "",
+          "$",
+          "30,299",
+          "",
+          "",
+          "$",
+          "23,476",
+          "",
+          "",
+          "$",
+          "87,593",
+          ""
+        ]
+      ]
+    },
+    {
+      "table_id": 20,
+      "rows": [
+        [
+          "",
+          "September 28, 2024"
+        ],
+        [
+          "",
+          "AdjustedCost",
+          "",
+          "UnrealizedGains",
+          "",
+          "UnrealizedLosses",
+          "",
+          "FairValue",
+          "",
+          "Cash andCashEquivalents",
+          "",
+          "CurrentMarketableSecurities",
+          "",
+          "Non-CurrentMarketableSecurities"
+        ],
+        [
+          "Cash",
+          "$",
+          "27,199",
+          "",
+          "",
+          "$",
+          "\u2014",
+          "",
+          "",
+          "$",
+          "\u2014",
+          "",
+          "",
+          "$",
+          "27,199",
+          "",
+          "",
+          "$",
+          "27,199",
+          "",
+          "",
+          "$",
+          "\u2014",
+          "",
+          "",
+          "$",
+          "\u2014",
+          ""
+        ],
+        [
+          "Level 1:",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Money market funds",
+          "778",
+          "",
+          "",
+          "\u2014",
+          "",
+          "",
+          "\u2014",
+          "",
+          "",
+          "778",
+          "",
+          "",
+          "778",
+          "",
+          "",
+          "\u2014",
+          "",
+          "",
+          "\u2014",
+          ""
+        ],
+        [
+          "Mutual funds",
+          "515",
+          "",
+          "",
+          "105",
+          "",
+          "",
+          "(3)",
+          "",
+          "",
+          "617",
+          "",
+          "",
+          "\u2014",
+          "",
+          "",
+          "617",
+          "",
+          "",
+          "\u2014",
+          ""
+        ],
+        [
+          "Subtotal",
+          "1,293",
+          "",
+          "",
+          "105",
+          "",
+          "",
+          "(3)",
+          "",
+          "",
+          "1,395",
+          "",
+          "",
+          "778",
+          "",
+          "",
+          "617",
+          "",
+          "",
+          "\u2014",
+          ""
+        ],
+        [
+          "Level 2(1):",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "U.S. Treasury securities",
+          "16,150",
+          "",
+          "",
+          "45",
+          "",
+          "",
+          "(516)",
+          "",
+          "",
+          "15,679",
+          "",
+          "",
+          "212",
+          "",
+          "",
+          "4,087",
+          "",
+          "",
+          "11,380",
+          ""
+        ],
+        [
+          "U.S. agency securities",
+          "5,431",
+          "",
+          "",
+          "\u2014",
+          "",
+          "",
+          "(272)",
+          "",
+          "",
+          "5,159",
+          "",
+          "",
+          "155",
+          "",
+          "",
+          "703",
+          "",
+          "",
+          "4,301",
+          ""
+        ],
+        [
+          "Non-U.S. government securities",
+          "17,959",
+          "",
+          "",
+          "93",
+          "",
+          "",
+          "(484)",
+          "",
+          "",
+          "17,568",
+          "",
+          "",
+          "1,158",
+          "",
+          "",
+          "10,810",
+          "",
+          "",
+          "5,600",
+          ""
+        ],
+        [
+          "Certificates of deposit and time deposits",
+          "873",
+          "",
+          "",
+          "\u2014",
+          "",
+          "",
+          "\u2014",
+          "",
+          "",
+          "873",
+          "",
+          "",
+          "387",
+          "",
+          "",
+          "478",
+          "",
+          "",
+          "8",
+          ""
+        ],
+        [
+          "Commercial paper",
+          "1,066",
+          "",
+          "",
+          "\u2014",
+          "",
+          "",
+          "\u2014",
+          "",
+          "",
+          "1,066",
+          "",
+          "",
+          "28",
+          "",
+          "",
+          "1,038",
+          "",
+          "",
+          "\u2014",
+          ""
+        ],
+        [
+          "Corporate debt securities",
+          "65,622",
+          "",
+          "",
+          "270",
+          "",
+          "",
+          "(1,953)",
+          "",
+          "",
+          "63,939",
+          "",
+          "",
+          "26",
+          "",
+          "",
+          "16,027",
+          "",
+          "",
+          "47,886",
+          ""
+        ],
+        [
+          "Municipal securities",
+          "412",
+          "",
+          "",
+          "\u2014",
+          "",
+          "",
+          "(7)",
+          "",
+          "",
+          "405",
+          "",
+          "",
+          "\u2014",
+          "",
+          "",
+          "190",
+          "",
+          "",
+          "215",
+          ""
+        ],
+        [
+          "Mortgage- and asset-backed securities",
+          "24,595",
+          "",
+          "",
+          "175",
+          "",
+          "",
+          "(1,403)",
+          "",
+          "",
+          "23,367",
+          "",
+          "",
+          "\u2014",
+          "",
+          "",
+          "1,278",
+          "",
+          "",
+          "22,089",
+          ""
+        ],
+        [
+          "Subtotal",
+          "132,108",
+          "",
+          "",
+          "583",
+          "",
+          "",
+          "(4,635)",
+          "",
+          "",
+          "128,056",
+          "",
+          "",
+          "1,966",
+          "",
+          "",
+          "34,611",
+          "",
+          "",
+          "91,479",
+          ""
+        ],
+        [
+          "Total(2)(3)",
+          "$",
+          "160,600",
+          "",
+          "",
+          "$",
+          "688",
+          "",
+          "",
+          "$",
+          "(4,638)",
+          "",
+          "",
+          "$",
+          "156,650",
+          "",
+          "",
+          "$",
+          "29,943",
+          "",
+          "",
+          "$",
+          "35,228",
+          "",
+          "",
+          "$",
+          "91,479",
+          ""
+        ]
+      ]
+    },
+    {
+      "table_id": 21,
+      "rows": [
+        [
+          "",
+          "December 28,2024",
+          "",
+          "September 28,2024"
+        ],
+        [
+          "Derivative instruments designated as accounting hedges:",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Foreign exchange contracts",
+          "$",
+          "47,466",
+          "",
+          "",
+          "$",
+          "64,069",
+          ""
+        ],
+        [
+          "Interest rate contracts",
+          "$",
+          "14,575",
+          "",
+          "",
+          "$",
+          "14,575",
+          ""
+        ],
+        [
+          "Derivative instruments not designated as accounting hedges:",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Foreign exchange contracts",
+          "$",
+          "96,150",
+          "",
+          "",
+          "$",
+          "91,493",
+          ""
+        ]
+      ]
+    },
+    {
+      "table_id": 22,
+      "rows": [
+        [
+          "",
+          "December 28,2024",
+          "",
+          "September 28,2024"
+        ],
+        [
+          "Components",
+          "$",
+          "2,792",
+          "",
+          "",
+          "$",
+          "3,627",
+          ""
+        ],
+        [
+          "Finished goods",
+          "4,119",
+          "",
+          "",
+          "3,659",
+          ""
+        ],
+        [
+          "Total inventories",
+          "$",
+          "6,911",
+          "",
+          "",
+          "$",
+          "7,286",
+          ""
+        ]
+      ]
+    },
+    {
+      "table_id": 23,
+      "rows": [
+        [
+          "",
+          "December 28,2024",
+          "",
+          "September 28,2024"
+        ],
+        [
+          "Gross property, plant and equipment",
+          "$",
+          "120,615",
+          "",
+          "",
+          "$",
+          "119,128",
+          ""
+        ],
+        [
+          "Accumulated depreciation",
+          "(74,546)",
+          "",
+          "",
+          "(73,448)",
+          ""
+        ],
+        [
+          "Total property, plant and equipment, net",
+          "$",
+          "46,069",
+          "",
+          "",
+          "$",
+          "45,680",
+          ""
+        ]
+      ]
+    },
+    {
+      "table_id": 24,
+      "rows": [
+        [
+          "",
+          "Number ofRSUs(in thousands)",
+          "",
+          "Weighted-AverageGrant-Date FairValue Per RSU"
+        ],
+        [
+          "Balance as of September 28, 2024",
+          "163,326",
+          "",
+          "",
+          "$",
+          "158.73",
+          ""
+        ],
+        [
+          "RSUs granted",
+          "61,391",
+          "",
+          "",
+          "$",
+          "228.04",
+          ""
+        ],
+        [
+          "RSUs vested",
+          "(35,683)",
+          "",
+          "",
+          "$",
+          "147.36",
+          ""
+        ],
+        [
+          "RSUs canceled",
+          "(2,278)",
+          "",
+          "",
+          "$",
+          "174.77",
+          ""
+        ],
+        [
+          "Balance as of December 28, 2024",
+          "186,756",
+          "",
+          "",
+          "$",
+          "183.49",
+          ""
+        ]
+      ]
+    },
+    {
+      "table_id": 25,
+      "rows": [
+        [
+          "",
+          "Three Months Ended",
+          "",
+          ""
+        ],
+        [
+          "",
+          "December 28,2024",
+          "",
+          "December 30,2023",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Share-based compensation expense",
+          "$",
+          "3,286",
+          "",
+          "",
+          "$",
+          "2,997",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Income tax benefit related to share-based compensation expense",
+          "$",
+          "(1,332)",
+          "",
+          "",
+          "$",
+          "(1,235)",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "table_id": 26,
+      "rows": [
+        [
+          "",
+          "Three Months Ended",
+          "",
+          ""
+        ],
+        [
+          "",
+          "December 28,2024",
+          "",
+          "December 30,2023",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Americas:",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Net sales",
+          "$",
+          "52,648",
+          "",
+          "",
+          "$",
+          "50,430",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Operating income",
+          "$",
+          "21,509",
+          "",
+          "",
+          "$",
+          "20,357",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Europe:",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Net sales",
+          "$",
+          "33,861",
+          "",
+          "",
+          "$",
+          "30,397",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Operating income",
+          "$",
+          "14,607",
+          "",
+          "",
+          "$",
+          "12,711",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Greater China:",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Net sales",
+          "$",
+          "18,513",
+          "",
+          "",
+          "$",
+          "20,819",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Operating income",
+          "$",
+          "8,160",
+          "",
+          "",
+          "$",
+          "8,622",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Japan:",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Net sales",
+          "$",
+          "8,987",
+          "",
+          "",
+          "$",
+          "7,767",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Operating income",
+          "$",
+          "4,314",
+          "",
+          "",
+          "$",
+          "3,819",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Rest of Asia Pacific:",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Net sales",
+          "$",
+          "10,291",
+          "",
+          "",
+          "$",
+          "10,162",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Operating income",
+          "$",
+          "4,584",
+          "",
+          "",
+          "$",
+          "4,579",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "table_id": 27,
+      "rows": [
+        [
+          "",
+          "Three Months Ended",
+          "",
+          ""
+        ],
+        [
+          "",
+          "December 28,2024",
+          "",
+          "December 30,2023",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Segment operating income",
+          "$",
+          "53,174",
+          "",
+          "",
+          "$",
+          "50,088",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Research and development expense",
+          "(8,268)",
+          "",
+          "",
+          "(7,696)",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Other corporate expenses, net",
+          "(2,074)",
+          "",
+          "",
+          "(2,019)",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Total operating income",
+          "$",
+          "42,832",
+          "",
+          "",
+          "$",
+          "40,373",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "table_id": 28,
+      "rows": [
+        [
+          "",
+          "Three Months Ended",
+          "",
+          ""
+        ],
+        [
+          "",
+          "December 28,2024",
+          "",
+          "December 30,2023",
+          "",
+          "Change",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Americas",
+          "$",
+          "52,648",
+          "",
+          "",
+          "$",
+          "50,430",
+          "",
+          "",
+          "4",
+          "%",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Europe",
+          "33,861",
+          "",
+          "",
+          "30,397",
+          "",
+          "",
+          "11",
+          "%",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Greater China",
+          "18,513",
+          "",
+          "",
+          "20,819",
+          "",
+          "",
+          "(11)",
+          "%",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Japan",
+          "8,987",
+          "",
+          "",
+          "7,767",
+          "",
+          "",
+          "16",
+          "%",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Rest of Asia Pacific",
+          "10,291",
+          "",
+          "",
+          "10,162",
+          "",
+          "",
+          "1",
+          "%",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Total net sales",
+          "$",
+          "124,300",
+          "",
+          "",
+          "$",
+          "119,575",
+          "",
+          "",
+          "4",
+          "%",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "table_id": 29,
+      "rows": [
+        [
+          "",
+          "Three Months Ended",
+          "",
+          ""
+        ],
+        [
+          "",
+          "December 28,2024",
+          "",
+          "December 30,2023",
+          "",
+          "Change",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "iPhone",
+          "$",
+          "69,138",
+          "",
+          "",
+          "$",
+          "69,702",
+          "",
+          "",
+          "(1)",
+          "%",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Mac",
+          "8,987",
+          "",
+          "",
+          "7,780",
+          "",
+          "",
+          "16",
+          "%",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "iPad",
+          "8,088",
+          "",
+          "",
+          "7,023",
+          "",
+          "",
+          "15",
+          "%",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Wearables, Home and Accessories",
+          "11,747",
+          "",
+          "",
+          "11,953",
+          "",
+          "",
+          "(2)",
+          "%",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Services",
+          "26,340",
+          "",
+          "",
+          "23,117",
+          "",
+          "",
+          "14",
+          "%",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Total net sales",
+          "$",
+          "124,300",
+          "",
+          "",
+          "$",
+          "119,575",
+          "",
+          "",
+          "4",
+          "%",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "table_id": 30,
+      "rows": [
+        [
+          "",
+          "Three Months Ended",
+          "",
+          ""
+        ],
+        [
+          "",
+          "December 28,2024",
+          "",
+          "December 30,2023",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Gross margin:",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Products",
+          "$",
+          "38,513",
+          "",
+          "",
+          "$",
+          "38,018",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Services",
+          "19,762",
+          "",
+          "",
+          "16,837",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Total gross margin",
+          "$",
+          "58,275",
+          "",
+          "",
+          "$",
+          "54,855",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "table_id": 31,
+      "rows": [
+        [
+          "Gross margin percentage:",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Products",
+          "39.3",
+          "%",
+          "",
+          "39.4",
+          "%",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Services",
+          "75.0",
+          "%",
+          "",
+          "72.8",
+          "%",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Total gross margin percentage",
+          "46.9",
+          "%",
+          "",
+          "45.9",
+          "%",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "table_id": 32,
+      "rows": [
+        [
+          "",
+          "Three Months Ended",
+          "",
+          ""
+        ],
+        [
+          "",
+          "December 28,2024",
+          "",
+          "December 30,2023",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Research and development",
+          "$",
+          "8,268",
+          "",
+          "",
+          "$",
+          "7,696",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Percentage of total net sales",
+          "7",
+          "%",
+          "",
+          "6",
+          "%",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Selling, general and administrative",
+          "$",
+          "7,175",
+          "",
+          "",
+          "$",
+          "6,786",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Percentage of total net sales",
+          "6",
+          "%",
+          "",
+          "6",
+          "%",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Total operating expenses",
+          "$",
+          "15,443",
+          "",
+          "",
+          "$",
+          "14,482",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Percentage of total net sales",
+          "12",
+          "%",
+          "",
+          "12",
+          "%",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "table_id": 33,
+      "rows": [
+        [
+          "",
+          "Three Months Ended",
+          "",
+          ""
+        ],
+        [
+          "",
+          "December 28,2024",
+          "",
+          "December 30,2023",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Provision for income taxes",
+          "$",
+          "6,254",
+          "",
+          "",
+          "$",
+          "6,407",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Effective tax rate",
+          "14.7",
+          "%",
+          "",
+          "15.9",
+          "%",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Statutory federal income tax rate",
+          "21",
+          "%",
+          "",
+          "21",
+          "%",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "table_id": 34,
+      "rows": [
+        [
+          "Periods",
+          "",
+          "Total Numberof Shares Purchased",
+          "",
+          "Average PricePaid Per Share",
+          "",
+          "Total Number of SharesPurchased as Part of PubliclyAnnounced Plans or Programs",
+          "",
+          "Approximate Dollar Value ofShares That May Yet Be PurchasedUnder the Plans or Programs(1)"
+        ],
+        [
+          "September 29, 2024 to November 2, 2024:",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Open market and privately negotiated purchases",
+          "",
+          "41,627",
+          "",
+          "",
+          "$",
+          "229.51",
+          "",
+          "",
+          "41,627",
+          "",
+          "",
+          ""
+        ],
+        [
+          "November 3, 2024 to November 30, 2024:",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Open market and privately negotiated purchases",
+          "",
+          "32,784",
+          "",
+          "",
+          "$",
+          "227.13",
+          "",
+          "",
+          "32,784",
+          "",
+          "",
+          ""
+        ],
+        [
+          "December 1, 2024 to December 28, 2024:",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Open market and privately negotiated purchases",
+          "",
+          "25,379",
+          "",
+          "",
+          "$",
+          "248.05",
+          "",
+          "",
+          "25,379",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Total",
+          "",
+          "99,790",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "$",
+          "65,779",
+          ""
+        ]
+      ]
+    },
+    {
+      "table_id": 35,
+      "rows": [
+        [
+          "",
+          "",
+          "",
+          "",
+          "Incorporated by Reference"
+        ],
+        [
+          "ExhibitNumber",
+          "",
+          "Exhibit Description",
+          "",
+          "Form",
+          "",
+          "Exhibit",
+          "",
+          "Filing Date/Period End Date"
+        ],
+        [
+          "10.1*, **",
+          "",
+          "Apple Inc. Employee Stock Purchase Plan, as amended as of November 6, 2024.",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "10.2*, **",
+          "",
+          "Apple Inc. Non-Employee Director Stock Plan, as amended November 6, 2024.",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "31.1**",
+          "",
+          "Rule 13a-14(a) / 15d-14(a) Certification of Chief Executive Officer.",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "31.2**",
+          "",
+          "Rule 13a-14(a) / 15d-14(a) Certification of Chief Financial Officer.",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "32.1***",
+          "",
+          "Section 1350 Certifications of Chief Executive Officer and Chief Financial Officer.",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "101**",
+          "",
+          "Inline XBRL Document Set for the condensed consolidated financial statements and accompanying notes in Part I, Item 1, \u201cFinancial Statements\u201d of this Quarterly Report on Form 10-Q.",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "104**",
+          "",
+          "Inline XBRL for the cover page of this Quarterly Report on Form 10-Q, included in the Exhibit 101 Inline XBRL Document Set.",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "table_id": 36,
+      "rows": [
+        [
+          "Date: January\u00a031, 2025",
+          "Apple Inc."
+        ],
+        [
+          "",
+          "By:",
+          "",
+          "/s/ Kevan Parekh"
+        ],
+        [
+          "",
+          "",
+          "",
+          "Kevan Parekh"
+        ],
+        [
+          "",
+          "",
+          "",
+          "Senior Vice President,Chief Financial Officer"
+        ]
+      ]
+    }
+  ],
+  "images": [
+    {
+      "image_id": 0,
+      "src": "aapl-20241228_g1.jpg",
+      "alt": "g66145g66i43.jpg"
+    }
+  ],
+  "text": [
+    {
+      "text": "\u2612 QUARTERLY REPORT PURSUANT TO SECTION 13 OR 15(d) OF THE SECURITIES EXCHANGE ACT OF 1934",
+      "section": "Management's Discussion and Analysis",
+      "confidence": 0.417
+    },
+    {
+      "text": "For the quarterly period ended December\u00a028, 2024",
+      "section": "Management's Discussion and Analysis",
+      "confidence": 0.59
+    },
+    {
+      "text": "\u2610 TRANSITION REPORT PURSUANT TO SECTION 13 OR 15(d) OF THE SECURITIES EXCHANGE ACT OF 1934",
+      "section": "Other",
+      "confidence": 0.364
+    },
+    {
+      "text": "(Exact name of Registrant as specified in its charter)",
+      "section": "Other",
+      "confidence": 0.501
+    },
+    {
+      "text": "(Registrant\u2019s telephone number, including area code)",
+      "section": "Other",
+      "confidence": 0.362
+    },
+    {
+      "text": "Securities registered pursuant to Section 12(b) of the Act:",
+      "section": "Other",
+      "confidence": 0.365
+    },
+    {
+      "text": "Indicate by check mark whether the Registrant (1)\u00a0has filed all reports required to be filed by Section 13 or 15(d) of the Securities Exchange Act of 1934 during the preceding 12 months (or for such shorter period that the Registrant was required to file such reports), and (2)\u00a0has been subject to such filing requirements for the past 90 days.",
+      "section": "Other",
+      "confidence": 0.526
+    },
+    {
+      "text": "Indicate by check mark whether the Registrant has submitted electronically every Interactive Data File required to be submitted pursuant to Rule 405 of Regulation S-T (\u00a7232.405 of this chapter) during the preceding 12 months (or for such shorter period that the Registrant was required to submit such files).",
+      "section": "Other",
+      "confidence": 0.507
+    },
+    {
+      "text": "Indicate by check mark whether the Registrant is a large accelerated filer, an accelerated filer, a non-accelerated filer, a smaller reporting company, or an emerging growth company. See the definitions of \u201clarge accelerated filer,\u201d \u201caccelerated filer,\u201d \u201csmaller reporting company,\u201d and \u201cemerging growth company\u201d in Rule 12b-2 of the Exchange Act.",
+      "section": "Controls and Procedures",
+      "confidence": 0.348
+    },
+    {
+      "text": "If an emerging growth company, indicate by check mark if the Registrant has elected not to use the extended transition period for complying with any new or revised financial accounting standards provided pursuant to Section 13(a) of the Exchange Act. \u2610",
+      "section": "Controls and Procedures",
+      "confidence": 0.605
+    },
+    {
+      "text": "Indicate by check mark whether the Registrant is a shell company (as defined in Rule 12b-2 of the Exchange Act).",
+      "section": "Other",
+      "confidence": 0.474
+    },
+    {
+      "text": "15,022,073,000 shares of common stock were issued and outstanding as of January\u00a017, 2025 .",
+      "section": "Market for Common Stock and Shareholder Matters",
+      "confidence": 0.949
+    },
+    {
+      "text": "For the Fiscal Quarter Ended December\u00a028, 2024",
+      "section": "Management's Discussion and Analysis",
+      "confidence": 0.584
+    },
+    {
+      "text": "CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS (Unaudited)",
+      "section": "Financial Statements and Notes",
+      "confidence": 0.583
+    },
+    {
+      "text": "(In millions, except number of shares, which are reflected in thousands, and per-share amounts)",
+      "section": "Market for Common Stock and Shareholder Matters",
+      "confidence": 0.519
+    },
+    {
+      "text": "See accompanying Notes to Condensed Consolidated Financial Statements.",
+      "section": "Financial Statements and Notes",
+      "confidence": 0.519
+    },
+    {
+      "text": "CONDENSED CONSOLIDATED STATEMENTS OF COMPREHENSIVE INCOME (Unaudited)",
+      "section": "Financial Statements and Notes",
+      "confidence": 0.551
+    },
+    {
+      "text": "CONDENSED CONSOLIDATED BALANCE SHEETS (Unaudited)",
+      "section": "Financial Statements and Notes",
+      "confidence": 0.873
+    },
+    {
+      "text": "(In millions, except number of shares, which are reflected in thousands, and par value)",
+      "section": "Market for Common Stock and Shareholder Matters",
+      "confidence": 0.626
+    },
+    {
+      "text": "CONDENSED CONSOLIDATED STATEMENTS OF SHAREHOLDERS\u2019 EQUITY (Unaudited)",
+      "section": "Financial Statements and Notes",
+      "confidence": 0.589
+    },
+    {
+      "text": "CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS (Unaudited)",
+      "section": "Financial Statements and Notes",
+      "confidence": 0.708
+    },
+    {
+      "text": "Notes to Condensed Consolidated Financial Statements (Unaudited)",
+      "section": "Financial Statements and Notes",
+      "confidence": 0.678
+    },
+    {
+      "text": "Note 1 \u2013 Summary of Significant Accounting Policies",
+      "section": "Controls and Procedures",
+      "confidence": 0.302
+    },
+    {
+      "text": "The condensed consolidated financial statements include the accounts of Apple Inc. and its wholly owned subsidiaries (collectively \u201cApple\u201d or the \u201cCompany\u201d). In the opinion of the Company\u2019s management, the condensed consolidated financial statements reflect all adjustments, which are normal and recurring in nature, necessary for fair financial statement presentation. The preparation of these condensed consolidated financial statements and accompanying notes in conformity with U.S. generally accepted accounting principles (\u201cGAAP\u201d) requires the use of management estimates. These condensed consolidated financial statements and accompanying notes should be read in conjunction with the Company\u2019s annual consolidated financial statements and accompanying notes included in its Annual Report on Form 10-K for the fiscal year ended September\u00a028, 2024 (the \u201c2024 Form 10-K\u201d).",
+      "section": "Financial Statements and Notes",
+      "confidence": 0.701
+    },
+    {
+      "text": "The Company\u2019s fiscal year is the 52- or 53-week period that ends on the last Saturday of September. An additional week is included in the first fiscal quarter every five or six years to realign the Company\u2019s fiscal quarters with calendar quarters. The Company\u2019s fiscal years 2025 and 2024 span 52 weeks each. Unless otherwise stated, references to particular years, quarters, months and periods refer to the Company\u2019s fiscal years ended in September and the associated quarters, months and periods of those fiscal years.",
+      "section": "Business Overview",
+      "confidence": 0.362
+    },
+    {
+      "text": "Net sales disaggregated by significant products and services for the three months ended December 28, 2024 and December\u00a030, 2023 were as follows (in millions):",
+      "section": "Management's Discussion and Analysis",
+      "confidence": 0.532
+    },
+    {
+      "text": "Total net sales include $ 3.7 billion of revenue recognized in the three months ended December\u00a028, 2024 that was included in deferred revenue as of September\u00a028, 2024 and $ 3.5 billion of revenue recognized in the three months ended December\u00a030, 2023 that was included in deferred revenue as of September\u00a030, 2023.",
+      "section": "Management's Discussion and Analysis",
+      "confidence": 0.635
+    },
+    {
+      "text": "The Company\u2019s proportion of net sales by disaggregated revenue source was generally consistent for each reportable segment in Note 10, \u201cSegment Information and Geographic Data\u201d for the three months ended December 28, 2024 and December\u00a030, 2023, except in Greater China, where iPhone revenue represented a moderately higher proportion of net sales.",
+      "section": "Management's Discussion and Analysis",
+      "confidence": 0.748
+    },
+    {
+      "text": "As of December\u00a028, 2024 and September\u00a028, 2024, the Company had total deferred revenue of $ 13.2 billion and $ 12.8 billion, respectively. As of December\u00a028, 2024, the Company expects 64 % of total deferred revenue to be realized in less than a year, 25 % within one-to-two years, 9 % within two-to-three years and 2 % in greater than three years.",
+      "section": "Financial Statements and Notes",
+      "confidence": 0.443
+    },
+    {
+      "text": "The following table shows the computation of basic and diluted earnings per share for the three months ended December 28, 2024 and December 30, 2023 (net income in millions and shares in thousands):",
+      "section": "Other",
+      "confidence": 0.231
+    },
+    {
+      "text": "Cash, Cash Equivalents and Marketable Securities",
+      "section": "Other",
+      "confidence": 0.353
+    },
+    {
+      "text": "The following tables show the Company\u2019s cash, cash equivalents and marketable securities by significant investment category as of December\u00a028, 2024 and September\u00a028, 2024 (in millions):",
+      "section": "Quantitative and Qualitative Disclosures About Market Risk",
+      "confidence": 0.322
+    },
+    {
+      "text": "(1) The valuation techniques used to measure the fair values of the Company\u2019s Level 2 financial instruments, which generally have counterparties with high credit ratings, are based on quoted market prices or model-driven valuations using significant inputs derived from or corroborated by observable market data.",
+      "section": "Quantitative and Qualitative Disclosures About Market Risk",
+      "confidence": 0.717
+    },
+    {
+      "text": "(2) As of December\u00a028, 2024 and September\u00a028, 2024, cash and cash equivalents included $ 126 million and $ 2.6 billion, respectively, held in escrow and restricted from general use. These restricted cash and cash equivalents are designated to settle the Company\u2019s obligation related to the 2016 European Commission (the \u201cCommission\u201d) decision that Ireland granted state aid to the Company (the \u201cState Aid Decision\u201d), which was confirmed during the fourth quarter of 2024 by the European Court of Justice in a reversal of the 2020 judgment of the European General Court.",
+      "section": "Other",
+      "confidence": 0.404
+    },
+    {
+      "text": "(3) As of December\u00a028, 2024 and September\u00a028, 2024, current marketable securities included $ 3.3 billion and $ 13.2 billion, respectively, held in escrow and restricted from general use. These restricted marketable securities are designated to settle the Company\u2019s obligation related to the State Aid Decision.",
+      "section": "Other",
+      "confidence": 0.27
+    },
+    {
+      "text": "As of December\u00a028, 2024, 85 % of the Company\u2019s non-current marketable debt securities other than mortgage- and asset-backed securities had maturities between 1 and 5 years, 11 % between 5 and 10 years, and 4 % greater than 10 years. As of December\u00a028, 2024, 13 % of the Company\u2019s non-current mortgage- and asset-backed securities had maturities between 1 and 5 years, 10 % between 5 and 10 years, and 77 % greater than 10 years.",
+      "section": "Quantitative and Qualitative Disclosures About Market Risk",
+      "confidence": 0.635
+    },
+    {
+      "text": "The Company may use derivative instruments to partially offset its business exposure to foreign exchange and interest rate risk. However, the Company may choose not to hedge certain exposures for a variety of reasons, including accounting considerations or the prohibitive economic cost of hedging particular exposures. There can be no assurance the hedges will offset more than a portion of the financial impact resulting from movements in foreign exchange or interest rates.",
+      "section": "Quantitative and Qualitative Disclosures About Market Risk",
+      "confidence": 0.975
+    },
+    {
+      "text": "To protect gross margins from fluctuations in foreign exchange rates, the Company may use forwards, options or other instruments, and may designate these instruments as cash flow hedges. The Company generally hedges portions of its forecasted foreign currency exposure associated with revenue and inventory purchases, typically for up to 12 months.",
+      "section": "Quantitative and Qualitative Disclosures About Market Risk",
+      "confidence": 0.988
+    },
+    {
+      "text": "To protect the Company\u2019s foreign currency\u2013denominated term debt or marketable securities from fluctuations in foreign exchange rates, the Company may use forwards, cross-currency swaps or other instruments. The Company designates these instruments as either cash flow or fair value hedges. As of December\u00a028, 2024, the maximum length of time over which the Company is hedging its exposure to the variability in future cash flows for term debt\u2013related foreign currency transactions is 18 years.",
+      "section": "Quantitative and Qualitative Disclosures About Market Risk",
+      "confidence": 0.985
+    },
+    {
+      "text": "The Company may also use derivative instruments that are not designated as accounting hedges to protect gross margins from certain fluctuations in foreign exchange rates, as well as to offset a portion of the foreign currency gains and losses generated by the remeasurement of certain assets and liabilities denominated in non-functional currencies.",
+      "section": "Quantitative and Qualitative Disclosures About Market Risk",
+      "confidence": 0.979
+    },
+    {
+      "text": "To protect the Company\u2019s term debt or marketable securities from fluctuations in interest rates, the Company may use interest rate swaps, options or other instruments. The Company designates these instruments as either cash flow or fair value hedges.",
+      "section": "Quantitative and Qualitative Disclosures About Market Risk",
+      "confidence": 0.99
+    },
+    {
+      "text": "The notional amounts of the Company\u2019s outstanding derivative instruments as of December\u00a028, 2024 and September\u00a028, 2024 were as follows (in millions):",
+      "section": "Quantitative and Qualitative Disclosures About Market Risk",
+      "confidence": 0.474
+    },
+    {
+      "text": "As of December\u00a028, 2024 and September\u00a028, 2024, the carrying amount of the Company\u2019s current and non-current term debt subject to fair value hedges was $ 13.3 billion and $ 13.5 billion, respectively.",
+      "section": "Financial Statements and Notes",
+      "confidence": 0.595
+    },
+    {
+      "text": "As of December\u00a028, 2024, the Company had two customers that individually represented 10% or more of total trade receivables, which accounted for 18 % and 11 %. The Company\u2019s third-party cellular network carriers accounted for 33 % and 38 % of total trade receivables as of December\u00a028, 2024 and September\u00a028, 2024, respectively. The Company requires third-party credit support or collateral from certain customers to limit credit risk.",
+      "section": "Quantitative and Qualitative Disclosures About Market Risk",
+      "confidence": 0.422
+    },
+    {
+      "text": "The Company has non-trade receivables from certain of its manufacturing vendors resulting from the sale of components to these vendors who manufacture subassemblies or assemble final products for the Company. The Company purchases these components directly from suppliers. The Company does not reflect the sale of these components in products net sales. Rather, the Company recognizes any gain on these sales as a reduction of products cost of sales when the related final products are sold by the Company. As of December\u00a028, 2024, the Company had two vendors that individually represented 10% or more of total vendor non-trade receivables, which accounted f or 43 % and 24 % . A s of September\u00a028, 2024, the Company had two vendors that individually represented 10% or more of total vendor non-trade receivables, which accounted for 44 % and 23 %.",
+      "section": "Other",
+      "confidence": 0.289
+    },
+    {
+      "text": "Note 5 \u2013 Condensed Consolidated Financial Statement Details",
+      "section": "Financial Statements and Notes",
+      "confidence": 0.448
+    },
+    {
+      "text": "The following tables show the Company\u2019s condensed consolidated financial statement details as of December\u00a028, 2024 and September\u00a028, 2024 (in millions):",
+      "section": "Financial Statements and Notes",
+      "confidence": 0.818
+    },
+    {
+      "text": "The Company issues unsecured short-term promissory notes pursuant to a commercial paper program. The Company uses net proceeds from the commercial paper program for general corporate purposes, including dividends and share repurchases. As of December\u00a028, 2024 and September\u00a028, 2024, the Company had $ 2.0 billion and $ 10.0 billion of commercial paper outstanding, respectively.",
+      "section": "Quantitative and Qualitative Disclosures About Market Risk",
+      "confidence": 0.726
+    },
+    {
+      "text": "As of December\u00a028, 2024 and September\u00a028, 2024, the Company had outstanding fixed-rate notes with varying maturities for an aggregate carrying amount of $ 94.8 billion and $ 96.7 billion, respectively (collectively the \u201cNotes\u201d). As of December\u00a028, 2024 and September\u00a028, 2024, the fair value of the Company\u2019s Notes, based on Level 2 inputs, was $ 82.7 billion and $ 88.4 billion, respectively.",
+      "section": "Quantitative and Qualitative Disclosures About Market Risk",
+      "confidence": 0.83
+    },
+    {
+      "text": "During the three months ended December\u00a028, 2024, the Company repurchased 100 million shares of its common stock for $ 23.3 billion. The Company\u2019s share repurchase program does not obligate the Company to acquire a minimum amount of shares. Under the program, shares may be repurchased in privately negotiated or open market transactions, including under plans complying with Rule 10b5-1 under the Securities Exchange Act of 1934, as amended (the \u201cExchange Act\u201d).",
+      "section": "Market for Common Stock and Shareholder Matters",
+      "confidence": 0.987
+    },
+    {
+      "text": "A summary of the Company\u2019s RSU activity and related information for the three months ended December\u00a028, 2024 is as follows:",
+      "section": "Other",
+      "confidence": 0.249
+    },
+    {
+      "text": "The total vesting-date fair value of RSUs was $ 8.4 billion and $ 7.7 billion for the three months ended December 28, 2024 and December\u00a030, 2023, respectively.",
+      "section": "Financial Statements and Notes",
+      "confidence": 0.315
+    },
+    {
+      "text": "The following table shows share-based compensation expense and the related income tax benefit included in the Condensed Consolidated Statements of Operations for the three months ended December 28, 2024 and December 30, 2023 (in millions):",
+      "section": "Financial Statements and Notes",
+      "confidence": 0.668
+    },
+    {
+      "text": "As of December\u00a028, 2024, the total unrecognized compensation cost related to outstanding RSUs was $ 29.2 billion, which the Company expects to recognize over a weighted-average period of 2.9 years.",
+      "section": "Other",
+      "confidence": 0.263
+    },
+    {
+      "text": "The Company is subject to various legal proceedings and claims that have arisen in the ordinary course of business and that have not been fully resolved. The outcome of litigation is inherently uncertain. In the opinion of management, there was not at least a reasonable possibility the Company may have incurred a material loss, or a material loss greater than a recorded accrual, concerning loss contingencies for asserted legal and other claims.",
+      "section": "Legal Proceedings",
+      "confidence": 0.882
+    },
+    {
+      "text": "Note 10 \u2013 Segment Information and Geographic Data",
+      "section": "Properties",
+      "confidence": 0.349
+    },
+    {
+      "text": "The following table shows information by reportable segment for the three months ended December 28, 2024 and December 30, 2023 (in millions):",
+      "section": "Controls and Procedures",
+      "confidence": 0.326
+    },
+    {
+      "text": "A reconciliation of the Company\u2019s segment operating income to the Condensed Consolidated Statements of Operations for the three months ended December 28, 2024 and December 30, 2023 is as follows (in millions):",
+      "section": "Financial Statements and Notes",
+      "confidence": 0.618
+    },
+    {
+      "text": "Item 2.\u00a0\u00a0\u00a0\u00a0Management\u2019s Discussion and Analysis of Financial Condition and Results of Operations",
+      "section": "Management's Discussion and Analysis",
+      "confidence": 0.573
+    },
+    {
+      "text": "This Item and other sections of this Quarterly Report on Form 10-Q (\u201cForm 10-Q\u201d) contain forward-looking statements, within the meaning of the Private Securities Litigation Reform Act of 1995, that involve risks and uncertainties. Forward-looking statements provide current expectations of future events based on certain assumptions and include any statement that does not directly relate to any historical or current fact. For example, statements in this Form 10-Q regarding the potential future impact of macroeconomic conditions on the Company\u2019s business and results of operations are forward-looking statements . Forward-looking statements can also be identified by words such as \u201cfuture,\u201d \u201canticipates,\u201d \u201cbelieves,\u201d \u201cestimates,\u201d \u201cexpects,\u201d \u201cintends,\u201d \u201cplans,\u201d \u201cpredicts,\u201d \u201cwill,\u201d \u201cwould,\u201d \u201ccould,\u201d \u201ccan,\u201d \u201cmay,\u201d and similar terms. Forward-looking statements are not guarantees of future performance and the Company\u2019s actual results may differ significantly from the results discussed in the forward-looking statements. Factors that might cause such differences include, but are not limited to, those discussed in Part I, Item 1A of the 2024 Form 10-K and Part II, Item 1A of this Form 10-Q, in each case under the heading \u201cRisk Factors.\u201d The Company assumes no obligation to revise or update any forward-looking statements for any reason, except as required by law.",
+      "section": "Risk Factors",
+      "confidence": 0.914
+    },
+    {
+      "text": "Unless otherwise stated, all information presented herein is based on the Company\u2019s fiscal calendar, and references to particular years, quarters, months or periods refer to the Company\u2019s fiscal years ended in September and the associated quarters, months and periods of those fiscal years.",
+      "section": "Other",
+      "confidence": 0.287
+    },
+    {
+      "text": "The following discussion should be read in conjunction with the 2024 Form 10-K filed with the U.S. Securities and Exchange Commission (the \u201cSEC\u201d) and the condensed consolidated financial statements and accompanying notes included in Part I, Item 1 of this Form 10-Q.",
+      "section": "Other",
+      "confidence": 0.276
+    },
+    {
+      "text": "The Company periodically provides certain information for investors on its corporate website, www.apple.com, and its investor relations website, investor.apple.com. This includes press releases and other information about financial performance, information on environmental, social and governance matters, and details related to the Company\u2019s annual meeting of shareholders. The information contained on the websites referenced in this Form 10-Q is not incorporated by reference into this filing. Further, the Company\u2019s references to website URLs are intended to be inactive textual references only.",
+      "section": "Other",
+      "confidence": 0.316
+    },
+    {
+      "text": "Business Seasonality and Product Introductions",
+      "section": "Business Overview",
+      "confidence": 0.506
+    },
+    {
+      "text": "The Company has historically experienced higher net sales in its first quarter compared to other quarters in its fiscal year due in part to seasonal holiday demand. Additionally, new product and service introductions can significantly impact net sales, cost of sales and operating expenses. The timing of product introductions can also impact the Company\u2019s net sales to its indirect distribution channels as these channels are filled with new inventory following a product launch, and channel inventory of an older product often declines as the launch of a newer product approaches. Net sales can also be affected when consumers and distributors anticipate a product introduction.",
+      "section": "Management's Discussion and Analysis",
+      "confidence": 0.684
+    },
+    {
+      "text": "During the first quarter of 2025, the Company announced the following product updates:",
+      "section": "Financial Statements and Notes",
+      "confidence": 0.412
+    },
+    {
+      "text": "Macroeconomic conditions, including inflation, interest rates and currency fluctuations, have directly and indirectly impacted, and could in the future materially impact, the Company\u2019s results of operations and financial condition.",
+      "section": "Risk Factors",
+      "confidence": 0.835
+    },
+    {
+      "text": "The following table shows net sales by reportable segment for the three months ended December 28, 2024 and December\u00a030, 2023 (dollars in millions):",
+      "section": "Management's Discussion and Analysis",
+      "confidence": 0.713
+    },
+    {
+      "text": "Americas net sales increased during the first quarter of 2025 compared to the same quarter in 2024 due primarily to higher net sales of Services and iPhone. The weakness in foreign currencies relative to the U.S. dollar had an unfavorable year-over-year impact on Americas net sales during the first quarter of 2025.",
+      "section": "Quantitative and Qualitative Disclosures About Market Risk",
+      "confidence": 0.534
+    },
+    {
+      "text": "Europe net sales increased during the first quarter of 2025 compared to the same quarter in 2024 due primarily to higher net sales of Services and iPhone. The strength in foreign currencies relative to the U.S. dollar had a net favorable year-over-year impact on Europe net sales during the first quarter of 2025.",
+      "section": "Quantitative and Qualitative Disclosures About Market Risk",
+      "confidence": 0.493
+    },
+    {
+      "text": "Greater China net sales decreased during the first quarter of 2025 compared to the same quarter in 2024 due to lower net sales of iPhone. The strength in the renminbi relative to the U.S. dollar had a favorable year-over-year impact on Greater China net sales during the first quarter of 2025.",
+      "section": "Management's Discussion and Analysis",
+      "confidence": 0.54
+    },
+    {
+      "text": "Japan net sales increased during the first quarter of 2025 compared to the same quarter in 2024 due primarily to higher net sales of iPhone and Services.",
+      "section": "Management's Discussion and Analysis",
+      "confidence": 0.784
+    },
+    {
+      "text": "Rest of Asia Pacific net sales were relatively flat during the first quarter of 2025 compared to the same quarter in 2024.",
+      "section": "Management's Discussion and Analysis",
+      "confidence": 0.88
+    },
+    {
+      "text": "The following table shows net sales by category for the three months ended December 28, 2024 and December\u00a030, 2023 (dollars in millions):",
+      "section": "Management's Discussion and Analysis",
+      "confidence": 0.79
+    },
+    {
+      "text": "iPhone net sales were relatively flat during the first quarter of 2025 compared to the same quarter in 2024.",
+      "section": "Management's Discussion and Analysis",
+      "confidence": 0.846
+    },
+    {
+      "text": "Mac net sales increased during the first quarter of 2025 compared to the same quarter in 2024 due primarily to higher net sales of laptops.",
+      "section": "Management's Discussion and Analysis",
+      "confidence": 0.671
+    },
+    {
+      "text": "iPad net sales increased during the first quarter of 2025 compared to the same quarter in 2024 due primarily to higher net sales of iPad Air \u00ae .",
+      "section": "Management's Discussion and Analysis",
+      "confidence": 0.7
+    },
+    {
+      "text": "Wearables, Home and Accessories net sales decreased during the first quarter of 2025 compared to the same quarter in 2024 due primarily to lower net sales of Wearables.",
+      "section": "Management's Discussion and Analysis",
+      "confidence": 0.759
+    },
+    {
+      "text": "Services net sales increased during the first quarter of 2025 compared to the same quarter in 2024 due primarily to higher net sales from advertising, the App Store \u00ae and cloud services.",
+      "section": "Management's Discussion and Analysis",
+      "confidence": 0.718
+    },
+    {
+      "text": "Products and Services gross margin and gross margin percentage for the three months ended December 28, 2024 and December\u00a030, 2023 were as follows (dollars in millions):",
+      "section": "Financial Statements and Notes",
+      "confidence": 0.32
+    },
+    {
+      "text": "Products gross margin and Products gross margin percentage were relatively flat during the first quarter of 2025 compared to the same quarter in 2024.",
+      "section": "Management's Discussion and Analysis",
+      "confidence": 0.356
+    },
+    {
+      "text": "Services gross margin increased during the first quarter of 2025 compared to the same quarter in 2024 due primarily to higher Services net sales and a different Services mix.",
+      "section": "Management's Discussion and Analysis",
+      "confidence": 0.684
+    },
+    {
+      "text": "Services gross margin percentage increased during the first quarter of 2025 compared to the same quarter in 2024 due primarily to a different Services mix, partially offset by higher Services costs.",
+      "section": "Management's Discussion and Analysis",
+      "confidence": 0.675
+    },
+    {
+      "text": "The Company\u2019s future gross margins can be impacted by a variety of factors, as discussed in Part I, Item 1A of the 2024 Form 10-K and Part II, Item 1A of this Form 10-Q, in each case under the heading \u201cRisk Factors.\u201d As a result, the Company believes, in general, gross margins will be subject to volatility and downward pressure.",
+      "section": "Risk Factors",
+      "confidence": 0.714
+    },
+    {
+      "text": "Operating expenses for the three months ended December 28, 2024 and December\u00a030, 2023 were as follows (dollars in millions):",
+      "section": "Management's Discussion and Analysis",
+      "confidence": 0.893
+    },
+    {
+      "text": "The growth in research and development expense during the first quarter of 2025 compared to the same quarter in 2024 was driven primarily by increases in headcount-related expenses and infrastructure-related costs.",
+      "section": "Management's Discussion and Analysis",
+      "confidence": 0.853
+    },
+    {
+      "text": "The growth in selling, general and administrative expense during the first quarter of 2025 compared to the same quarter in 2024 was driven primarily by higher variable selling expenses and increases in headcount-related expenses.",
+      "section": "Management's Discussion and Analysis",
+      "confidence": 0.834
+    },
+    {
+      "text": "Provision for income taxes, effective tax rate and statutory federal income tax rate for the three months ended December 28, 2024 and December\u00a030, 2023 were as follows (dollars in millions):",
+      "section": "Financial Statements and Notes",
+      "confidence": 0.726
+    },
+    {
+      "text": "The Company\u2019s effective tax rate for the first quarter of 2025 was lower than the statutory federal income tax rate due primarily to a lower effective tax rate on foreign earnings, tax benefits from share-based compensation, the impact of foreign currency loss regulations issued by the U.S. Department of the Treasury in December 2024, and the tax impact from foreign currency revaluations related to the State Aid Decision.",
+      "section": "Financial Statements and Notes",
+      "confidence": 0.42
+    },
+    {
+      "text": "The Company\u2019s effective tax rate for the first quarter of 2025 was lower compared to the same quarter in 2024 due primarily to the impact of foreign currency loss regulations issued by the U.S. Department of the Treasury in December 2024 and the tax impact from foreign currency revaluations related to the State Aid Decision, partially offset by a higher effective tax rate on foreign earnings.",
+      "section": "Quantitative and Qualitative Disclosures About Market Risk",
+      "confidence": 0.458
+    },
+    {
+      "text": "The Company believes its balances of unrestricted cash, cash equivalents and marketable securities, along with cash generated by ongoing operations and continued access to debt markets, will be sufficient to satisfy its cash requirements and capital return program over the next 12 months and beyond.",
+      "section": "Quantitative and Qualitative Disclosures About Market Risk",
+      "confidence": 0.36
+    },
+    {
+      "text": "The Company\u2019s contractual cash requirements have not changed materially since the 2024 Form 10-K, except for commercial paper, manufacturing purchase obligations and the State Aid Decision tax payable.",
+      "section": "Other",
+      "confidence": 0.586
+    },
+    {
+      "text": "The Company issues unsecured short-term promissory notes pursuant to a commercial paper program. As of December\u00a028, 2024, the Company had $2.0 billion of commercial paper outstanding, which was payable within 12 months.",
+      "section": "Quantitative and Qualitative Disclosures About Market Risk",
+      "confidence": 0.734
+    },
+    {
+      "text": "The Company utilizes several outsourcing partners to manufacture subassemblies for the Company\u2019s products and to perform final assembly and testing of finished products. The Company also obtains individual components for its products from a wide variety of individual suppliers. As of December\u00a028, 2024, the Company had manufacturing purchase obligations of $39.8 billion, which were payable within 12 months.",
+      "section": "Business Overview",
+      "confidence": 0.364
+    },
+    {
+      "text": "During the first quarter of 2025, the Company paid \u20ac11.0\u00a0billion or $11.9 billion to Ireland in connection with the State Aid Decision. As of December\u00a028, 2024, the Company had a remaining obligation to pay \u20ac3.3\u00a0billion or $3.4\u00a0billion, which was expected to be paid within 12 months. The funds necessary to settle the remaining obligation were held in escrow as of December\u00a028, 2024, and restricted from general use.",
+      "section": "Other",
+      "confidence": 0.376
+    },
+    {
+      "text": "In addition to its contractual cash requirements, the Company has an authorized share repurchase program. The program does not obligate the Company to acquire a minimum amount of shares. As of December\u00a028, 2024, the Company\u2019s quarterly cash dividend was $0.25 per share. The Company intends to increase its dividend on an annual basis, subject to declaration by the Board of Directors.",
+      "section": "Market for Common Stock and Shareholder Matters",
+      "confidence": 0.967
+    },
+    {
+      "text": "During the first quarter of 2025, the Company repurchased $23.3 billion of its common stock and paid dividends and dividend equivalents of $3.9 billion.",
+      "section": "Market for Common Stock and Shareholder Matters",
+      "confidence": 0.986
+    },
+    {
+      "text": "Disaggregation of Income Statement Expenses",
+      "section": "Management's Discussion and Analysis",
+      "confidence": 0.455
+    },
+    {
+      "text": "In November 2024, the Financial Accounting Standards Board (the \u201cFASB\u201d) issued Accounting Standards Update (\u201cASU\u201d) No. 2024-03, Income Statement\u2014Reporting Comprehensive Income\u2014Expense Disaggregation Disclosures (Subtopic 220-40): Disaggregation of Income Statement Expenses (\u201cASU 2024-03\u201d) and in January 2025, the FASB issued ASU No. 2025-01, Income Statement\u2014Reporting Comprehensive Income\u2014Expense Disaggregation Disclosures (Subtopic 220-40): Clarifying the Effective Date , which clarified the effective date of ASU 2024-03. ASU 2024-03 will require the Company to disclose the amounts of purchases of inventory, employee compensation, depreciation and intangible asset amortization, as applicable, included in certain expense captions in the Consolidated Statements of Operations, as well as qualitatively describe remaining amounts included in those captions. ASU 2024-03 will also require the Company to disclose both the amount and the Company\u2019s definition of selling expenses. The Company will adopt ASU 2024-03 in its fourth quarter of 2028 using a prospective transition method.",
+      "section": "Financial Statements and Notes",
+      "confidence": 0.727
+    },
+    {
+      "text": "In December 2023, the FASB issued ASU No. 2023-09, Income Taxes (Topic 740): Improvements to Income Tax Disclosures (\u201cASU 2023-09\u201d), which will require the Company to disclose specified additional information in its income tax rate reconciliation and provide additional information for reconciling items that meet a quantitative threshold. ASU 2023-09 will also require the Company to disaggregate its income taxes paid disclosure by federal, state and foreign taxes, with further disaggregation required for significant individual jurisdictions. The Company will adopt ASU 2023-09 in its fourth quarter of 2026 using a prospective transition method.",
+      "section": "Financial Statements and Notes",
+      "confidence": 0.43
+    },
+    {
+      "text": "In November 2023, the FASB issued ASU No. 2023-07, Segment Reporting (Topic 280): Improvements to Reportable Segment Disclosures (\u201cASU 2023-07\u201d), which will require the Company to disclose segment expenses that are significant and regularly provided to the Company\u2019s chief operating decision maker (\u201cCODM\u201d). In addition, ASU 2023-07 will require the Company to disclose the title and position of its CODM and how the CODM uses segment profit or loss information in assessing segment performance and deciding how to allocate resources. The Company will adopt ASU 2023-07 in its fourth quarter of 2025 using a retrospective transition method.",
+      "section": "Controls and Procedures",
+      "confidence": 0.453
+    },
+    {
+      "text": "The preparation of financial statements and related disclosures in conformity with GAAP and the Company\u2019s discussion and analysis of its financial condition and operating results require the Company\u2019s management to make judgments, assumptions and estimates that affect the amounts reported. Note 1, \u201cSummary of Significant Accounting Policies\u201d of the Notes to Condensed Consolidated Financial Statements in Part I, Item 1 of this Form 10-Q and in the Notes to Consolidated Financial Statements in Part II, Item 8 of the 2024 Form 10-K describe the significant accounting policies and methods used in the preparation of the Company\u2019s condensed consolidated financial statements. There have been no material changes to the Company\u2019s critical accounting estimates since the 2024 Form 10-K.",
+      "section": "Financial Statements and Notes",
+      "confidence": 0.816
+    },
+    {
+      "text": "Item 3.\u00a0\u00a0\u00a0\u00a0Quantitative and Qualitative Disclosures About Market Risk",
+      "section": "Risk Factors",
+      "confidence": 0.537
+    },
+    {
+      "text": "There have been no material changes to the Company\u2019s market risk during the first three months of 2025. For a discussion of the Company\u2019s exposure to market risk, refer to the Company\u2019s market risk disclosures set forth in Part II, Item 7A, \u201cQuantitative and Qualitative Disclosures About Market Risk\u201d of the 2024 Form 10-K.",
+      "section": "Other",
+      "confidence": 0.312
+    },
+    {
+      "text": "Evaluation of Disclosure Controls and Procedures",
+      "section": "Controls and Procedures",
+      "confidence": 0.693
+    },
+    {
+      "text": "Based on an evaluation under the supervision and with the participation of the Company\u2019s management, the Company\u2019s principal executive officer and principal financial officer have concluded that the Company\u2019s disclosure controls and procedures as defined in Rules 13a-15(e) and 15d-15(e) under the Exchange Act were effective as of December\u00a028, 2024 to provide reasonable assurance that information required to be disclosed by the Company in reports that it files or submits under the Exchange Act is (i)\u00a0recorded, processed, summarized and reported within the time periods specified in the SEC rules and forms and (ii)\u00a0accumulated and communicated to the Company\u2019s management, including its principal executive officer and principal financial officer, as appropriate to allow timely decisions regarding required disclosure.",
+      "section": "Controls and Procedures",
+      "confidence": 0.913
+    },
+    {
+      "text": "Changes in Internal Control over Financial Reporting",
+      "section": "Controls and Procedures",
+      "confidence": 0.852
+    },
+    {
+      "text": "There were no changes in the Company\u2019s internal control over financial reporting during the first quarter of 2025, which were identified in connection with management\u2019s evaluation required by paragraph (d) of Rules 13a-15 and 15d-15 under the Exchange Act, that have materially affected, or are reasonably likely to materially affect, the Company\u2019s internal control over financial reporting.",
+      "section": "Controls and Procedures",
+      "confidence": 0.946
+    },
+    {
+      "text": "On March 25, 2024, the Commission announced that it had opened two formal noncompliance investigations against the Company under the European Union (\u201cEU\u201d) Digital Markets Act (the \u201cDMA\u201d). The Commission\u2019s investigations concern (1) Article 5(4) of the DMA, which relates to how developers may communicate and promote offers to end users for apps distributed through the App Store as well as how developers may conclude contracts with those end users; and (2) Article 6(3) of the DMA, which relates to default settings, uninstallation of apps, and a web browser choice screen on iOS. On June 24, 2024, the Commission announced its preliminary findings in the Article 5(4) investigation alleging that the Company\u2019s App Store rules are in breach of the DMA and announced that it had opened a third formal investigation against the Company regarding whether the Company\u2019s new contractual requirements for third-party app developers and app marketplaces may violate the DMA. If the Commission makes a final determination that there has been a violation, it can issue a cease and desist order and may impose fines up to 10% of the Company\u2019s annual worldwide net sales. Although any decision by the Commission can be appealed to the General Court of the EU, the effectiveness of the Commission\u2019s order would apply immediately while the appeal is pending, unless a stay of the order is granted.",
+      "section": "Other",
+      "confidence": 0.486
+    },
+    {
+      "text": "The Company believes that it complies with the DMA and has continued to make changes to its compliance plan in response to feedback and engagement with the Commission.",
+      "section": "Other",
+      "confidence": 0.749
+    },
+    {
+      "text": "On March 21, 2024, the U.S. Department of Justice (the \u201cDOJ\u201d) and a number of state and district attorneys general filed a civil antitrust lawsuit in the U.S. District Court for the District of New Jersey against the Company alleging monopolization or attempted monopolization in the markets for \u201cperformance smartphones\u201d and \u201csmartphones\u201d in violation of U.S. antitrust laws. The DOJ is seeking equitable relief to redress the alleged anticompetitive behavior. In addition, various civil litigation matters have been filed in state and federal courts in the U.S. alleging similar violations of U.S. antitrust laws and seeking monetary damages and other nonmonetary relief. The Company believes it has substantial defenses and intends to vigorously defend itself.",
+      "section": "Legal Proceedings",
+      "confidence": 0.713
+    },
+    {
+      "text": "Epic Games, Inc. (\u201cEpic\u201d) filed a lawsuit in the U.S. District Court for the Northern District of California (the \u201cCalifornia District Court\u201d) against the Company alleging violations of federal and state antitrust laws and California\u2019s unfair competition law based upon the Company\u2019s operation of its App Store. The California District Court found that certain provisions of the Company\u2019s App Store Review Guidelines violate California\u2019s unfair competition law and issued an injunction enjoining the Company from prohibiting developers from including in their apps external links that direct customers to purchasing mechanisms other than Apple in-app purchasing. The injunction applies to apps on the U.S. storefront of the iOS and iPadOS \u00ae App Store. On January 16, 2024, the Company implemented a plan to comply with the injunction and filed a statement of compliance with the California District Court. A motion by Epic disputing the Company\u2019s compliance plan and seeking to enforce the injunction, which the Company has opposed, is pending before the California District Court. On September 30, 2024, the Company filed a motion with the California District Court to narrow or vacate the injunction. The Company believes it has substantial defenses and intends to vigorously defend itself.",
+      "section": "Legal Proceedings",
+      "confidence": 0.679
+    },
+    {
+      "text": "The Company is subject to other legal proceedings and claims that have not been fully resolved and that have arisen in the ordinary course of business. The Company settled certain matters during the first quarter of 2025 that did not individually or in the aggregate have a material impact on the Company\u2019s financial condition or operating results. The outcome of litigation is inherently uncertain. If one or more legal matters were resolved against the Company in a reporting period for amounts above management\u2019s expectations, the Company\u2019s financial condition and operating results for that reporting period could be materially adversely affected.",
+      "section": "Legal Proceedings",
+      "confidence": 0.682
+    },
+    {
+      "text": "The Company\u2019s business, reputation, results of operations, financial condition and stock price can be affected by a number of factors, whether currently known or unknown, including those described in Part I, Item 1A of the 2024 Form 10-K under the heading \u201cRisk Factors.\u201d When any one or more of these risks materialize from time to time, the Company\u2019s business, reputation, results of operations, financial condition and stock price can be materially and adversely affected. Except as set forth below, there have been no material changes to the Company\u2019s risk factors since the 2024 Form 10-K.",
+      "section": "Risk Factors",
+      "confidence": 0.928
+    },
+    {
+      "text": "The Company is subject to complex and changing laws and regulations worldwide, which exposes the Company to potential liabilities, increased costs and other adverse effects on the Company\u2019s business.",
+      "section": "Risk Factors",
+      "confidence": 0.729
+    },
+    {
+      "text": "The Company\u2019s global operations are subject to complex and changing laws and regulations on subjects including antitrust; privacy, data security and data localization; consumer protection; advertising, sales, billing and e-commerce; financial services and technology; product liability; intellectual property ownership and infringement; digital platforms; machine learning and artificial intelligence; internet, telecommunications and mobile communications; media, television, film and digital content; availability of third-party software applications and services; labor and employment; anticorruption; import, export and trade; foreign exchange controls and cash repatriation restrictions; anti\u2013money laundering; foreign ownership and investment; national security; tax; and environmental, health and safety, including electronic waste, recycling, product design and climate change.",
+      "section": "Other",
+      "confidence": 0.42
+    },
+    {
+      "text": "Compliance with these laws and regulations is onerous and expensive. New and changing laws, regulations, executive orders, directives, and enforcement priorities can adversely affect the Company\u2019s business by increasing the Company\u2019s costs, limiting the Company\u2019s ability to offer a product, service or feature to customers, imposing changes to the design of the Company\u2019s products and services, impacting customer demand for the Company\u2019s products and services, and requiring changes to the Company\u2019s business or supply chain. New and changing laws, regulations, executive orders, directives, and enforcement priorities can also create uncertainty about how such laws and regulations will be interpreted and applied.",
+      "section": "Risk Factors",
+      "confidence": 0.594
+    },
+    {
+      "text": "Risks and costs related to new and changing laws, regulations, executive orders, directives, and enforcement priorities may increase as the Company\u2019s products and services are introduced into specialized applications, including health and financial services, or as the Company expands the use of technologies, such as machine learning and artificial intelligence features, and must navigate new legal, regulatory and ethical considerations relating to such technologies. The Company has implemented policies and procedures designed to ensure compliance with applicable laws and regulations, but there can be no assurance the Company\u2019s employees, contractors or agents will not violate such laws and regulations or the Company\u2019s policies and procedures. If the Company is found to have violated laws and regulations, it could materially adversely affect the Company\u2019s business, reputation, results of operations and financial condition.",
+      "section": "Risk Factors",
+      "confidence": 0.796
+    },
+    {
+      "text": "Regulatory changes and other actions that materially adversely affect the Company\u2019s business may be announced with little or no advance notice and the Company may not be able to effectively mitigate all adverse impacts from such measures. For example, the Company is subject to changing regulations relating to the export and import of its products. Although the Company has programs, policies and procedures in place that are designed to satisfy regulatory requirements, there can be no assurance that such policies and procedures will be effective in preventing a violation or a claim of a violation. As a result, the Company\u2019s products could be banned, delayed or prohibited from importation, which could materially adversely affect the Company\u2019s business, reputation, results of operations and financial condition.",
+      "section": "Risk Factors",
+      "confidence": 0.924
+    },
+    {
+      "text": "The technology industry, including, in some instances, the Company, is subject to intense media, political and regulatory scrutiny, which exposes the Company to increasing regulation, government investigations, legal actions and penalties.",
+      "section": "Risk Factors",
+      "confidence": 0.667
+    },
+    {
+      "text": "From time to time, the Company has made changes to its App Store, including actions taken in response to litigation, competition, market conditions and legal and regulatory requirements. The Company expects to make further business changes in the future. For example, in the U.S. the Company has implemented changes to how developers communicate with consumers within apps on the U.S. storefront of the iOS and iPadOS App Store regarding alternative purchasing mechanisms.",
+      "section": "Other",
+      "confidence": 0.674
+    },
+    {
+      "text": "The Company has also implemented changes to iOS, iPadOS, the App Store and Safari in the EU as it seeks to comply with the DMA, including new business terms and alternative fee structures for iOS and iPadOS apps, alternative methods of distribution for iOS and iPadOS apps, alternative payment processing for apps across the Company\u2019s operating systems, and additional tools and application programming interfaces (\u201cAPIs\u201d) for developers. The Company has also continued to make changes to its compliance plan in response to feedback and engagement with the Commission. Although the Company\u2019s compliance plan is intended to address the DMA\u2019s obligations, it has been challenged by the Commission and may be challenged further by private litigants. The DMA provides for significant fines and penalties for noncompliance, and other jurisdictions may seek to require the Company to make changes to its business. While the changes introduced by the Company in the EU are intended to reduce new privacy and security risks that the DMA poses to EU users, many risks will remain.",
+      "section": "Other",
+      "confidence": 0.444
+    },
+    {
+      "text": "The Company is also currently subject to antitrust investigations and litigation in various jurisdictions around the world, which can result in legal proceedings and claims against the Company that could, individually or in the aggregate, have a materially adverse impact on the Company\u2019s business, results of operations and financial condition. For example, the Company is subject to civil antitrust lawsuits in the U.S. alleging monopolization or attempted monopolization in the markets for \u201cperformance smartphones\u201d and \u201csmartphones\u201d generally in violation of U.S. antitrust laws. In addition, the Company is the subject of investigations in Europe and other jurisdictions relating to App Store terms and conditions. If such investigations or litigation are resolved against the Company, the Company can be exposed to significant fines and may be required to make further changes to its business practices, all of which could materially adversely affect the Company\u2019s business, reputation, results of operations and financial condition.",
+      "section": "Legal Proceedings",
+      "confidence": 0.604
+    },
+    {
+      "text": "Further, the Company has commercial relationships with other companies in the technology industry that are or may become subject to investigations and litigation that, if resolved against those other companies, could materially adversely affect the Company\u2019s commercial relationships with those business partners and materially adversely affect the Company\u2019s business, results of operations and financial condition. For example, the Company earns revenue from licensing arrangements with Google LLC (\u201cGoogle\u201d) and other companies to offer their search services on the Company\u2019s platforms and applications, and certain of these arrangements are currently subject to government investigations and legal proceedings. On August 5, 2024, Google was found to have violated U.S. antitrust laws. In connection with this finding, the DOJ has proposed remedies, which include changes to Google\u2019s products, services and business models. The proposed changes vary in scope and severity and range from imposing significant restrictions on Google\u2019s licensing agreements to prohibiting Google from offering the Company commercial terms for search distribution for up to 10 years. If implemented, such remedies could materially adversely affect the Company\u2019s ability to earn revenue from such licensing arrangements.",
+      "section": "Risk Factors",
+      "confidence": 0.67
+    },
+    {
+      "text": "There can be no assurance the Company\u2019s business, results of operations and financial condition will not be materially adversely affected, individually or in the aggregate, by the outcomes of such investigations, litigation or changes to laws and regulations in the future. Changes to the Company\u2019s business practices to comply with new laws and regulations or in connection with other legal proceedings can negatively impact the reputation of the Company\u2019s products for privacy and security and otherwise adversely affect the experience for users of the Company\u2019s products and services, and result in harm to the Company\u2019s reputation, loss of competitive advantage, poor market acceptance, reduced demand for products and services, lost sales, and lower profit margins.",
+      "section": "Risk Factors",
+      "confidence": 0.802
+    },
+    {
+      "text": "Item 2.\u00a0\u00a0\u00a0\u00a0Unregistered Sales of Equity Securities and Use of Proceeds",
+      "section": "Other",
+      "confidence": 0.532
+    },
+    {
+      "text": "Purchases of Equity Securities by the Issuer and Affiliated Purchasers",
+      "section": "Market for Common Stock and Shareholder Matters",
+      "confidence": 0.906
+    },
+    {
+      "text": "Share repurchase activity during the three months ended December\u00a028, 2024 was as follows (in millions, except number of shares, which are reflected in thousands, and per-share amounts):",
+      "section": "Market for Common Stock and Shareholder Matters",
+      "confidence": 0.974
+    },
+    {
+      "text": "(1) As of December\u00a028, 2024, the Company was authorized by the Board of Directors to purchase up to $110 billion of the Company\u2019s common stock under a share repurchase program announced on May 2, 2024, of which $44.2 billion had been utilized. The program does not obligate the Company to acquire a minimum amount of shares. Under the program, shares may be repurchased in privately negotiated or open market transactions, including under plans complying with Rule 10b5-1 under the Exchange Act.",
+      "section": "Market for Common Stock and Shareholder Matters",
+      "confidence": 0.973
+    },
+    {
+      "text": "Item 3.\u00a0\u00a0\u00a0\u00a0Defaults Upon Senior Securities",
+      "section": "Other",
+      "confidence": 0.347
+    },
+    {
+      "text": "On November 6, 2024 , Luca Maestri , the Company\u2019s former Senior Vice President and Chief Financial Officer, and current Vice President, Corporate Services , entered into a trading plan intended to satisfy the affirmative defense conditions of Rule 10b5-1(c) under the Exchange Act. The plan provides for the sale, subject to certain price limits, of shares vesting between April 1, 2025 and October 15, 2025, pursuant to certain equity awards granted to Mr. Maestri, excluding any shares withheld by the Company to satisfy income tax withholding and remittance obligations. Mr. Maestri\u2019s plan will expire on December 31, 2025 , subject to early termination in accordance with the terms of the plan.",
+      "section": "Other",
+      "confidence": 0.439
+    },
+    {
+      "text": "On November 25, 2024 , Kate Adams , the Company\u2019s Senior Vice President, General Counsel and Secretary , entered into a trading plan intended to satisfy the affirmative defense conditions of Rule 10b5-1(c) under the Exchange Act. The plan provides for the sale of shares vesting between April 1, 2025 and October 1, 2025, pursuant to certain equity awards granted to Ms. Adams, excluding any shares withheld by the Company to satisfy income tax withholding and remittance obligations. Ms. Adam\u2019s plan will expire on November 1, 2025 , subject to early termination in accordance with the terms of the plan.",
+      "section": "Other",
+      "confidence": 0.519
+    },
+    {
+      "text": "*\u00a0\u00a0\u00a0\u00a0Indicates management contract or compensatory plan or arrangement.",
+      "section": "Other",
+      "confidence": 0.536
+    },
+    {
+      "text": "Pursuant to the requirements of the Securities Exchange Act of 1934, the Registrant has duly caused this report to be signed on its behalf by the undersigned thereunto duly authorized.",
+      "section": "Other",
+      "confidence": 0.623
+    }
+  ]
+}

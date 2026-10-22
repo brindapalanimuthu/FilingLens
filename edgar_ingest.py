@@ -2,8 +2,9 @@
 FilingLens — Stage 1: SEC EDGAR Ingestion
 
 Usage:
-    python edgar_ingest.py          # defaults to AAPL
-    python edgar_ingest.py MSFT     # any ticker
+    python edgar_ingest.py                 # AAPL, 10-K
+    python edgar_ingest.py MSFT            # any ticker, 10-K
+    python edgar_ingest.py AAPL 10-Q       # any ticker, any form type (10-K, 10-Q)
 """
 
 import requests
@@ -22,7 +23,9 @@ HEADERS = {
 }
 
 OUTPUT_DIR = "filings_raw"
+MANIFEST = os.path.join(OUTPUT_DIR, "manifest.json")
 TIMEOUT = 30
+FORM_LIMITS = {"10-K": 3, "10-Q": 6}  # 6 10-Qs is about 2 years
 
 
 def make_session() -> requests.Session:
@@ -64,6 +67,7 @@ def get_filings(cik: str, form_type: str = "10-K", limit: int = 5) -> list:
             results.append({
                 "accessionNumber": recent["accessionNumber"][i],
                 "filingDate": recent["filingDate"][i],
+                "reportDate": recent["reportDate"][i],
                 "primaryDocument": recent["primaryDocument"][i],
             })
         if len(results) >= limit:
@@ -94,22 +98,40 @@ def download_filing(cik: str, filing: dict, save_path: str, max_attempts: int = 
     raise RuntimeError(f"Failed to download {url} after {max_attempts} attempts")
 
 
+def update_manifest(filename: str, ticker: str, form_type: str, filing: dict):
+    """Record form type and period per file so the index can tag chunks."""
+    manifest = {}
+    if os.path.exists(MANIFEST):
+        with open(MANIFEST, "r", encoding="utf-8") as f:
+            manifest = json.load(f)
+    manifest[filename] = {
+        "ticker": ticker,
+        "form_type": form_type,
+        "filing_date": filing["filingDate"],
+        "report_date": filing["reportDate"],
+        "accession": filing["accessionNumber"],
+    }
+    with open(MANIFEST, "w", encoding="utf-8") as f:
+        json.dump(manifest, f, indent=2)
+
+
 if __name__ == "__main__":
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     TICKER = (sys.argv[1] if len(sys.argv) > 1 else "AAPL").upper()
-    FORM_TYPE = "10-K"
+    FORM_TYPE = (sys.argv[2] if len(sys.argv) > 2 else "10-K").upper()
 
     print(f"Looking up CIK for {TICKER}...")
     cik = get_cik(TICKER)
     print(f"CIK: {cik}")
 
     print(f"Fetching recent {FORM_TYPE} filings...")
-    filings = get_filings(cik, form_type=FORM_TYPE, limit=3)
+    filings = get_filings(cik, form_type=FORM_TYPE, limit=FORM_LIMITS.get(FORM_TYPE, 3))
     print(json.dumps(filings, indent=2))
 
     for filing in filings:
         filename = f"{TICKER}_{FORM_TYPE}_{filing['filingDate']}.html"
         save_path = os.path.join(OUTPUT_DIR, filename)
+        update_manifest(filename, TICKER, FORM_TYPE, filing)  # before the skip, so reruns backfill old 10-Ks
         if os.path.exists(save_path):
             print(f"Already have {save_path}, skipping")
             continue
