@@ -14,3 +14,11 @@ full_index_backup/
 full_index_apple_backup/
 *.pkl
 *.npy
+
+classified_deberta/
+classified/
+parsed/
+filings_raw/
+index/
+full_index/
+scratch/*.json
