@@ -8,7 +8,7 @@ FilingLens is an agentic RAG system over SEC 10-K filings. It understands both p
 Question → Route → Retrieve evidence → Generate → Verify numbers → Cited answer
 ```
 
-> **Scope today:** Apple and Microsoft 10-Ks (3 fiscal years each). Text + table retrieval. 10-Q filings are downloaded and parsed; indexing is in progress. Chart/visual retrieval and 8-K are roadmap items, not built.
+> **Scope today:** Apple and Microsoft 10-K (3 fiscal years each) and 10-Q (6 quarters each) filings. Text + table retrieval, quarter-aware. Chart/visual retrieval and 8-K are roadmap items, not built.
 
 ---
 
@@ -49,7 +49,7 @@ flowchart LR
 | Retrieve | Hybrid search, company filter, segment-aware re-ranking | `hybrid_search.py` |
 | Orchestrate | LangGraph: classify query → retrieve → generate → verify | `filinglens_graph.py` |
 | Serve | FastAPI (`/ask`, `/health`) + web UI | `api.py`, `static/`, `frontend/` |
-| Evaluate | Eval harness with main set and held-out set | `eval_harness.py` |
+| Evaluate | Eval harness (main, held-out, 10-Q sets) and retrieval ablation | `eval_harness.py`, `ablation_retrieval.py` |
 
 ## Key features
 
@@ -69,27 +69,37 @@ flowchart LR
 ✓ $391,035 million     ✓ 6.8%     ✗ $405,200 million   ← flagged
 ```
 
+**Quarter-aware retrieval (10-Q).** Fiscal year and quarter are derived per filing (a Microsoft 10-Q filed Oct 2024 is Q1 FY2025). Questions that mention a quarter search 10-Q rows and boost the quarter named; everything else stays on 10-K so annual figures aren't polluted by quarterly rows. Apple's multi-column 10-Q tables keep their "Three / Six Months Ended" labels so quarter and year-to-date figures aren't confused.
+
 **Refuses when unsupported.** Questions the filings can't answer (e.g. a company not in the index) are part of the eval. The system says it doesn't know.
 
 **Model fallback.** If one Gemini model hits quota, the system switches to the next configured model.
 
 ## Results
 
-| Eval set | Questions | Correct |
-|---|---|---|
-| Main (Apple + Microsoft: numeric, derived, prose, unanswerable) | 32 | **32 / 32** |
-| Held-out (written after tuning: segment/margin, unanswerable) | 11 | **11 / 11** (baseline 10 / 11) |
+| Eval set | Questions | Correct | Retrieval hit | Numeric verification |
+|---|---|---|---|---|
+| Main, 10-K (numeric, derived, prose, unanswerable) | 32 | **32 / 32** | 27 / 27 | 98% |
+| Held-out, 10-K (written after tuning: segments, unanswerable) | 11 | **11 / 11** (baseline 10 / 11) | 9 / 9 | 100% |
+| 10-Q (single quarter, two quarters, quarter-over-quarter, unanswerable) | 9 | **9 / 9** | 8 / 8 | 88% |
 
-Retrieval hit rate on answerable questions: 27 / 27. Average numeric-verification rate: 94%.
+Numeric verification excludes dates and bare years. It is lower on derived questions (e.g. "by how much did revenue increase") because the computed difference isn't itself in any source; only its inputs are, and those are verified.
 
-**What moved the needle** (first 12-question eval):
+### Retrieval ablation
 
-| Change | Score |
-|---|---|
-| Baseline: table-level chunks + embeddings | 6 / 12 |
-| + row-level table chunking + hybrid BM25 / embedding search | 12 / 12 |
+Does each retrieval component earn its place? For every answerable eval question, `ablation_retrieval.py` checks whether the numbers needed to answer it appear in the top-6 table rows sent to the LLM. It makes no LLM calls. All methods share the same company/form-type filter, candidate pool and fiscal-year picking, so only the ranking differs.
 
-Later fixes (IDF-weighted label matching, segment-aware re-ranking, percentage-row demotion) were driven by failures on the **held-out** set, not the main set, to avoid tuning only to what I was measuring.
+| Retrieval method | Main (10-K) | Held-out (10-K) | 10-Q | Overall |
+|---|---|---|---|---|
+| Embeddings only | 14 / 24 | 2 / 9 | 3 / 8 | 19 / 41 (46%) |
+| BM25 only | 17 / 24 | 9 / 9 | 2 / 8 | 28 / 41 (68%) |
+| **Hybrid (FilingLens)** | **24 / 24** | **9 / 9** | **8 / 8** | **41 / 41 (100%)** |
+
+Embeddings alone often retrieve the right *kind* of row from the wrong company, year or segment. BM25 alone matches line-item names well but fails when wording differs or when the same label appears in several periods and filings (e.g. Microsoft net income across fiscal years, or 10-Q quarter columns). The hybrid ranker, with label matching and segment/quarter-aware re-ranking, is the only method that gets everything.
+
+**How to read this honestly:** the hybrid ranker was tuned against the main and held-out sets, and the baselines were not tuned at all, so 41/41 overstates the gap on unseen questions. The 10-Q set is the cleanest comparison: its questions were written after the retrieval code was finished and the hybrid ranker passed 8/8 on the first run with no tuning against them.
+
+Early development: row-level table chunking plus hybrid search took a 12-question eval from 6/12 to 12/12.
 
 ## Design decisions
 
@@ -101,11 +111,12 @@ Later fixes (IDF-weighted label matching, segment-aware re-ranking, percentage-r
 
 ## Limitations
 
-- Two companies, three fiscal years of 10-Ks each. Results don't claim to generalize across sectors or filers.
-- Eval sets are small and written by the author. 100% is on *this* set, not a public benchmark.
+- Two companies: three fiscal years of 10-Ks and six quarters of 10-Qs each. Results don't claim to generalize across sectors or filers.
+- Microsoft 10-Q tables with year-to-date columns (Q2, Q3) are labeled by year only, so three-month and year-to-date figures aren't explicitly distinguished in the index. The 10-Q eval passes, but this is a known weakness.
+- Eval sets are small and written by the author. 100% is on *these* sets, not a public benchmark. The held-out set was used to find and fix failures (baseline 10/11 → 11/11), so it is no longer a pure test set; the 10-Q set, which passed on its first run, is the cleanest evidence.
 - Query routing is keyword-heuristic, not learned.
 - Verification checks that a number appears in the retrieved evidence. It is not a proof that the reasoning is correct.
-- No chart/image understanding; no 8-K support; 10-Q indexing in progress.
+- No chart/image understanding; no 8-K support.
 - Generation uses the Gemini free tier and depends on its quotas.
 - The index is local and must be rebuilt when filings are added.
 
@@ -120,6 +131,8 @@ export GEMINI_API_KEY="your_key"          # Google AI Studio free tier
 # Build the data (generated files are not committed)
 python edgar_ingest.py AAPL 10-K
 python edgar_ingest.py MSFT 10-K
+python edgar_ingest.py AAPL 10-Q          # optional: quarterly filings
+python edgar_ingest.py MSFT 10-Q
 python parse_filing.py
 python classify_sections.py
 python build_full_index.py
@@ -131,8 +144,10 @@ uvicorn api:app --reload                  # http://127.0.0.1:8000
 cd frontend && npm install && npm run dev # http://127.0.0.1:5173
 
 # Evaluate
+python ablation_retrieval.py              # retrieval-only comparison, no LLM calls
 python eval_harness.py
-EVAL_SET=eval_holdout.json EVAL_RESULTS=holdout_results.json python eval_harness.py
+EVAL_SET=eval_holdout.json EVAL_RESULTS=holdout_results.json python eval_harness.py --fresh
+EVAL_SET=eval_10q.json EVAL_RESULTS=eval_10q_results.json python eval_harness.py --fresh
 ```
 
 ## API
@@ -168,7 +183,8 @@ EVAL_SET=eval_holdout.json EVAL_RESULTS=holdout_results.json python eval_harness
 
 - [x] 10-K ingestion, parsing, section tagging, hybrid retrieval, verification, eval
 - [x] FastAPI + web UI
-- [ ] 10-Q indexing and cross-filing questions (quarter-over-quarter)
+- [x] 10-Q indexing, fiscal-quarter detection, quarter-over-quarter questions
+- [ ] Explicit three-month vs year-to-date labels for Microsoft 10-Q tables
 - [ ] Learned query router
 - [ ] Chart / visual retrieval
 - [ ] 8-K support, more companies, persistent vector store

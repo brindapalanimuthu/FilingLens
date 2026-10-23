@@ -1,0 +1,88 @@
+{
+  "results": {
+    "Embeddings only": {
+      "Main (10-K)": [
+        14,
+        24
+      ],
+      "Held-out (10-K)": [
+        2,
+        9
+      ],
+      "10-Q": [
+        3,
+        8
+      ]
+    },
+    "BM25 only": {
+      "Main (10-K)": [
+        17,
+        24
+      ],
+      "Held-out (10-K)": [
+        9,
+        9
+      ],
+      "10-Q": [
+        2,
+        8
+      ]
+    },
+    "Hybrid (FilingLens)": {
+      "Main (10-K)": [
+        24,
+        24
+      ],
+      "Held-out (10-K)": [
+        9,
+        9
+      ],
+      "10-Q": [
+        8,
+        8
+      ]
+    }
+  },
+  "misses": {
+    "Embeddings only": [
+      "[Main (10-K)] What was Apple's total assets as of September 28, 2024?",
+      "[Main (10-K)] What was Microsoft's net income in fiscal 2025?",
+      "[Main (10-K)] What was Microsoft's total revenue in fiscal 2024?",
+      "[Main (10-K)] What was Microsoft's net income in fiscal 2024?",
+      "[Main (10-K)] What was Microsoft's net income in fiscal 2026?",
+      "[Main (10-K)] What was Microsoft's total revenue and net income in fiscal 2025?",
+      "[Main (10-K)] What was Apple's iPhone net sales in 2024?",
+      "[Main (10-K)] What was Microsoft's net income in fiscal 2025 and fiscal 2024?",
+      "[Main (10-K)] By what percentage did Microsoft's total revenue grow from fiscal 2024 to fiscal 2025?",
+      "[Main (10-K)] What was Microsoft's Server products and cloud services revenue in fiscal 2024?",
+      "[Held-out (10-K)] What was Apple's iPhone net sales in 2025?",
+      "[Held-out (10-K)] What were Apple's Services net sales in 2025?",
+      "[Held-out (10-K)] What was Microsoft's Server products and cloud services revenue in fiscal 2026?",
+      "[Held-out (10-K)] What was Microsoft's Dynamics products and cloud services revenue in fiscal 2025?",
+      "[Held-out (10-K)] What was Microsoft's Enterprise and partner services revenue in fiscal 2026?",
+      "[Held-out (10-K)] What was Microsoft's Microsoft 365 Commercial products and cloud services revenue in fiscal 2025?",
+      "[Held-out (10-K)] What were Apple's iPhone and Services net sales in 2025?",
+      "[10-Q] What was Apple's net sales in Q2 2025?",
+      "[10-Q] What was Microsoft's net income in Q1 FY2025?",
+      "[10-Q] What were Apple's Services net sales in Q2 2025?",
+      "[10-Q] By how much did Apple's Services net sales increase from Q1 2025 to Q2 2025?",
+      "[10-Q] By how much did Microsoft's total revenue increase from Q3 FY2024 to Q3 FY2025?"
+    ],
+    "BM25 only": [
+      "[Main (10-K)] What was Apple's R&D expense and net income in 2024?",
+      "[Main (10-K)] What was Microsoft's net income in fiscal 2025?",
+      "[Main (10-K)] What was Microsoft's net income in fiscal 2024?",
+      "[Main (10-K)] What was Microsoft's net income in fiscal 2026?",
+      "[Main (10-K)] What was Microsoft's total revenue and net income in fiscal 2025?",
+      "[Main (10-K)] What was Microsoft's net income in fiscal 2025 and fiscal 2024?",
+      "[Main (10-K)] By what percentage did Microsoft's total revenue grow from fiscal 2024 to fiscal 2025?",
+      "[10-Q] What was Apple's net sales in Q2 2025?",
+      "[10-Q] What was Microsoft's net income in Q1 FY2025?",
+      "[10-Q] What was Microsoft's total revenue in Q3 FY2025?",
+      "[10-Q] What was Microsoft's total revenue in Q3 FY2026?",
+      "[10-Q] What were Microsoft's total revenue in Q3 FY2026 and Q3 FY2025?",
+      "[10-Q] By how much did Microsoft's total revenue increase from Q3 FY2024 to Q3 FY2025?"
+    ],
+    "Hybrid (FilingLens)": []
+  }
+}
