@@ -1,0 +1,101 @@
+[
+  {
+    "id": 1,
+    "question": "What was Apple's net sales in Q2 2025?",
+    "type": "numeric",
+    "route": "table_focused",
+    "model": "gemini-3.5-flash-lite",
+    "outcome": "correct",
+    "retrieval_hit": true,
+    "verification_pass_rate": 1.0,
+    "answer": "My answer is about Apple Inc. \n\nApple's total net sales for the three months ended March 29, 2025 (fiscal Q2 2025) were 95,359 [Source 1, Source 2]."
+  },
+  {
+    "id": 2,
+    "question": "What was Microsoft's net income in Q1 FY2025?",
+    "type": "numeric",
+    "route": "table_focused",
+    "model": "gemini-3.5-flash-lite",
+    "outcome": "correct",
+    "retrieval_hit": true,
+    "verification_pass_rate": 1.0,
+    "answer": "This answer is about Microsoft Corporation.\n\nMicrosoft's net income in Q1 FY2025 (Three Months Ended September 30, 2024) was 24,667 [Source 2, Source 3, Source 5, Source 6] (or 24,667 [Source 4])."
+  },
+  {
+    "id": 3,
+    "question": "What were Apple's Services net sales in Q2 2025?",
+    "type": "numeric",
+    "route": "table_focused",
+    "model": "gemini-3.5-flash-lite",
+    "outcome": "correct",
+    "retrieval_hit": true,
+    "verification_pass_rate": 1.0,
+    "answer": "My answer is about Apple Inc. \n\nApple's Services net sales for the three months ended March 29, 2025 (fiscal Q2 2025) were 26,645 [Source 1]."
+  },
+  {
+    "id": 4,
+    "question": "What was Microsoft's total revenue in Q3 FY2025?",
+    "type": "numeric",
+    "route": "table_focused",
+    "model": "gemini-3.5-flash-lite",
+    "outcome": "correct",
+    "retrieval_hit": true,
+    "verification_pass_rate": 1.0,
+    "answer": "Based on Microsoft Corporation's Consolidated Statements of Operations from the fiscal Q3 FY2025 source, the total revenue for the three months ended March 31, 2025 (fiscal Q3 FY2025) was 70,066 [Source 1]."
+  },
+  {
+    "id": 5,
+    "question": "What was Microsoft's total revenue in Q3 FY2026?",
+    "type": "numeric",
+    "route": "table_focused",
+    "model": "gemini-3.5-flash-lite",
+    "outcome": "correct",
+    "retrieval_hit": true,
+    "verification_pass_rate": 1.0,
+    "answer": "This answer is about Microsoft Corporation.\n\nMicrosoft's total revenue in Q3 FY2026 was 82,886 [Source 1]."
+  },
+  {
+    "id": 6,
+    "question": "What were Microsoft's total revenue in Q3 FY2026 and Q3 FY2025?",
+    "type": "numeric",
+    "route": "table_focused",
+    "model": "gemini-3.5-flash-lite",
+    "outcome": "correct",
+    "retrieval_hit": true,
+    "verification_pass_rate": 1.0,
+    "answer": "This answer is about Microsoft Corporation.\n\nAccording to Source 3, Microsoft's total revenue was **82,886** for Q3 FY2026 and **70,066** for Q3 FY2025 [Source 3]."
+  },
+  {
+    "id": 7,
+    "question": "By how much did Apple's Services net sales increase from Q1 2025 to Q2 2025?",
+    "type": "numeric",
+    "route": "table_focused",
+    "model": "gemini-3.5-flash-lite",
+    "outcome": "correct",
+    "retrieval_hit": true,
+    "verification_pass_rate": 0.4,
+    "answer": "This answer is about Apple Inc.\n\nTo find the percentage increase in Apple's Services net sales from Q1 2025 to Q2 2025, we take the Services net sales for the Three Months Ended December 28, 2024 (Q1 FY2025) of 26,340 [Source 2] and the Services net sales for the Three Months Ended March 29, 2025 (Q2 FY2025) of 26,645 [Source 3, Source 6].\n\nCalculation:\n$$\\frac{26,645 - 26,340}{26,340} = \\frac{305}{26,340} \\approx 0.011579$$\n\nApple's Services net sales increased by 305 million, or approximately 1.16% (calculated)."
+  },
+  {
+    "id": 8,
+    "question": "By how much did Microsoft's total revenue increase from Q3 FY2024 to Q3 FY2025?",
+    "type": "numeric",
+    "route": "table_focused",
+    "model": "gemini-3.5-flash-lite",
+    "outcome": "correct",
+    "retrieval_hit": true,
+    "verification_pass_rate": 0.6666666666666666,
+    "answer": "To answer your question about Microsoft Corporation:\n\nFrom the Consolidated Statements of Operations [Source 1], the total revenue figures are:\n- Q3 FY2024 (Three months ended): 61,858\n- Q3 FY2025 (Three months ended): 70,066\n\n(Note: Source 1 presents the columns in the order 2025 then 2024 for the three-month period, showing 70,066 for 2025 and 61,858 for 2024.)\n\nCalculation of the increase (calculated):\n$70,066 - $61,858 = $8,208 million (or $8.208 billion)."
+  },
+  {
+    "id": 9,
+    "question": "What was Microsoft's net income in Q1 FY2028?",
+    "type": "unanswerable",
+    "route": "table_focused",
+    "model": "gemini-3.5-flash-lite",
+    "outcome": "correct",
+    "retrieval_hit": null,
+    "verification_pass_rate": null,
+    "answer": "Based on the provided sources, there is no information available for Microsoft's net income in Q1 FY2028. The sources do not contain enough information to answer the question."
+  }
+]

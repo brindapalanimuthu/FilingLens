@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "question": "What was Apple's net sales in Q2 2025?",
+    "type": "numeric",
+    "expected_number": "95,359"
+  },
+  {
+    "id": 2,
+    "question": "What was Microsoft's net income in Q1 FY2025?",
+    "type": "numeric",
+    "expected_number": "24,667"
+  },
+  {
+    "id": 3,
+    "question": "What were Apple's Services net sales in Q2 2025?",
+    "type": "numeric",
+    "expected_number": "26,645"
+  },
+  {
+    "id": 4,
+    "question": "What was Microsoft's total revenue in Q3 FY2025?",
+    "type": "numeric",
+    "expected_number": "70,066"
+  },
+  {
+    "id": 5,
+    "question": "What was Microsoft's total revenue in Q3 FY2026?",
+    "type": "numeric",
+    "expected_number": "82,886"
+  },
+  {
+    "id": 6,
+    "question": "What were Microsoft's total revenue in Q3 FY2026 and Q3 FY2025?",
+    "type": "numeric",
+    "expected_numbers": [
+      "82,886",
+      "70,066"
+    ]
+  },
+  {
+    "id": 7,
+    "question": "By how much did Apple's Services net sales increase from Q1 2025 to Q2 2025?",
+    "type": "numeric",
+    "expected_number": "305",
+    "retrieval_numbers": [
+      "26,340",
+      "26,645"
+    ]
+  },
+  {
+    "id": 8,
+    "question": "By how much did Microsoft's total revenue increase from Q3 FY2024 to Q3 FY2025?",
+    "type": "numeric",
+    "expected_number": "8,208",
+    "retrieval_numbers": [
+      "61,858",
+      "70,066"
+    ]
+  },
+  {
+    "id": 9,
+    "question": "What was Microsoft's net income in Q1 FY2028?",
+    "type": "unanswerable"
+  }
+]
