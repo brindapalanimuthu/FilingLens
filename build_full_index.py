@@ -133,6 +133,13 @@ def chart_entries_for(filing_name, tables, meta, company_name):
         "embed_text": text,
         "display_text": text,
         "section": "Stock Performance Graph",
+        "image": f"chart_images/{filing_name}/{charts[0]['image_file']}",
+        # structured version of the performance table, rendered as a real table in the UI
+        "table": {
+            "columns": header,
+            "rows": [{"label": n, "values": [f"${v}" for v in vals]}
+                     for n, vals in series.items()],
+        },
         **meta,
     }]
 
