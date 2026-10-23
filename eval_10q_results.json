@@ -8,7 +8,7 @@
     "outcome": "correct",
     "retrieval_hit": true,
     "verification_pass_rate": 1.0,
-    "answer": "My answer is about Apple Inc. \n\nApple's total net sales for the three months ended March 29, 2025 (fiscal Q2 2025) were 95,359 [Source 1, Source 2]."
+    "answer": "Apple's total net sales for the three months ended March 29, 2025 (Q2 FY2025) were 95,359 [Source 1]."
   },
   {
     "id": 2,
@@ -19,7 +19,7 @@
     "outcome": "correct",
     "retrieval_hit": true,
     "verification_pass_rate": 1.0,
-    "answer": "This answer is about Microsoft Corporation.\n\nMicrosoft's net income in Q1 FY2025 (Three Months Ended September 30, 2024) was 24,667 [Source 2, Source 3, Source 5, Source 6] (or 24,667 [Source 4])."
+    "answer": "This answer is about Microsoft Corporation.\n\nMicrosoft's net income for fiscal Q1 FY2025 was 24,667 [Source 2, Source 3, Source 5] (or 24,667 million, as reported in the Consolidated Statements of Operations alongside the 2023 figure of 22,291 and an 11% increase) [Source 4]."
   },
   {
     "id": 3,
@@ -30,7 +30,7 @@
     "outcome": "correct",
     "retrieval_hit": true,
     "verification_pass_rate": 1.0,
-    "answer": "My answer is about Apple Inc. \n\nApple's Services net sales for the three months ended March 29, 2025 (fiscal Q2 2025) were 26,645 [Source 1]."
+    "answer": "This answer is about Apple Inc. \n\nApple's Services net sales in Q2 2025 (Three Months Ended March 29, 2025) were 26,645 [Source 1]."
   },
   {
     "id": 4,
@@ -41,7 +41,7 @@
     "outcome": "correct",
     "retrieval_hit": true,
     "verification_pass_rate": 1.0,
-    "answer": "Based on Microsoft Corporation's Consolidated Statements of Operations from the fiscal Q3 FY2025 source, the total revenue for the three months ended March 31, 2025 (fiscal Q3 FY2025) was 70,066 [Source 1]."
+    "answer": "Based on Microsoft Corporation's Consolidated Statements of Operations from fiscal Q3 FY2025, the total revenue for the three months ended was 70,066 (in millions) [Source 1]."
   },
   {
     "id": 5,
@@ -52,7 +52,7 @@
     "outcome": "correct",
     "retrieval_hit": true,
     "verification_pass_rate": 1.0,
-    "answer": "This answer is about Microsoft Corporation.\n\nMicrosoft's total revenue in Q3 FY2026 was 82,886 [Source 1]."
+    "answer": "This answer is about Microsoft Corporation. \n\nMicrosoft's total revenue for the three months ended in fiscal Q3 FY2026 was 82,886 [Source 1]."
   },
   {
     "id": 6,
@@ -63,7 +63,7 @@
     "outcome": "correct",
     "retrieval_hit": true,
     "verification_pass_rate": 1.0,
-    "answer": "This answer is about Microsoft Corporation.\n\nAccording to Source 3, Microsoft's total revenue was **82,886** for Q3 FY2026 and **70,066** for Q3 FY2025 [Source 3]."
+    "answer": "My answer is about Microsoft Corporation.\n\nFor Q3 FY2026 (the Three Months Ended period), Microsoft's total revenue was 82,886 (in millions, as reported) [Source 3]. \nFor Q3 FY2025 (the Three Months Ended period), Microsoft's total revenue was 70,066 (in millions, as reported) [Source 3]."
   },
   {
     "id": 7,
@@ -73,8 +73,8 @@
     "model": "gemini-3.5-flash-lite",
     "outcome": "correct",
     "retrieval_hit": true,
-    "verification_pass_rate": 0.4,
-    "answer": "This answer is about Apple Inc.\n\nTo find the percentage increase in Apple's Services net sales from Q1 2025 to Q2 2025, we take the Services net sales for the Three Months Ended December 28, 2024 (Q1 FY2025) of 26,340 [Source 2] and the Services net sales for the Three Months Ended March 29, 2025 (Q2 FY2025) of 26,645 [Source 3, Source 6].\n\nCalculation:\n$$\\frac{26,645 - 26,340}{26,340} = \\frac{305}{26,340} \\approx 0.011579$$\n\nApple's Services net sales increased by 305 million, or approximately 1.16% (calculated)."
+    "verification_pass_rate": 0.6666666666666666,
+    "answer": "This answer is about Apple Inc. \n\nTo find the increase in Apple's Services net sales from Q1 2025 to Q2 2025, we take the Services net sales for the three months ended December 28, 2024 (Q1 FY2025) and the three months ended March 29, 2025 (Q2 FY2025):\n\n- Q1 FY2025 (Three Months Ended December 28, 2024): 26,340 [Source 2]\n- Q2 FY2025 (Three Months Ended March 29, 2025): 26,645 [Source 3]\n\nCalculation:\n26,645 - 26,340 = 305\n\nApple's Services net sales increased by 305 (calculated)."
   },
   {
     "id": 8,
@@ -84,8 +84,8 @@
     "model": "gemini-3.5-flash-lite",
     "outcome": "correct",
     "retrieval_hit": true,
-    "verification_pass_rate": 0.6666666666666666,
-    "answer": "To answer your question about Microsoft Corporation:\n\nFrom the Consolidated Statements of Operations [Source 1], the total revenue figures are:\n- Q3 FY2024 (Three months ended): 61,858\n- Q3 FY2025 (Three months ended): 70,066\n\n(Note: Source 1 presents the columns in the order 2025 then 2024 for the three-month period, showing 70,066 for 2025 and 61,858 for 2024.)\n\nCalculation of the increase (calculated):\n$70,066 - $61,858 = $8,208 million (or $8.208 billion)."
+    "verification_pass_rate": 0.3333333333333333,
+    "answer": "This answer is about Microsoft Corporation.\n\nTo find the increase in Microsoft's total revenue from Q3 FY2024 to Q3 FY2025, we use the consolidated total revenue figures for the three months ended (represented by the 2025 and 2024 columns for the single quarter). From Source 1, the total revenue was:\n- Q3 FY2025: 70,066 (in millions) [Source 1]\n- Q3 FY2024: 61,858 (in millions) [Source 1]\n\nThe increase is calculated as:\n70,066 - 61,858 = 8,208 (in millions)\n\nThe percentage change is calculated as:\n(8,208 / 61,858) * 100 = 13.26895...% (or approximately 13.27%)\n\nTherefore, Microsoft's total revenue increased by 8,208 million (or $8.208 billion), representing a calculated increase of approximately 13.27%."
   },
   {
     "id": 9,
@@ -96,6 +96,6 @@
     "outcome": "correct",
     "retrieval_hit": null,
     "verification_pass_rate": null,
-    "answer": "Based on the provided sources, there is no information available for Microsoft's net income in Q1 FY2028. The sources do not contain enough information to answer the question."
+    "answer": "The sources don't contain enough information to answer confidently."
   }
 ]

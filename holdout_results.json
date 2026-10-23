@@ -8,7 +8,7 @@
     "outcome": "correct",
     "retrieval_hit": true,
     "verification_pass_rate": 1.0,
-    "answer": "Based on Apple Inc.'s 2025 10-K, Apple's iPhone net sales in 2025 were 209,586 [Source 1]."
+    "answer": "Apple's iPhone net sales in 2025 were 209,586 [Source 1, Source 2]."
   },
   {
     "id": 2,
@@ -19,7 +19,7 @@
     "outcome": "correct",
     "retrieval_hit": true,
     "verification_pass_rate": 1.0,
-    "answer": "Apple's Services net sales in 2025 were 109,158 [Source 2, Source 3]."
+    "answer": "Apple Inc.\n\nApple's Services net sales in 2025 were 109,158 [Source 2, Source 3]."
   },
   {
     "id": 3,
@@ -41,7 +41,7 @@
     "outcome": "correct",
     "retrieval_hit": true,
     "verification_pass_rate": 1.0,
-    "answer": "To answer the question about Apple's Services gross margin percentage in 2025, we look at the row for Services gross margin percentage [Source 1]. \n\nApple's Services gross margin percentage in 2025 was 75.4 % [Source 1]."
+    "answer": "This answer is about Apple Inc. \n\nApple's Services gross margin percentage in 2025 was 75.4 % [Source 1]."
   },
   {
     "id": 5,
@@ -52,7 +52,7 @@
     "outcome": "correct",
     "retrieval_hit": true,
     "verification_pass_rate": 1.0,
-    "answer": "My answer is about Microsoft Corporation.\n\nMicrosoft's Server products and cloud services revenue in fiscal 2026 was 129,425 (in millions) [Source 2]."
+    "answer": "My answer is about Microsoft Corporation. \n\nMicrosoft's Server products and cloud services revenue in fiscal 2026 was 129,425 [Source 2]."
   },
   {
     "id": 6,
@@ -63,7 +63,7 @@
     "outcome": "correct",
     "retrieval_hit": true,
     "verification_pass_rate": 1.0,
-    "answer": "Based on Microsoft Corporation's fiscal 2025 10-K, the Dynamics products and cloud services revenue in fiscal 2025 was 7,827 million [Source 2]."
+    "answer": "My answer is about Microsoft Corporation.\n\nMicrosoft's Dynamics products and cloud services revenue in fiscal 2025 was 7,827 [Source 2]."
   },
   {
     "id": 7,
@@ -74,7 +74,7 @@
     "outcome": "correct",
     "retrieval_hit": true,
     "verification_pass_rate": 1.0,
-    "answer": "Based on the provided sources for Microsoft Corporation, the Enterprise and partner services revenue in fiscal 2026 was 8,260 [Source 1]."
+    "answer": "This answer is about Microsoft Corporation.\n\nMicrosoft's Enterprise and partner services revenue in fiscal 2026 was 8,260 [Source 1]."
   },
   {
     "id": 8,
@@ -85,7 +85,7 @@
     "outcome": "correct",
     "retrieval_hit": true,
     "verification_pass_rate": 1.0,
-    "answer": "Based on Microsoft Corporation's 2025 10-K [Source 3], Microsoft's Microsoft 365 Commercial products and cloud services revenue in fiscal 2025 was 87,767 [Source 3]."
+    "answer": "This answer is about Microsoft Corporation.\n\nMicrosoft's Microsoft 365 Commercial products and cloud services revenue in fiscal 2025 was 87,767 million [Source 3]."
   },
   {
     "id": 9,
@@ -96,7 +96,7 @@
     "outcome": "correct",
     "retrieval_hit": true,
     "verification_pass_rate": 1.0,
-    "answer": "Based on the sources provided for Apple Inc. in fiscal year 2025:\n\n* **iPhone net sales (2025):** 209,586 [Source 2, Source 4]\n* **Services net sales (2025):** 109,158 [Source 3, Source 6]"
+    "answer": "This answer is about Apple Inc. \n\nIn fiscal year 2025, Apple's net sales were:\n* **iPhone:** 209,586 (in millions) [Source 2, Source 4]\n* **Services:** 109,158 (in millions) [Source 3, Source 6]"
   },
   {
     "id": 10,
@@ -107,7 +107,7 @@
     "outcome": "correct",
     "retrieval_hit": null,
     "verification_pass_rate": null,
-    "answer": "The sources do not contain enough information to answer confidently."
+    "answer": "My answer is about Apple Inc. \n\nThe sources don't contain enough information to answer confidently, as there are no sources for fiscal 2026."
   },
   {
     "id": 11,
