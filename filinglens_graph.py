@@ -1,5 +1,5 @@
 """
-FilingLens — Stage 6: LangGraph routing (hybrid table retrieval, multi-company, 10-K + 10-Q)
+FilingLens — Stage 6: LangGraph routing (hybrid table retrieval, multi-company, 10-K + 10-Q, charts)
 Gemini calls fall back between models when one hits its daily quota.
 """
 
@@ -26,8 +26,8 @@ _current_model_idx = 0  # persists across calls, so a dead model isn't retried
 NUMBER_PATTERN = re.compile(r"\(?-?\$?\d[\d,]*(?:\.\d+)?\)?%?")
 # dates ("March 29, 2025") and bare years are labels, not financial claims
 DATE_PATTERN = re.compile(
-    r"\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+\d{1,2}"
-    r"(?:,?\s*(?:19|20)\d{2})?", re.I)
+    r"\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+"
+    r"(?:(?:19|20)\d{2}\b|\d{1,2}(?:,?\s*(?:19|20)\d{2})?)", re.I)
 YEAR_PATTERN = re.compile(r"\(?(?:19|20)\d{2}\)?")
 
 NUMERIC_KEYWORDS = [
@@ -42,6 +42,13 @@ NUMERIC_KEYWORDS = [
 EXPLANATORY_KEYWORDS = [
     "why", "what caused", "what led", "what drove", "reason", "explain",
     "describe", "what factors", "what risks", "what risk",
+]
+
+# questions about the stock performance graph in the 10-K
+CHART_KEYWORDS = [
+    "chart", "graph", "stock performance", "stock perform",
+    "cumulative return", "total return", "shareholder return",
+    "s&p 500", "dow jones",
 ]
 
 # question wording -> section label the classifier assigns
@@ -150,6 +157,8 @@ def build_graph(embed_model, embeddings, entries, gemini_client):
 
     def classify_query(state):
         query_lower = state["query"].lower()
+        if any(kw in query_lower for kw in CHART_KEYWORDS):
+            return {**state, "route": "chart_focused"}
         is_explanatory = any(kw in query_lower for kw in EXPLANATORY_KEYWORDS)
         if is_explanatory:
             return {**state, "route": "text_focused"}
@@ -226,6 +235,31 @@ def build_graph(embed_model, embeddings, entries, gemini_client):
     def retrieve_text_focused(state):
         return retrieve(state, n_table=1, n_text=6)
 
+    def retrieve_chart_focused(state):
+        query = state["query"]
+        companies = detect_companies(query)
+        form = detect_form_type(query)
+        idx = [i for i, e in enumerate(entries)
+               if e["type"] == "chart"
+               and (companies is None or e["company"] in companies)
+               and e.get("form_type", "10-K") == form]
+        # no chart for this company/form (e.g. a 10-Q or Microsoft) -> normal text route
+        if not idx:
+            return retrieve(state, n_table=1, n_text=6)
+
+        scores = cosine_similarity(embed_model.encode(query), embeddings)
+        ranked = sorted(idx, key=lambda i: -scores[i])
+
+        # years named in the question -> those fiscal years' charts first
+        years = list(dict.fromkeys(re.findall(r"\b(20\d{2})\b", query)))
+        if years:
+            match = [i for i in ranked if any(in_fiscal_year(entries[i], y) for y in years)]
+            other = [i for i in ranked if i not in match]
+            ranked = match + other
+
+        text_state = retrieve(state, n_table=0, n_text=2)
+        return {**state, "retrieved": [entries[i] for i in ranked[:3]] + text_state["retrieved"]}
+
     def generate(state):
         context_block = "\n\n".join(
             f"[Source {i+1}: {source_label(e)}]\n{e['display_text']}"
@@ -253,7 +287,11 @@ answer is about. If the question names a segment, product line or line item
 using the row for exactly that item, even if no consolidated or "Total"
 figure appears in the sources. If the question does not name a segment or
 product line, answer with the company-wide (consolidated or "Total") figure,
-never a segment figure. If the sources don't contain enough information to
+never a segment figure. A source with type: chart is the company's stock
+performance graph; its figures are the exact values from the filing's table
+under the graph, showing what $100 invested at the start date was worth at
+each date, so quote them exactly and mention that they come from the stock
+performance graph. If the sources don't contain enough information to
 answer confidently, say so explicitly rather than guessing.
 
 SOURCES:
@@ -291,6 +329,7 @@ ANSWER:"""
     graph.add_node("classify_query", classify_query)
     graph.add_node("retrieve_table_focused", retrieve_table_focused)
     graph.add_node("retrieve_text_focused", retrieve_text_focused)
+    graph.add_node("retrieve_chart_focused", retrieve_chart_focused)
     graph.add_node("generate", generate)
     graph.add_node("verify", verify)
 
@@ -301,10 +340,12 @@ ANSWER:"""
         {
             "table_focused": "retrieve_table_focused",
             "text_focused": "retrieve_text_focused",
+            "chart_focused": "retrieve_chart_focused",
         },
     )
     graph.add_edge("retrieve_table_focused", "generate")
     graph.add_edge("retrieve_text_focused", "generate")
+    graph.add_edge("retrieve_chart_focused", "generate")
     graph.add_edge("generate", "verify")
     graph.add_edge("verify", END)
 
@@ -322,7 +363,7 @@ if __name__ == "__main__":
     print(f"Loading embedding model ({EMBED_MODEL_NAME})...")
     embed_model = SentenceTransformer(EMBED_MODEL_NAME)
 
-    print("Loading combined text+table index...")
+    print("Loading combined text+table+chart index...")
     embeddings, entries = load_index()
     print(f"Index loaded: {len(entries)} entries.\n")
 

@@ -1,0 +1,127 @@
+[
+  {
+    "is_chart": false,
+    "title": "",
+    "chart_type": "",
+    "x_axis": "",
+    "y_axis": "",
+    "series": [],
+    "description": "",
+    "approx_values": [],
+    "company": "AAPL",
+    "form_type": "10-K",
+    "filing_date": "2025-10-31",
+    "image_file": "aapl-20250927_g1.jpg",
+    "described_by": "gemini-2.5-flash-lite"
+  },
+  {
+    "is_chart": true,
+    "title": "COMPARISON OF 5-YEAR CUMULATIVE TOTAL RETURN Among Apple Inc., the S&P 500 Index and the Dow Jones U.S. Technology Total Stock Market Index",
+    "chart_type": "line",
+    "x_axis": "9/25/20 to 9/27/25",
+    "y_axis": "Cumulative Total Return ($)",
+    "series": [
+      "Apple Inc.",
+      "S&P 500 Index",
+      "Dow Jones U.S. Technology Total Stock Market Index"
+    ],
+    "description": "The chart displays the cumulative total return for Apple Inc., the S&P 500 Index, and the Dow Jones U.S. Technology Total Stock Market Index over a five-year period. Initially, all three series show similar growth. However, the Dow Jones U.S. Technology Index generally outperforms the S&P 500 Index and Apple Inc. towards the end of the period. Apple Inc. shows a dip in performance around September 2022 before recovering and growing.",
+    "approx_values": [
+      {
+        "series": "Apple Inc.",
+        "x": "9/25/20",
+        "approx_y": 100
+      },
+      {
+        "series": "S&P 500 Index",
+        "x": "9/25/20",
+        "approx_y": 100
+      },
+      {
+        "series": "Dow Jones U.S. Technology Total Stock Market Index",
+        "x": "9/25/20",
+        "approx_y": 100
+      },
+      {
+        "series": "Apple Inc.",
+        "x": "9/25/21",
+        "approx_y": 140
+      },
+      {
+        "series": "S&P 500 Index",
+        "x": "9/25/21",
+        "approx_y": 145
+      },
+      {
+        "series": "Dow Jones U.S. Technology Total Stock Market Index",
+        "x": "9/25/21",
+        "approx_y": 150
+      },
+      {
+        "series": "Apple Inc.",
+        "x": "9/24/22",
+        "approx_y": 120
+      },
+      {
+        "series": "S&P 500 Index",
+        "x": "9/24/22",
+        "approx_y": 130
+      },
+      {
+        "series": "Dow Jones U.S. Technology Total Stock Market Index",
+        "x": "9/24/22",
+        "approx_y": 115
+      },
+      {
+        "series": "Apple Inc.",
+        "x": "9/30/23",
+        "approx_y": 145
+      },
+      {
+        "series": "S&P 500 Index",
+        "x": "9/30/23",
+        "approx_y": 155
+      },
+      {
+        "series": "Dow Jones U.S. Technology Total Stock Market Index",
+        "x": "9/30/23",
+        "approx_y": 140
+      },
+      {
+        "series": "Apple Inc.",
+        "x": "9/28/24",
+        "approx_y": 210
+      },
+      {
+        "series": "S&P 500 Index",
+        "x": "9/28/24",
+        "approx_y": 200
+      },
+      {
+        "series": "Dow Jones U.S. Technology Total Stock Market Index",
+        "x": "9/28/24",
+        "approx_y": 180
+      },
+      {
+        "series": "Apple Inc.",
+        "x": "9/27/25",
+        "approx_y": 235
+      },
+      {
+        "series": "S&P 500 Index",
+        "x": "9/27/25",
+        "approx_y": 220
+      },
+      {
+        "series": "Dow Jones U.S. Technology Total Stock Market Index",
+        "x": "9/27/25",
+        "approx_y": 290
+      }
+    ],
+    "company": "AAPL",
+    "form_type": "10-K",
+    "filing_date": "2025-10-31",
+    "image_file": "aapl-20250927_g2.jpg",
+    "described_by": "gemini-2.5-flash-lite"
+  }
+]

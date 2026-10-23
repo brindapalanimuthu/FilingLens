@@ -1,0 +1,17 @@
+[
+  {
+    "is_chart": false,
+    "title": "",
+    "chart_type": "",
+    "x_axis": "",
+    "y_axis": "",
+    "series": [],
+    "description": "",
+    "approx_values": [],
+    "company": "AAPL",
+    "form_type": "10-Q",
+    "filing_date": "2026-05-01",
+    "image_file": "aapl-20260328_g1.jpg",
+    "described_by": "gemini-2.5-flash-lite"
+  }
+]

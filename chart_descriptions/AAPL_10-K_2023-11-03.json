@@ -1,0 +1,127 @@
+[
+  {
+    "is_chart": false,
+    "title": "",
+    "chart_type": "",
+    "x_axis": "",
+    "y_axis": "",
+    "series": [],
+    "description": "",
+    "approx_values": [],
+    "company": "AAPL",
+    "form_type": "10-K",
+    "filing_date": "2023-11-03",
+    "image_file": "aapl-20230930_g1.jpg",
+    "described_by": "gemini-2.5-flash-lite"
+  },
+  {
+    "is_chart": true,
+    "title": "COMPARISON OF 5-YEAR CUMULATIVE TOTAL RETURN Among Apple Inc., the S&P 500 Index and the Dow Jones U.S. Technology Supersector Index",
+    "chart_type": "line",
+    "x_axis": "9/28/18 to 9/30/23",
+    "y_axis": "Cumulative Total Return ($)",
+    "series": [
+      "Apple Inc.",
+      "S&P 500 Index",
+      "Dow Jones U.S. Technology Supersector Index"
+    ],
+    "description": "The chart displays the cumulative total return for Apple Inc., the S&P 500 Index, and the Dow Jones U.S. Technology Supersector Index over a five-year period. Initially, all three tracked closely, starting at approximately $100. Apple Inc. shows a significantly higher growth trajectory from late 2019 onwards, reaching the highest cumulative return. The S&P 500 Index and the Dow Jones U.S. Technology Supersector Index also grew, but at a considerably slower pace than Apple Inc., with the S&P 500 generally outperforming the Dow Jones index.",
+    "approx_values": [
+      {
+        "series": "Apple Inc.",
+        "x": "9/28/18",
+        "approx_y": 100
+      },
+      {
+        "series": "S&P 500 Index",
+        "x": "9/28/18",
+        "approx_y": 100
+      },
+      {
+        "series": "Dow Jones U.S. Technology Supersector Index",
+        "x": "9/28/18",
+        "approx_y": 100
+      },
+      {
+        "series": "Apple Inc.",
+        "x": "9/28/19",
+        "approx_y": 100
+      },
+      {
+        "series": "S&P 500 Index",
+        "x": "9/28/19",
+        "approx_y": 100
+      },
+      {
+        "series": "Dow Jones U.S. Technology Supersector Index",
+        "x": "9/28/19",
+        "approx_y": 100
+      },
+      {
+        "series": "Apple Inc.",
+        "x": "9/26/20",
+        "approx_y": 210
+      },
+      {
+        "series": "S&P 500 Index",
+        "x": "9/26/20",
+        "approx_y": 130
+      },
+      {
+        "series": "Dow Jones U.S. Technology Supersector Index",
+        "x": "9/26/20",
+        "approx_y": 115
+      },
+      {
+        "series": "Apple Inc.",
+        "x": "9/25/21",
+        "approx_y": 260
+      },
+      {
+        "series": "S&P 500 Index",
+        "x": "9/25/21",
+        "approx_y": 220
+      },
+      {
+        "series": "Dow Jones U.S. Technology Supersector Index",
+        "x": "9/25/21",
+        "approx_y": 155
+      },
+      {
+        "series": "Apple Inc.",
+        "x": "9/24/22",
+        "approx_y": 260
+      },
+      {
+        "series": "S&P 500 Index",
+        "x": "9/24/22",
+        "approx_y": 165
+      },
+      {
+        "series": "Dow Jones U.S. Technology Supersector Index",
+        "x": "9/24/22",
+        "approx_y": 145
+      },
+      {
+        "series": "Apple Inc.",
+        "x": "9/30/23",
+        "approx_y": 310
+      },
+      {
+        "series": "S&P 500 Index",
+        "x": "9/30/23",
+        "approx_y": 155
+      },
+      {
+        "series": "Dow Jones U.S. Technology Supersector Index",
+        "x": "9/30/23",
+        "approx_y": 220
+      }
+    ],
+    "company": "AAPL",
+    "form_type": "10-K",
+    "filing_date": "2023-11-03",
+    "image_file": "aapl-20230930_g2.jpg",
+    "described_by": "gemini-2.5-flash-lite"
+  }
+]

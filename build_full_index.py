@@ -1,10 +1,14 @@
 """
-FilingLens — Stage 5: Combined text + table index (multi-company, 10-K + 10-Q)
+FilingLens — Stage 5: Combined text + table + chart index (multi-company, 10-K + 10-Q)
 
 Reads section labels from classified_deberta/ when a file exists there,
 otherwise falls back to classified/. Every entry gets `company` (ticker),
 `fiscal_year`, `form_type` ('10-K' / '10-Q') and `fiscal_quarter`
 (1-3 for 10-Qs, 0 for 10-Ks).
+
+Chart entries (type='chart'): for filings whose chart_descriptions/ JSON flags
+an image as a chart, the exact numbers come from the filing's own stock
+performance table (not from the vision model), so they can be verified.
 """
 
 from sentence_transformers import SentenceTransformer
@@ -21,6 +25,7 @@ from table_chunker import table_to_row_chunks
 # classified/ first, then classified_deberta/ overrides it per filing
 INPUT_DIRS = ["classified", "classified_deberta"]
 OUTPUT_DIR = "full_index"
+CHART_DIR = "chart_descriptions"
 MODEL_NAME = "all-MiniLM-L6-v2"
 
 TICKER_NAMES = {
@@ -63,6 +68,75 @@ def is_boilerplate_table(rows):
     return any(marker in joined for marker in boilerplate_markers)
 
 
+# ---------------------------------------------------------------------------
+# Chart entries
+# ---------------------------------------------------------------------------
+
+def find_perf_table(tables):
+    """The 10-K's stock performance table (Apple vs S&P 500 vs Dow Jones Tech)."""
+    for t in tables:
+        rows = t.get("rows") or []
+        if not rows:
+            continue
+        s = json.dumps(rows)
+        if "Dow Jones" in s and "September" in " ".join(rows[0]):
+            return t
+    return None
+
+
+def parse_perf_table(table):
+    """-> (['September 2020', ...], {'Apple Inc.': ['100', '132', ...], ...})"""
+    rows = table["rows"]
+    header = [c.strip() for c in rows[0] if re.fullmatch(r"[A-Z][a-z]+ \d{4}", c.strip())]
+    series = {}
+    for r in rows[1:]:
+        label = r[0].strip()
+        vals = []
+        for c in r[1:]:
+            c = c.replace("$", "").replace(",", "").strip()
+            if re.fullmatch(r"\d+(\.\d+)?", c):
+                vals.append(c)
+        if label and header and len(vals) == len(header):
+            series[label] = vals
+    return header, series
+
+
+def chart_entries_for(filing_name, tables, meta, company_name):
+    path = os.path.join(CHART_DIR, f"{filing_name}.json")
+    if not os.path.exists(path):
+        return []
+    with open(path, "r", encoding="utf-8") as f:
+        charts = [c for c in json.load(f) if c.get("is_chart")]
+    if not charts:
+        return []
+    table = find_perf_table(tables)
+    if table is None:
+        print(f"  [chart] {filing_name}: chart found but no performance table, skipping")
+        return []
+    header, series = parse_perf_table(table)
+    if not series:
+        print(f"  [chart] {filing_name}: could not parse performance table, skipping")
+        return []
+
+    title = charts[0].get("title") or "Comparison of 5-year cumulative total return"
+    lines = [f"{name}: " + "; ".join(f"{h} ${v}" for h, v in zip(header, vals))
+             for name, vals in series.items()]
+    ranked = sorted(series.items(), key=lambda kv: -float(kv[1][-1]))
+    summary = (f"At {header[-1]}: " + ", ".join(f"{n} ${v[-1]}" for n, v in ranked)
+               + f". {ranked[0][0]} ended highest and {ranked[-1][0]} lowest.")
+    text = (f"{company_name} stock performance graph, fiscal {meta['fiscal_year']} "
+            f"{meta['form_type']} ({title}). Value of $100 invested in {header[0]}. "
+            + " ".join(lines) + " " + summary)
+    print(f"  [chart] {filing_name}: added chart entry ({len(series)} series, {len(header)} dates)")
+    return [{
+        "type": "chart",
+        "embed_text": text,
+        "display_text": text,
+        "section": "Stock Performance Graph",
+        **meta,
+    }]
+
+
 if __name__ == "__main__":
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 
@@ -77,6 +151,7 @@ if __name__ == "__main__":
     print(f"Found {len(files)} classified filing(s) to index:")
     for name, p in sorted(files.items()):
         print(f"  {name}  <- {os.path.dirname(p)}/")
+    print()
 
     all_entries = []
     for fname, classified_path in sorted(files.items()):
@@ -117,8 +192,11 @@ if __name__ == "__main__":
                     **meta,
                 })
 
+        # chart entry (10-Ks with a stock performance graph)
+        all_entries += chart_entries_for(filing_name, data["tables"], meta, company_name)
+
     print(f"\nEmbedding {len(all_entries)} total entries "
-          f"(text + tables) across all filings...")
+          f"(text + tables + charts) across all filings...")
     texts = [e["embed_text"] for e in all_entries]
     embeddings = model.encode(texts, show_progress_bar=True, batch_size=32)
 
@@ -134,4 +212,6 @@ if __name__ == "__main__":
                 continue
             n_text = sum(1 for e in rows if e["type"] == "text")
             n_table = sum(1 for e in rows if e["type"] == "table")
-            print(f"  {t} {form}: {len(rows)} entries ({n_text} text, {n_table} table rows)")
+            n_chart = sum(1 for e in rows if e["type"] == "chart")
+            print(f"  {t} {form}: {len(rows)} entries "
+                  f"({n_text} text, {n_table} table rows, {n_chart} chart)")
