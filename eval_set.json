@@ -213,5 +213,46 @@
     "id": 32,
     "question": "What was Apple's net income in fiscal 2030?",
     "type": "unanswerable"
+  },
+    {
+    "id": 33,
+    "question": "According to Apple's stock performance graph, what was $100 invested in Apple stock in September 2020 worth in September 2025?",
+    "type": "numeric",
+    "expected_number": "234"
+  },
+  {
+    "id": 34,
+    "question": "According to the fiscal 2025 stock performance graph, what was $100 invested in the S&P 500 Index in September 2020 worth in September 2025?",
+    "type": "numeric",
+    "expected_number": "217"
+  },
+  {
+    "id": 35,
+    "question": "In the fiscal 2025 stock performance graph, what were the September 2025 values for Apple and the S&P 500 Index?",
+    "type": "numeric",
+    "expected_numbers": ["234", "217"]
+  },
+  {
+    "id": 36,
+    "question": "What does Microsoft's stock performance graph show for fiscal 2025?",
+    "type": "unanswerable"
+  },
+    {
+    "id": 37,
+    "question": "In the fiscal 2025 stock performance graph, what was $100 invested in the Dow Jones U.S. Technology Total Stock Market Index in September 2020 worth in September 2025?",
+    "type": "numeric",
+    "expected_number": "287"
+  },
+  {
+    "id": 38,
+    "question": "In Apple's fiscal 2024 stock performance graph, what was $100 invested in Apple stock in September 2019 worth in September 2024?",
+    "type": "numeric",
+    "expected_number": "430"
+  },
+  {
+    "id": 39,
+    "question": "In Apple's fiscal 2023 stock performance graph, what was $100 invested in Apple stock in September 2018 worth in September 2023?",
+    "type": "numeric",
+    "expected_number": "317"
   }
 ]

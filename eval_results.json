@@ -350,5 +350,82 @@
     "retrieval_hit": null,
     "verification_pass_rate": null,
     "answer": "This answer is about Apple Inc. \n\nThe sources do not contain enough information to answer confidently, as there are no figures provided for fiscal 2030 [Source 1, Source 2, Source 3, Source 4, Source 5, Source 6, Source 7, Source 8]."
+  },
+  {
+    "id": 33,
+    "question": "According to Apple's stock performance graph, what was $100 invested in Apple stock in September 2020 worth in September 2025?",
+    "type": "numeric",
+    "route": "chart_focused",
+    "model": "gemini-3.5-flash-lite",
+    "outcome": "correct",
+    "retrieval_hit": true,
+    "verification_pass_rate": 1.0,
+    "answer": "This answer is about Apple Inc. \n\nAccording to Apple's stock performance graph in the fiscal 2025 10-K, $100 invested in Apple Inc. common stock in September 2020 was worth $234 in September 2025 [Source 1]."
+  },
+  {
+    "id": 34,
+    "question": "According to the fiscal 2025 stock performance graph, what was $100 invested in the S&P 500 Index in September 2020 worth in September 2025?",
+    "type": "numeric",
+    "route": "chart_focused",
+    "model": "gemini-3.5-flash-lite",
+    "outcome": "correct",
+    "retrieval_hit": true,
+    "verification_pass_rate": 1.0,
+    "answer": "This answer is about Apple Inc. \n\nAccording to the fiscal 2025 stock performance graph (Source 1), the value of $100 invested in the S&P 500 Index in September 2020 was worth $217 in September 2025 [Source 1]."
+  },
+  {
+    "id": 35,
+    "question": "In the fiscal 2025 stock performance graph, what were the September 2025 values for Apple and the S&P 500 Index?",
+    "type": "numeric",
+    "route": "chart_focused",
+    "model": "gemini-3.5-flash-lite",
+    "outcome": "correct",
+    "retrieval_hit": true,
+    "verification_pass_rate": 1.0,
+    "answer": "This answer is about Apple Inc. \n\nBased on the fiscal 2025 stock performance graph [Source 1], the September 2025 values were:\n* Apple Inc.: $234\n* S&P 500 Index: $217"
+  },
+  {
+    "id": 36,
+    "question": "What does Microsoft's stock performance graph show for fiscal 2025?",
+    "type": "unanswerable",
+    "route": "chart_focused",
+    "model": "gemini-3.5-flash-lite",
+    "outcome": "correct",
+    "retrieval_hit": null,
+    "verification_pass_rate": null,
+    "answer": "The sources do not contain enough information to answer confidently."
+  },
+  {
+    "id": 37,
+    "question": "In the fiscal 2025 stock performance graph, what was $100 invested in the Dow Jones U.S. Technology Total Stock Market Index in September 2020 worth in September 2025?",
+    "type": "numeric",
+    "route": "chart_focused",
+    "model": "gemini-3.5-flash-lite",
+    "outcome": "correct",
+    "retrieval_hit": true,
+    "verification_pass_rate": 1.0,
+    "answer": "This answer is about Apple Inc. \n\nIn the fiscal 2025 stock performance graph, $100 invested in the Dow Jones U.S. Technology Total Stock Market Index in September 2020 was worth $287 in September 2025 [Source 1]."
+  },
+  {
+    "id": 38,
+    "question": "In Apple's fiscal 2024 stock performance graph, what was $100 invested in Apple stock in September 2019 worth in September 2024?",
+    "type": "numeric",
+    "route": "chart_focused",
+    "model": "gemini-3.5-flash-lite",
+    "outcome": "correct",
+    "retrieval_hit": true,
+    "verification_pass_rate": 1.0,
+    "answer": "This answer is about Apple Inc. \n\nIn Apple's fiscal 2024 stock performance graph, $100 invested in Apple stock in September 2019 was worth $430 in September 2024 [Source 1]."
+  },
+  {
+    "id": 39,
+    "question": "In Apple's fiscal 2023 stock performance graph, what was $100 invested in Apple stock in September 2018 worth in September 2023?",
+    "type": "numeric",
+    "route": "chart_focused",
+    "model": "gemini-3.5-flash-lite",
+    "outcome": "correct",
+    "retrieval_hit": true,
+    "verification_pass_rate": 1.0,
+    "answer": "This answer is about Apple Inc. \n\nAccording to Apple's fiscal 2023 stock performance graph, $100 invested in Apple stock in September 2018 was worth $317 in September 2023 [Source 1]."
   }
 ]
