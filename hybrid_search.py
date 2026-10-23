@@ -40,6 +40,14 @@ SEGMENT_PENALTY = 0.6      # row label names none of them
 PCT_PENALTY = 0.5          # percentage rows when the question isn't about a share/percent
 PCT_WORDS = ("percent", "%", "share", "proportion", "margin", "rate", "ratio")
 
+# --- 10-K vs 10-Q handling ---
+QUARTER_BOOST = 1.5        # row comes from the quarter the question names
+QUARTER_PENALTY = 0.7      # row comes from a different quarter
+QUARTER_RE = re.compile(
+    r"\b(quarter|quarterly|q[1-3]|three months|six months|nine months|"
+    r"sequential|sequentially|quarter-over-quarter|qoq)\b", re.I)
+ORD = {"first": 1, "second": 2, "third": 3}
+
 YEAR_TOKEN = re.compile(r"(19|20)\d{2}")
 
 
@@ -51,6 +59,30 @@ def detect_companies(query):
         if any(re.search(rf"\b{re.escape(a)}\b", q) for a in aliases)
     }
     return found or None
+
+
+def detect_form_type(query):
+    """Questions about quarters use 10-Q rows; everything else stays on 10-K.
+    (Q4 results live in the 10-K, so only Q1-Q3 switch to 10-Q.)"""
+    return "10-Q" if QUARTER_RE.search(query) else "10-K"
+
+
+def detect_quarters(query):
+    """[(fiscal_quarter, fiscal_year or None), ...] named in the question."""
+    q, out = query.lower(), []
+    for m in re.finditer(r"\bq([1-3])\b(?:\s*(?:of\s*)?(?:fy\s*)?((?:19|20)\d{2}))?", q):
+        out.append((int(m.group(1)), int(m.group(2)) if m.group(2) else None))
+    for m in re.finditer(
+            r"\b(first|second|third)\s+quarter(?:\s+of)?(?:\s+fiscal)?(?:\s+((?:19|20)\d{2}))?", q):
+        out.append((ORD[m.group(1)], int(m.group(2)) if m.group(2) else None))
+    for m in re.finditer(r"\bfy\s*((?:19|20)\d{2})\s*q([1-3])\b", q):
+        out.append((int(m.group(2)), int(m.group(1))))
+    # 'Q1 to Q2 2025': a single year in the question applies to quarters named without one
+    years = set(re.findall(r"(?<!\d)((?:19|20)\d{2})(?!\d)", q))
+    if len(years) == 1:
+        y = int(next(iter(years)))
+        out = [(fq, fy if fy is not None else y) for fq, fy in out]
+    return list(dict.fromkeys(out))
 
 
 def expand_terms(query):
@@ -148,6 +180,10 @@ def _load(model=None):
     _state.update(
         entries=entries, tidx=tidx, t_emb=emb[tidx],
         t_company=np.array([entries[i]["company"] for i in tidx]),
+        # older indexes have no form_type / fiscal_quarter: treat them as 10-K
+        t_form=np.array([entries[i].get("form_type", "10-K") for i in tidx]),
+        t_fq=np.array([entries[i].get("fiscal_quarter", 0) for i in tidx]),
+        t_fy=np.array([entries[i].get("fiscal_year") or 0 for i in tidx]),
         t_label=[inf[0] for inf in infos],
         t_weight=np.array([PREFIX_PENALTY if inf[1] else 1.0 for inf in infos]),
         t_full=[f[0] for f in fulls],
@@ -171,17 +207,21 @@ def _rrf(*orders, k=60):
     return sorted(score, key=score.get, reverse=True)
 
 
-def _row_multiplier(j, segments, pct_ok):
+def _row_multiplier(j, segments, pct_ok, quarters=()):
     m = 1.0
     if segments:
         label = _state["t_full"][j]
         m *= SEGMENT_BOOST if any(s in label for s in segments) else SEGMENT_PENALTY
     if not pct_ok and _state["t_pct"][j]:
         m *= PCT_PENALTY
+    if quarters:
+        fq, fy = _state["t_fq"][j], _state["t_fy"][j]
+        hit = any(q == fq and (y is None or y == fy) for q, y in quarters)
+        m *= QUARTER_BOOST if hit else QUARTER_PENALTY
     return m
 
 
-def _rank(query, allowed):
+def _rank(query, allowed, quarters=()):
     """Ranked list of table-row indices for ONE query (embedding + BM25 + label match)."""
     qv = _model.encode([query])[0]
     qv = qv / np.linalg.norm(qv)
@@ -211,28 +251,33 @@ def _rank(query, allowed):
 
     score = _rrf_scores(o_emb, o_bm, o_lab, o_lab)
 
-    # re-rank: favour rows naming the segment asked about, demote % rows
+    # re-rank: favour rows naming the segment asked about, demote % rows,
+    # favour the quarter asked about
     segments = query_segments(query)
     pct_ok = wants_percent(query)
-    adj = {j: s * _row_multiplier(j, segments, pct_ok) for j, s in score.items()}
+    adj = {j: s * _row_multiplier(j, segments, pct_ok, quarters)
+           for j, s in score.items()}
     return sorted(adj, key=adj.get, reverse=True)
 
 
-def hybrid_table_search(query, k=8, model=None, companies=None):
+def hybrid_table_search(query, k=8, model=None, companies=None, form_type=None):
     """Top-k table-row entries. Multi-metric questions are also searched
     part by part and interleaved, so each metric gets rows in the result.
-    companies: set of tickers to restrict to; None = auto-detect from query."""
+    companies: set of tickers to restrict to; None = auto-detect from query.
+    form_type: '10-K' or '10-Q'; None = auto-detect (quarter wording -> 10-Q)."""
     _load(model)
     if companies is None:
         companies = detect_companies(query)
     allowed = (np.isin(_state["t_company"], list(companies))
                if companies else np.ones(len(_state["tidx"]), dtype=bool))
+    allowed = allowed & (_state["t_form"] == (form_type or detect_form_type(query)))
+    quarters = detect_quarters(query)
 
     full = expand_terms(query)
-    rankings = [_rank(full, allowed)]
+    rankings = [_rank(full, allowed, quarters)]
     parts = split_parts(query)
     if len(parts) > 1:
-        rankings += [_rank(p, allowed) for p in parts]
+        rankings += [_rank(p, allowed, quarters) for p in parts]
 
     # round-robin merge: full-question ranking first, then each part
     top, seen, depth = [], set(), 0

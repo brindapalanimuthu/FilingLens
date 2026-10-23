@@ -17,6 +17,8 @@ STATEMENT_HINTS = [
 
 YEAR_RE = re.compile(r"\b(19|20)\d{2}\b")
 YEAR_ONLY_RE = re.compile(r"(19|20)\d{2}")
+# 10-Q column groups: 'Three Months Ended', 'Six Months Ended', ...
+DURATION_RE = re.compile(r"\b(three|six|nine|twelve)\s+months\s+ended", re.I)
 
 # rows that end any open "Section:" group
 SECTION_ENDERS = (
@@ -48,6 +50,10 @@ def is_header_row(cells):
     return len(yrs) >= 2 and len(yrs) >= len(cells) - 1
 
 
+def is_duration_row(cells):
+    return bool(cells) and all(DURATION_RE.search(c) for c in cells)
+
+
 def is_plain_section_title(text):
     """Single-cell row without a colon that looks like a group title,
     e.g. 'Intelligent Cloud' or 'Total' (no digits, short, not a unit note)."""
@@ -58,16 +64,16 @@ def is_plain_section_title(text):
     )
 
 
-def table_to_row_chunks(table, filing_name, company_name=""):
-    rows = table["rows"]
-    title = guess_title(rows)
-    prefix = f"{filing_name} | {company_name}" if company_name else filing_name
-    is_generic_table = title == "Financial table"
-
-    header = []
+def find_header(rows):
+    """Column labels. For 10-Qs, a preceding 'Three Months Ended | Six Months Ended'
+    row is merged into the labels so duplicate dates stay distinguishable."""
+    header, durations = [], []
     for r in rows:
         cells = clean_cells(r)
         if not cells:
+            continue
+        if is_duration_row(cells):
+            durations = [c.strip().rstrip(",") for c in cells]
             continue
         if all(YEAR_RE.search(c) for c in cells):          # Apple-style header
             header = cells
@@ -76,6 +82,19 @@ def table_to_row_chunks(table, filing_name, company_name=""):
         if len(yrs) >= 2 and len(yrs) >= len(cells) - 1:   # e.g. "Year Ended June 30," 2025 2024 2023
             header = yrs
             break
+    if durations and header and len(header) % len(durations) == 0:
+        per = len(header) // len(durations)
+        header = [f"{durations[i // per]} {h}" for i, h in enumerate(header)]
+    return header
+
+
+def table_to_row_chunks(table, filing_name, company_name=""):
+    rows = table["rows"]
+    title = guess_title(rows)
+    prefix = f"{filing_name} | {company_name}" if company_name else filing_name
+    is_generic_table = title == "Financial table"
+
+    header = find_header(rows)
 
     chunks, section = [], ""
     for r in rows:
@@ -83,6 +102,8 @@ def table_to_row_chunks(table, filing_name, company_name=""):
         if not cells:
             continue
         if is_header_row(cells):
+            continue
+        if is_duration_row(cells):
             continue
         if len(cells) == 1:                                # section header
             if cells[0].endswith(":"):

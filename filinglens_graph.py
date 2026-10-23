@@ -1,5 +1,5 @@
 """
-FilingLens — Stage 6: LangGraph routing (hybrid table retrieval, multi-company)
+FilingLens — Stage 6: LangGraph routing (hybrid table retrieval, multi-company, 10-K + 10-Q)
 Gemini calls fall back between models when one hits its daily quota.
 """
 
@@ -13,7 +13,7 @@ import re
 import sys
 from typing import TypedDict, List, Dict
 
-from hybrid_search import hybrid_table_search, detect_companies
+from hybrid_search import hybrid_table_search, detect_companies, detect_form_type
 
 
 INDEX_DIR = "full_index"
@@ -24,6 +24,11 @@ TOP_K = 5
 _current_model_idx = 0  # persists across calls, so a dead model isn't retried
 
 NUMBER_PATTERN = re.compile(r"\(?-?\$?\d[\d,]*(?:\.\d+)?\)?%?")
+# dates ("March 29, 2025") and bare years are labels, not financial claims
+DATE_PATTERN = re.compile(
+    r"\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+\d{1,2}"
+    r"(?:,?\s*(?:19|20)\d{2})?", re.I)
+YEAR_PATTERN = re.compile(r"\(?(?:19|20)\d{2}\)?")
 
 NUMERIC_KEYWORDS = [
     "how much", "total", "percentage", "percent", "%", "margin",
@@ -72,6 +77,23 @@ def cosine_similarity(query_vec, matrix):
 
 def normalize(s):
     return re.sub(r"[,$%()]", "", s)
+
+
+def in_fiscal_year(entry, year):
+    """True if the entry belongs to fiscal year `year`. 10-K fiscal year = filing
+    year (as before); 10-Qs use their computed fiscal year (a Microsoft 10-Q filed
+    Oct 2024 is fiscal 2025). Falls back to the filing date for old indexes."""
+    fy = entry.get("fiscal_year")
+    return fy == int(year) if fy else f"_{year}-" in entry["filing"]
+
+
+def source_label(entry):
+    """Header shown to the LLM. 10-Q sources also carry their fiscal quarter, because
+    the filing date alone doesn't tell the model which quarter it covers."""
+    label = f"{entry['filing']}, {entry['section']}, type: {entry['type']}"
+    if entry.get("form_type") == "10-Q" and entry.get("fiscal_quarter"):
+        label += f", fiscal Q{entry['fiscal_quarter']} FY{entry['fiscal_year']}"
+    return label
 
 
 def call_gemini_with_retry(client, prompt, max_attempts=6):
@@ -140,9 +162,11 @@ def build_graph(embed_model, embeddings, entries, gemini_client):
         query_lower = state["query"].lower()
 
         companies = detect_companies(state["query"])  # None = no filter
+        form = detect_form_type(state["query"])        # '10-Q' only for quarter wording
 
         def allowed(e):
-            return companies is None or e["company"] in companies
+            return ((companies is None or e["company"] in companies)
+                    and e.get("form_type", "10-K") == form)
 
         text_indices = [i for i, e in enumerate(entries)
                         if e["type"] == "text" and allowed(e)]
@@ -178,18 +202,18 @@ def build_graph(embed_model, embeddings, entries, gemini_client):
         query = state["query"]
 
         # hybrid BM25 + embedding + label-match search over table rows only
-        # (filtered to the company named in the question, if any).
+        # (filtered to the company and form type the question is about).
         # Wide pool: the same row appears in up to 3 filings.
         tables = hybrid_table_search(query, k=40, model=embed_model)
 
         # Years named in the question -> take the best rows from EACH named
-        # year's filing (filenames carry the filing date, e.g. AAPL_10-K_2024-11-01).
+        # fiscal year's filings.
         years = list(dict.fromkeys(re.findall(r"\b(20\d{2})\b", query)))
         if years:
             per_year = max(2, 6 // len(years))
             picked = []
             for y in years:
-                picked += [e for e in tables if f"_{y}-" in e["filing"]][:per_year]
+                picked += [e for e in tables if in_fiscal_year(e, y)][:per_year]
             picked_ids = {id(e) for e in picked}
             rest = [e for e in tables if id(e) not in picked_ids]
             tables = picked + rest
@@ -204,7 +228,7 @@ def build_graph(embed_model, embeddings, entries, gemini_client):
 
     def generate(state):
         context_block = "\n\n".join(
-            f"[Source {i+1}: {e['filing']}, {e['section']}, type: {e['type']}]\n{e['display_text']}"
+            f"[Source {i+1}: {source_label(e)}]\n{e['display_text']}"
             for i, e in enumerate(state["retrieved"])
         )
         prompt = f"""You are a financial analyst assistant. Answer the question using ONLY
@@ -215,7 +239,13 @@ the question asks for a growth rate, percentage change or other calculation,
 take the needed figures from the sources, show them, calculate the result,
 and say it is calculated. When the question names a fiscal year, prefer
 figures from the filing for that same year (e.g. the 2024 10-K for 2024
-figures). Only use sources from the company the question asks about; if none
+figures). For quarterly questions, use the 10-Q sources: each source label
+shows its fiscal quarter (e.g. "fiscal Q2 FY2025"); a column headed "Three
+Months Ended" is that single quarter, while "Six Months Ended" or "Nine Months
+Ended" columns are year-to-date totals and must not be used for a single-quarter
+figure. When a table has several period columns, answer with the column whose
+header matches the period asked about; do not offer other periods' values as
+alternatives. Only use sources from the company the question asks about; if none
 of the sources are from that company, say the sources don't contain the
 answer. If the question does not name a company, say which company your
 answer is about. If the question names a segment, product line or line item
@@ -239,11 +269,13 @@ ANSWER:"""
         source_text = " ".join(e["display_text"] for e in state["retrieved"])
         normalized_source = normalize(source_text)
 
-        numbers_found = NUMBER_PATTERN.findall(state["answer"])
+        answer_text = DATE_PATTERN.sub(" ", state["answer"])
+        numbers_found = NUMBER_PATTERN.findall(answer_text)
         results = []
         seen = set()
         for num in numbers_found:
-            if num in seen:
+            num = num.rstrip(",")
+            if num in seen or YEAR_PATTERN.fullmatch(num):
                 continue
             seen.add(num)
             normalized_num = normalize(num)

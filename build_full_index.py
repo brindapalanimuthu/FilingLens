@@ -1,12 +1,14 @@
 """
-FilingLens — Stage 5: Combined text + table index (multi-company)
+FilingLens — Stage 5: Combined text + table index (multi-company, 10-K + 10-Q)
 
 Reads section labels from classified_deberta/ when a file exists there,
-otherwise falls back to classified/. Every entry gets `company` (ticker)
-and `fiscal_year` fields.
+otherwise falls back to classified/. Every entry gets `company` (ticker),
+`fiscal_year`, `form_type` ('10-K' / '10-Q') and `fiscal_quarter`
+(1-3 for 10-Qs, 0 for 10-Ks).
 """
 
 from sentence_transformers import SentenceTransformer
+import datetime as dt
 import json
 import os
 import glob
@@ -25,16 +27,31 @@ TICKER_NAMES = {
     "AAPL": "Apple Inc.",
     "MSFT": "Microsoft Corporation",
 }
+FISCAL_YEAR_END = {"AAPL": 9, "MSFT": 6}   # month the fiscal year ends
 
 
 def company_info(filing_name):
-    """'MSFT_10-K_2025-07-30' -> ('MSFT', 'Microsoft Corporation', 2025).
-    Fiscal year = filing year, which holds for both Apple (Sept FY, filed
-    Oct/Nov) and Microsoft (June FY, filed July)."""
+    """'MSFT_10-Q_2024-10-30' -> ('MSFT', 'Microsoft Corporation', 2025, '10-Q', 1).
+
+    10-K: fiscal year = filing year (holds for Apple, Sept FY filed Oct/Nov,
+    and Microsoft, June FY filed July).
+    10-Q: filed ~5 weeks after quarter end, so quarter end = filing date - 35 days;
+    fiscal quarter and fiscal year are derived from the company's FY-end month."""
     ticker = filing_name.split("_")[0].upper()
-    m = re.search(r"(\d{4})-\d{2}-\d{2}", filing_name)
-    year = int(m.group(1)) if m else None
-    return ticker, TICKER_NAMES.get(ticker, ticker), year
+    fm = re.search(r"10-([KQ])", filing_name)
+    form_type = f"10-{fm.group(1)}" if fm else "10-K"
+    m = re.search(r"(\d{4})-(\d{2})-(\d{2})", filing_name)
+    fiscal_year, fiscal_quarter = None, 0
+    if m:
+        filed = dt.date(int(m.group(1)), int(m.group(2)), int(m.group(3)))
+        fiscal_year = filed.year
+        fye = FISCAL_YEAR_END.get(ticker)
+        if form_type == "10-Q" and fye:
+            qend = filed - dt.timedelta(days=35)
+            fiscal_quarter = ((qend.month - fye) % 12) // 3
+            fiscal_year = qend.year + 1 if qend.month > fye else qend.year
+    return (ticker, TICKER_NAMES.get(ticker, ticker),
+            fiscal_year, form_type, fiscal_quarter)
 
 
 def is_boilerplate_table(rows):
@@ -67,7 +84,15 @@ if __name__ == "__main__":
             data = json.load(f)
 
         filing_name = os.path.splitext(fname)[0]
-        ticker, company_name, fiscal_year = company_info(filing_name)
+        ticker, company_name, fiscal_year, form_type, fiscal_quarter = \
+            company_info(filing_name)
+        meta = {
+            "filing": filing_name,
+            "company": ticker,
+            "fiscal_year": fiscal_year,
+            "form_type": form_type,
+            "fiscal_quarter": fiscal_quarter,
+        }
 
         # text chunks
         for chunk in data["text"]:
@@ -76,9 +101,7 @@ if __name__ == "__main__":
                 "embed_text": chunk["text"],
                 "display_text": chunk["text"],
                 "section": chunk["section"],
-                "filing": filing_name,
-                "company": ticker,
-                "fiscal_year": fiscal_year,
+                **meta,
             })
 
         # table rows (one entry per row)
@@ -91,9 +114,7 @@ if __name__ == "__main__":
                     "embed_text": row_chunk["text"],
                     "display_text": row_chunk["text"],
                     "section": f"Table {table['table_id']}",
-                    "filing": filing_name,
-                    "company": ticker,
-                    "fiscal_year": fiscal_year,
+                    **meta,
                 })
 
     print(f"\nEmbedding {len(all_entries)} total entries "
@@ -107,7 +128,10 @@ if __name__ == "__main__":
 
     print(f"\nSaved {len(all_entries)} entries to {OUTPUT_DIR}/")
     for t in sorted({e['company'] for e in all_entries}):
-        rows = [e for e in all_entries if e["company"] == t]
-        n_text = sum(1 for e in rows if e["type"] == "text")
-        n_table = sum(1 for e in rows if e["type"] == "table")
-        print(f"  {t}: {len(rows)} entries ({n_text} text, {n_table} table rows)")
+        for form in ("10-K", "10-Q"):
+            rows = [e for e in all_entries if e["company"] == t and e["form_type"] == form]
+            if not rows:
+                continue
+            n_text = sum(1 for e in rows if e["type"] == "text")
+            n_table = sum(1 for e in rows if e["type"] == "table")
+            print(f"  {t} {form}: {len(rows)} entries ({n_text} text, {n_table} table rows)")
